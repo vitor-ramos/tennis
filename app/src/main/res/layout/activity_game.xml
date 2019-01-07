@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="2"
+    tools:context=".GameActivity">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/one_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Você"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/one_points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/one_name" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/one_games_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Games:"
+            app:layout_constraintEnd_toStartOf="@id/one_games"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/one_points" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/one_games"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            app:layout_constraintEnd_toStartOf="@id/one_sets_label"
+            app:layout_constraintStart_toEndOf="@id/one_games_label"
+            app:layout_constraintTop_toBottomOf="@id/one_points" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/one_sets_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sets:"
+            app:layout_constraintEnd_toStartOf="@id/one_sets"
+            app:layout_constraintStart_toEndOf="@id/one_games"
+            app:layout_constraintTop_toBottomOf="@id/one_points" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/one_sets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/one_sets_label"
+            app:layout_constraintTop_toBottomOf="@id/one_points" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/one_add_point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ponto"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/one_games_label" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/two_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Convidado"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/two_points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/two_name" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/two_games_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Games:"
+            app:layout_constraintEnd_toStartOf="@id/two_games"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/two_points" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/two_games"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            app:layout_constraintEnd_toStartOf="@id/two_sets_label"
+            app:layout_constraintStart_toEndOf="@id/two_games_label"
+            app:layout_constraintTop_toBottomOf="@id/two_points" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/two_sets_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sets:"
+            app:layout_constraintEnd_toStartOf="@id/two_sets"
+            app:layout_constraintStart_toEndOf="@id/two_games"
+            app:layout_constraintTop_toBottomOf="@id/two_points" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/two_sets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/two_sets_label"
+            app:layout_constraintTop_toBottomOf="@id/two_points" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/two_add_point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ponto"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/two_games_label" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</LinearLayout>
