@@ -5,14 +5,14 @@ class Game(
     guestName: String,
     private val games: Int,
     private val sets: Int,
+    private val onScoreChanged: (HashMap<String, String>, HashMap<String, String>) -> Unit,
     private val onMatchFinished: () -> Unit
 ) {
     private val hostScore = Score(hostName)
     private val guestScore = Score(guestName)
 
-    fun addPoint(whichPlayer: PlayerType): HashMap<String, String> {
-        var result: HashMap<String, String>? = null
-
+    fun addPoint(whichPlayer: PlayerType) {
+        var consumed = true
         val scoringPlayer = if (whichPlayer == PlayerType.HOST) hostScore else guestScore
         val otherPlayer = if (whichPlayer == PlayerType.HOST) guestScore else hostScore
 
@@ -22,34 +22,39 @@ class Game(
             // 40
             3 -> {
                 when (otherPlayer.points) {
-                    0, 1, 2 -> result = addGame(whichPlayer)
+                    0, 1, 2 -> {
+                        addGame(whichPlayer)
+                        consumed = false
+                    }
                     3 -> scoringPlayer.points++
                     4 -> otherPlayer.points--
                 }
             }
             // A
-            4 -> result = addGame(whichPlayer)
+            4 -> {
+                addGame(whichPlayer)
+                consumed = false
+            }
         }
-        if (result == null) result = getHashMap(scoringPlayer)
-        return result
+        if (consumed) onScoreChanged(getHashMap(hostScore), getHashMap(guestScore))
     }
 
-    private fun addGame(whichPlayer: PlayerType): HashMap<String, String> {
+    private fun addGame(whichPlayer: PlayerType) {
         hostScore.points = 0
         guestScore.points = 0
         val scoringPlayer = if (whichPlayer == PlayerType.HOST) hostScore else guestScore
         scoringPlayer.games++
-        return if (scoringPlayer.games == games) addSet(whichPlayer) else getHashMap(scoringPlayer)
+        if (scoringPlayer.games == games) addSet(whichPlayer)
+        else onScoreChanged(getHashMap(hostScore), getHashMap(guestScore))
     }
 
-    private fun addSet(whichPlayer: PlayerType): HashMap<String, String> {
+    private fun addSet(whichPlayer: PlayerType) {
         hostScore.games = 0
         guestScore.games = 0
         val scoringPlayer = if (whichPlayer == PlayerType.HOST) hostScore else guestScore
         scoringPlayer.sets++
         if (scoringPlayer.sets == sets) onMatchFinished()
-
-        return getHashMap(scoringPlayer)
+        else onScoreChanged(getHashMap(scoringPlayer), getHashMap(guestScore))
     }
 
     private fun getHashMap(score: Score): HashMap<String, String> {
