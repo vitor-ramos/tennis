@@ -14,67 +14,67 @@
         android:layout_weight="1">
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/one_name"
+            android:id="@+id/host_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Você"
+            android:text="@string/you"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/one_points"
+            android:id="@+id/host_points"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0"
+            android:text="@string/zero"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/one_name" />
+            app:layout_constraintTop_toBottomOf="@id/host_name" />
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/one_games_label"
+            android:id="@+id/host_games_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Games:"
-            app:layout_constraintEnd_toStartOf="@id/one_games"
+            android:text="@string/score_games"
+            app:layout_constraintEnd_toStartOf="@id/host_games"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/one_points" />
+            app:layout_constraintTop_toBottomOf="@id/host_points" />
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/one_games"
+            android:id="@+id/host_games"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0"
-            app:layout_constraintEnd_toStartOf="@id/one_sets_label"
-            app:layout_constraintStart_toEndOf="@id/one_games_label"
-            app:layout_constraintTop_toBottomOf="@id/one_points" />
+            android:text="@string/zero"
+            app:layout_constraintEnd_toStartOf="@id/host_sets_label"
+            app:layout_constraintStart_toEndOf="@id/host_games_label"
+            app:layout_constraintTop_toBottomOf="@id/host_points" />
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/one_sets_label"
+            android:id="@+id/host_sets_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sets:"
-            app:layout_constraintEnd_toStartOf="@id/one_sets"
-            app:layout_constraintStart_toEndOf="@id/one_games"
-            app:layout_constraintTop_toBottomOf="@id/one_points" />
+            android:text="@string/score_sets"
+            app:layout_constraintEnd_toStartOf="@id/host_sets"
+            app:layout_constraintStart_toEndOf="@id/host_games"
+            app:layout_constraintTop_toBottomOf="@id/host_points" />
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/one_sets"
+            android:id="@+id/host_sets"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0"
+            android:text="@string/zero"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/one_sets_label"
-            app:layout_constraintTop_toBottomOf="@id/one_points" />
+            app:layout_constraintStart_toEndOf="@id/host_sets_label"
+            app:layout_constraintTop_toBottomOf="@id/host_points" />
 
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/one_add_point"
+            android:id="@+id/host_add_point"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ponto"
+            android:text="@string/add_point_bt_label"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/one_games_label" />
+            app:layout_constraintTop_toBottomOf="@id/host_games_label" />
 
     </android.support.constraint.ConstraintLayout>
 
@@ -84,67 +84,67 @@
         android:layout_weight="1">
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/two_name"
+            android:id="@+id/guest_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Convidado"
+            android:text="@string/guest"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/two_points"
+            android:id="@+id/guest_points"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0"
+            android:text="@string/zero"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/two_name" />
+            app:layout_constraintTop_toBottomOf="@id/guest_name" />
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/two_games_label"
+            android:id="@+id/guest_games_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Games:"
-            app:layout_constraintEnd_toStartOf="@id/two_games"
+            android:text="@string/score_games"
+            app:layout_constraintEnd_toStartOf="@id/guest_games"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/two_points" />
+            app:layout_constraintTop_toBottomOf="@id/guest_points" />
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/two_games"
+            android:id="@+id/guest_games"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0"
-            app:layout_constraintEnd_toStartOf="@id/two_sets_label"
-            app:layout_constraintStart_toEndOf="@id/two_games_label"
-            app:layout_constraintTop_toBottomOf="@id/two_points" />
+            android:text="@string/zero"
+            app:layout_constraintEnd_toStartOf="@id/guest_sets_label"
+            app:layout_constraintStart_toEndOf="@id/guest_games_label"
+            app:layout_constraintTop_toBottomOf="@id/guest_points" />
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/two_sets_label"
+            android:id="@+id/guest_sets_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sets:"
-            app:layout_constraintEnd_toStartOf="@id/two_sets"
-            app:layout_constraintStart_toEndOf="@id/two_games"
-            app:layout_constraintTop_toBottomOf="@id/two_points" />
+            android:text="@string/score_sets"
+            app:layout_constraintEnd_toStartOf="@id/guest_sets"
+            app:layout_constraintStart_toEndOf="@id/guest_games"
+            app:layout_constraintTop_toBottomOf="@id/guest_points" />
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/two_sets"
+            android:id="@+id/guest_sets"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0"
+            android:text="@string/zero"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/two_sets_label"
-            app:layout_constraintTop_toBottomOf="@id/two_points" />
+            app:layout_constraintStart_toEndOf="@id/guest_sets_label"
+            app:layout_constraintTop_toBottomOf="@id/guest_points" />
 
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/two_add_point"
+            android:id="@+id/guest_add_point"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ponto"
+            android:text="@string/add_point_bt_label"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/two_games_label" />
+            app:layout_constraintTop_toBottomOf="@id/guest_games_label" />
 
     </android.support.constraint.ConstraintLayout>
 

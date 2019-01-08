@@ -7,37 +7,37 @@
     tools:context=".MainActivity">
 
     <android.support.v7.widget.AppCompatEditText
-        android:id="@+id/one_name"
+        android:id="@+id/host_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Seu nome"
+        android:hint="@string/your_name"
         android:inputType="textPersonName" />
 
     <android.support.v7.widget.AppCompatEditText
-        android:id="@+id/two_name"
+        android:id="@+id/guest_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nome do convidado"
+        android:hint="@string/guest_name"
         android:inputType="textPersonName" />
 
     <android.support.v7.widget.AppCompatEditText
         android:id="@+id/games_count"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Games por set"
+        android:hint="@string/games_to_win"
         android:inputType="textPersonName" />
 
     <android.support.v7.widget.AppCompatEditText
         android:id="@+id/sets_count"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Sets por jogo"
+        android:hint="@string/sets_to_win"
         android:inputType="textPersonName" />
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/start_match"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Começar partida" />
+        android:text="@string/start_match" />
 
 </LinearLayout>

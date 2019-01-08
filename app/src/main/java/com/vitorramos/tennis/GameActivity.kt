@@ -3,6 +3,13 @@ package com.vitorramos.tennis
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
+import com.vitorramos.tennis.Game.Companion.MAP_FIELD_GAMES
+import com.vitorramos.tennis.Game.Companion.MAP_FIELD_POINTS
+import com.vitorramos.tennis.Game.Companion.MAP_FIELD_SETS
+import com.vitorramos.tennis.MainActivity.Companion.EXTRA_FIELD_GAMES
+import com.vitorramos.tennis.MainActivity.Companion.EXTRA_FIELD_GUEST
+import com.vitorramos.tennis.MainActivity.Companion.EXTRA_FIELD_HOST
+import com.vitorramos.tennis.MainActivity.Companion.EXTRA_FIELD_SETS
 import kotlinx.android.synthetic.main.activity_game.*
 
 class GameActivity : AppCompatActivity() {
@@ -10,28 +17,28 @@ class GameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
-        val oneName = intent.getStringExtra("oneName")
-        val twoName = intent.getStringExtra("twoName")
-        val games = intent.getIntExtra("games", -1)
-        val sets = intent.getIntExtra("sets", -1)
+        val hostName = intent.getStringExtra(EXTRA_FIELD_HOST)
+        val guestName = intent.getStringExtra(EXTRA_FIELD_GUEST)
+        val gamesToWin = intent.getIntExtra(EXTRA_FIELD_GAMES, -1)
+        val setsToWin = intent.getIntExtra(EXTRA_FIELD_SETS, -1)
 
-        val game = Game(oneName, twoName, games, sets, onScoreChanged, onMatchFinished)
-        one_add_point.setOnClickListener {
-            game.addPoint(Game.PlayerType.HOST)
+        val game = Game(hostName, guestName, gamesToWin, setsToWin, onScoreChanged, onMatchFinished)
+        host_add_point.setOnClickListener {
+            game.addPoint(Game.WhichPlayer.HOST)
         }
-        two_add_point.setOnClickListener {
-            game.addPoint(Game.PlayerType.GUEST)
+        guest_add_point.setOnClickListener {
+            game.addPoint(Game.WhichPlayer.GUEST)
         }
     }
 
-    private val onScoreChanged: (HashMap<String, String>, HashMap<String, String>) -> Unit = { onePoints, twoPoints ->
-        one_points.text = onePoints["points"]
-        one_games.text = onePoints["games"]
-        one_sets.text = onePoints["sets"]
+    private val onScoreChanged = { hostPoints: HashMap<String, String>, guestPoints: HashMap<String, String> ->
+        host_points.text = hostPoints[MAP_FIELD_POINTS]
+        host_games.text = hostPoints[MAP_FIELD_GAMES]
+        host_sets.text = hostPoints[MAP_FIELD_SETS]
 
-        two_points.text = twoPoints["points"]
-        two_games.text = twoPoints["games"]
-        two_sets.text = twoPoints["sets"]
+        guest_points.text = guestPoints[MAP_FIELD_POINTS]
+        guest_games.text = guestPoints[MAP_FIELD_GAMES]
+        guest_sets.text = guestPoints[MAP_FIELD_SETS]
     }
 
     private val onMatchFinished = {

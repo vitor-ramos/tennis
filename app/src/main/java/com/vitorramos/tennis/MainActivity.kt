@@ -12,17 +12,24 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         start_match.setOnClickListener {
-            val oneName = one_name.text?.toString() ?: ""
-            val twoName = two_name.text?.toString() ?: ""
+            val hostName = host_name.text?.toString() ?: ""
+            val guestName = guest_name.text?.toString() ?: ""
             val games = games_count.text?.toString()?.toInt() ?: 3
             val sets = sets_count.text?.toString()?.toInt() ?: 2
 
             val intent = Intent(this, GameActivity::class.java)
-            intent.putExtra("oneName", if (!oneName.isEmpty()) oneName else "Você")
-            intent.putExtra("twoName", if (!twoName.isEmpty()) twoName else "Convidado")
-            intent.putExtra("games", games)
-            intent.putExtra("sets", sets)
+            intent.putExtra(EXTRA_FIELD_HOST, if (!hostName.isEmpty()) hostName else getString(R.string.you))
+            intent.putExtra(EXTRA_FIELD_GUEST, if (!guestName.isEmpty()) guestName else getString(R.string.guest))
+            intent.putExtra(EXTRA_FIELD_GAMES, games)
+            intent.putExtra(EXTRA_FIELD_SETS, sets)
             startActivity(intent)
         }
+    }
+
+    companion object {
+        const val EXTRA_FIELD_HOST = "hostName"
+        const val EXTRA_FIELD_GUEST = "guestName"
+        const val EXTRA_FIELD_GAMES = "games"
+        const val EXTRA_FIELD_SETS = "sets"
     }
 }
