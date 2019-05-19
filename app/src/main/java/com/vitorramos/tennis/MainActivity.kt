@@ -12,17 +12,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         start_match.setOnClickListener {
-            val hostName = host_name.text?.toString() ?: ""
-            val guestName = guest_name.text?.toString() ?: ""
-            val games = games_count.text?.toString()?.toInt() ?: 3
-            val sets = sets_count.text?.toString()?.toInt() ?: 2
-
-            val intent = Intent(this, GameActivity::class.java)
-            intent.putExtra(EXTRA_FIELD_HOST, if (!hostName.isEmpty()) hostName else getString(R.string.you))
-            intent.putExtra(EXTRA_FIELD_GUEST, if (!guestName.isEmpty()) guestName else getString(R.string.guest))
-            intent.putExtra(EXTRA_FIELD_GAMES, games)
-            intent.putExtra(EXTRA_FIELD_SETS, sets)
-            startActivity(intent)
+            with(Intent(this, GameActivity::class.java)) {
+                putExtra(EXTRA_FIELD_HOST, host_name.text?.toString() ?: getString(R.string.you))
+                putExtra(EXTRA_FIELD_GUEST, guest_name.text?.toString() ?: getString(R.string.guest))
+                putExtra(EXTRA_FIELD_GAMES, games_count.text?.toString()?.toInt() ?: 3)
+                putExtra(EXTRA_FIELD_SETS, sets_count.text?.toString()?.toInt() ?: 2)
+                startActivity(this)
+            }
         }
     }
 
