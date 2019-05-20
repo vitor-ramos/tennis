@@ -1,4 +1,4 @@
-package com.vitorramos.tennis
+package dev.vitorramos.tennis
 
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothServerSocket

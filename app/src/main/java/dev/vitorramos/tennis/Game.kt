@@ -1,4 +1,4 @@
-package com.vitorramos.tennis
+package dev.vitorramos.tennis
 
 class Game(
     hostName: String,

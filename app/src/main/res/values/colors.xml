@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#ffe082</color>
+    <color name="colorPrimaryDark">#546e7a</color>
+    <color name="colorAccent">#f44336</color>
+    <color name="host_paper">#FFE082</color>
+    <color name="guest_paper">#ffecb3</color>
+    <color name="profile_green">#81c784</color>
+    <color name="profile_blue">#4fc3f7</color>
 </resources>

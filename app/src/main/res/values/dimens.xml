@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="host_paper_elevation">4dp</dimen>
+    <dimen name="host_picture_elevation">6dp</dimen>
+    <dimen name="host_name_elevation">4dp</dimen>
+    <dimen name="guest_paper_elevation">6dp</dimen>
+    <dimen name="guest_picture_elevation">8dp</dimen>
+    <dimen name="guest_name_elevation">6dp</dimen>
+</resources>

@@ -1,15 +1,15 @@
-package com.vitorramos.tennis
+package dev.vitorramos.tennis
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
-import com.vitorramos.tennis.Game.Companion.MAP_FIELD_GAMES
-import com.vitorramos.tennis.Game.Companion.MAP_FIELD_POINTS
-import com.vitorramos.tennis.Game.Companion.MAP_FIELD_SETS
-import com.vitorramos.tennis.MainActivity.Companion.EXTRA_FIELD_GAMES
-import com.vitorramos.tennis.MainActivity.Companion.EXTRA_FIELD_GUEST
-import com.vitorramos.tennis.MainActivity.Companion.EXTRA_FIELD_HOST
-import com.vitorramos.tennis.MainActivity.Companion.EXTRA_FIELD_SETS
+import dev.vitorramos.tennis.Game.Companion.MAP_FIELD_GAMES
+import dev.vitorramos.tennis.Game.Companion.MAP_FIELD_POINTS
+import dev.vitorramos.tennis.Game.Companion.MAP_FIELD_SETS
+import dev.vitorramos.tennis.MainActivity.Companion.EXTRA_FIELD_GAMES
+import dev.vitorramos.tennis.MainActivity.Companion.EXTRA_FIELD_GUEST
+import dev.vitorramos.tennis.MainActivity.Companion.EXTRA_FIELD_HOST
+import dev.vitorramos.tennis.MainActivity.Companion.EXTRA_FIELD_SETS
 import kotlinx.android.synthetic.main.activity_game.*
 
 class GameActivity : AppCompatActivity() {
