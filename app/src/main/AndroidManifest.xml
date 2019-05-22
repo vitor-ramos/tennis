@@ -3,8 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="dev.vitorramos.tennis">
 
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-
     <application
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
@@ -30,9 +28,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity
-            android:name=".ServerActivity"
-            android:exported="true" />
     </application>
 
 </manifest>
