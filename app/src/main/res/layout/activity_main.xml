@@ -1,145 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/mainBg"
+    android:gravity="center"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <android.support.v7.widget.AppCompatTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:text="@string/players"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="28sp"
-        app:layout_constraintBottom_toTopOf="@id/host_paper"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:textAllCaps="true" />
-
-    <FrameLayout
-        android:id="@+id/host_paper"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="100dp"
-        android:background="@drawable/host_paper"
-        android:elevation="@dimen/host_paper_elevation"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <FrameLayout
-        android:id="@+id/host_profile_picture"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/host_profile_picture"
-        android:elevation="@dimen/host_picture_elevation"
-        app:layout_constraintBottom_toTopOf="@id/host_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.15"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <android.support.v7.widget.AppCompatEditText
-        android:id="@+id/host_name"
-        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:elevation="@dimen/host_name_elevation"
-        android:hint="@string/home"
-        android:inputType="textPersonName"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.15"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/host_paper" />
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginEnd="@dimen/default_margin"
+        android:background="@drawable/main_form_bg"
+        android:elevation="@dimen/main_form_elevation"
+        android:gravity="center"
+        android:orientation="vertical">
 
-    <FrameLayout
-        android:id="@+id/guest_paper"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="200dp"
-        android:background="@drawable/guest_paper"
-        android:elevation="@dimen/guest_paper_elevation"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/host_paper" />
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="@dimen/main_icon_size"
+            android:layout_height="@dimen/main_icon_size"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginBottom="@dimen/default_margin"
+            android:src="@drawable/ic_tennis_ball" />
 
-    <FrameLayout
-        android:id="@+id/guest_profile_picture"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/guest_profile_picture"
-        android:elevation="@dimen/guest_picture_elevation"
-        app:layout_constraintBottom_toTopOf="@id/guest_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.85"
-        app:layout_constraintStart_toStartOf="parent" />
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/host_name"
+            style="@style/MainField"
+            android:hint="@string/home"
+            android:inputType="textPersonName" />
 
-    <android.support.v7.widget.AppCompatEditText
-        android:id="@+id/guest_name"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:elevation="@dimen/guest_name_elevation"
-        android:hint="@string/guest"
-        android:inputType="textPersonName"
-        android:textAlignment="center"
-        android:textColorHighlight="#4fc3f7"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.85"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/guest_paper" />
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/guest_name"
+            style="@style/MainField"
+            android:hint="@string/guest"
+            android:inputType="textPersonName" />
 
-    <!--    <FrameLayout-->
-    <!--        android:id="@+id/guest_profile"-->
-    <!--        android:layout_width="150dp"-->
-    <!--        android:layout_height="150dp"-->
-    <!--        android:background="@color/colorPrimary"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/host_name" />-->
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/games_count"
+            style="@style/MainField"
+            android:hint="@string/games_to_win"
+            android:inputType="textPersonName" />
 
-    <!--    <android.support.v7.widget.AppCompatEditText-->
-    <!--        android:id="@+id/guest_name"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:hint="@string/guest_name"-->
-    <!--        android:inputType="textPersonName"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/guest_profile" />-->
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/sets_count"
+            style="@style/MainField"
+            android:hint="@string/sets_to_win"
+            android:inputType="textPersonName" />
 
-    <!--    <android.support.v7.widget.AppCompatEditText-->
-    <!--        android:id="@+id/games_count"-->
-    <!--        android:layout_width="0dp"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:hint="@string/games_to_win"-->
-    <!--        android:inputType="textPersonName"-->
-    <!--        app:layout_constraintEnd_toStartOf="@id/sets_count"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/guest_name" />-->
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/start_match"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:layout_marginBottom="@dimen/default_margin"
+            android:background="@drawable/main_button_bg"
+            android:text="@string/start_match"
+            android:textColor="@color/mainButtonTextColor" />
 
-    <!--    <android.support.v7.widget.AppCompatEditText-->
-    <!--        android:id="@+id/sets_count"-->
-    <!--        android:layout_width="0dp"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:hint="@string/sets_to_win"-->
-    <!--        android:inputType="textPersonName"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toEndOf="@id/games_count"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/guest_name" />-->
+    </LinearLayout>
 
-    <!--    <android.support.v7.widget.AppCompatButton-->
-    <!--        android:id="@+id/start_match"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:text="@string/start_match"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/sets_count" />-->
-
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

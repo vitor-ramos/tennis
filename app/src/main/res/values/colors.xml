@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <resources>
-    <color name="colorPrimary">#ffe082</color>
-    <color name="colorPrimaryDark">#546e7a</color>
-    <color name="colorAccent">#f44336</color>
-    <color name="host_paper">#FFE082</color>
-    <color name="guest_paper">#ffecb3</color>
-    <color name="profile_green">#81c784</color>
-    <color name="profile_blue">#4fc3f7</color>
+  <color name="colorAccent">@color/colorPrimary</color>
+  <color name="colorPrimary">#81c784</color>
+  <color name="colorPrimaryDark">#519657</color>
+
+  <color name="mainBg">#e8f5e9</color>
+  <color name="mainFieldBg">#c8e6c9</color>
+  <color name="mainFormBg">#a5d6a7</color>
+  <color name="mainButtonTextColor">#1b5e20</color>
 </resources>
