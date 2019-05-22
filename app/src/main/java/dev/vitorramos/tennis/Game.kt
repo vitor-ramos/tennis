@@ -3,8 +3,8 @@ package dev.vitorramos.tennis
 class Game(
     hostName: String,
     guestName: String,
-    private val games: Int,
-    private val sets: Int,
+    private val gamesToSet: Int,
+    private val setsToMatch: Int,
     private val onScoreChanged: (HashMap<String, String>, HashMap<String, String>) -> Unit,
     private val onMatchFinished: () -> Unit
 ) {
@@ -42,7 +42,7 @@ class Game(
         guestScore.points = 0
         val scoringPlayer = if (whichPlayer == WhichPlayer.HOST) hostScore else guestScore
         scoringPlayer.games++
-        if (scoringPlayer.games == games) addSet(whichPlayer)
+        if (scoringPlayer.games == gamesToSet) addSet(whichPlayer)
         else onScoreChanged(getHashMap(hostScore), getHashMap(guestScore))
     }
 
@@ -51,7 +51,7 @@ class Game(
         guestScore.games = 0
         val scoringPlayer = if (whichPlayer == WhichPlayer.HOST) hostScore else guestScore
         scoringPlayer.sets++
-        if (scoringPlayer.sets == sets) onMatchFinished()
+        if (scoringPlayer.sets == setsToMatch) onMatchFinished()
         else onScoreChanged(getHashMap(scoringPlayer), getHashMap(guestScore))
     }
 

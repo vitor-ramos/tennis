@@ -12,13 +12,24 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         start_match.setOnClickListener {
-            with(Intent(this, GameActivity::class.java)) {
-                putExtra(EXTRA_FIELD_HOST, host_name.text?.toString() ?: getString(R.string.you))
-                putExtra(EXTRA_FIELD_GUEST, guest_name.text?.toString() ?: getString(R.string.guest))
-                putExtra(EXTRA_FIELD_GAMES, games_count.text?.toString()?.toInt() ?: 3)
-                putExtra(EXTRA_FIELD_SETS, sets_count.text?.toString()?.toInt() ?: 2)
-                startActivity(this)
-            }
+            val hostNameInput = host_name.text?.toString() ?: ""
+            val hostName = if(hostNameInput != "") hostNameInput else getString(R.string.you)
+
+            val guestNameInput = host_name.text?.toString() ?: ""
+            val guestName = if(guestNameInput != "") guestNameInput else getString(R.string.guest_name)
+
+            val gamesInput = games_count.text?.toString() ?: ""
+            val games = if(gamesInput != "") gamesInput.toInt() else 3
+
+            val setsInput = sets_count.text?.toString() ?: ""
+            val sets = if(setsInput != "") setsInput.toInt() else 2
+
+            startActivity(with(Intent(this, GameActivity::class.java)) {
+                putExtra(EXTRA_FIELD_HOST, hostName)
+                putExtra(EXTRA_FIELD_GUEST, guestName)
+                putExtra(EXTRA_FIELD_GAMES, games)
+                putExtra(EXTRA_FIELD_SETS, sets)
+            })
         }
     }
 

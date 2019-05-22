@@ -29,13 +29,13 @@
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/host_name"
             style="@style/MainField"
-            android:hint="@string/home"
+            android:hint="@string/your_name"
             android:inputType="textPersonName" />
 
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/guest_name"
             style="@style/MainField"
-            android:hint="@string/guest"
+            android:hint="@string/guest_name"
             android:inputType="textPersonName" />
 
         <android.support.v7.widget.AppCompatEditText

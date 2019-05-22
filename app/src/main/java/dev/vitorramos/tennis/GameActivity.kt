@@ -19,18 +19,19 @@ class GameActivity : AppCompatActivity() {
 
         val hostName = intent.getStringExtra(EXTRA_FIELD_HOST)
         val guestName = intent.getStringExtra(EXTRA_FIELD_GUEST)
-        val gamesToWin = intent.getIntExtra(EXTRA_FIELD_GAMES, -1)
-        val setsToWin = intent.getIntExtra(EXTRA_FIELD_SETS, -1)
+        val gamesToSet = intent.getIntExtra(EXTRA_FIELD_GAMES, -1)
+        val setsToMatch = intent.getIntExtra(EXTRA_FIELD_SETS, -1)
 
-        host_name.text = if(hostName != "") hostName else getString(R.string.you)
-        guest_name.text = if(guestName != "") guestName else getString(R.string.guest)
+        host_name.text = hostName
+        guest_name.text = guestName
 
-        val game = Game(hostName, guestName, gamesToWin, setsToWin, onScoreChanged, onMatchFinished)
-        host_add_point.setOnClickListener {
-            game.addPoint(Game.WhichPlayer.HOST)
-        }
-        guest_add_point.setOnClickListener {
-            game.addPoint(Game.WhichPlayer.GUEST)
+        with(Game(hostName, guestName, gamesToSet, setsToMatch, onScoreChanged, onMatchFinished)) {
+            host_add_point.setOnClickListener {
+                addPoint(Game.WhichPlayer.HOST)
+            }
+            guest_add_point.setOnClickListener {
+                addPoint(Game.WhichPlayer.GUEST)
+            }
         }
     }
 
@@ -45,6 +46,6 @@ class GameActivity : AppCompatActivity() {
     }
 
     private val onMatchFinished = {
-        Toast.makeText(this, "Match over!", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, getString(R.string.match_over), Toast.LENGTH_SHORT).show()
     }
 }
