@@ -20,15 +20,13 @@ class Game(
             // 0, 15, 30
             0, 1, 2 -> scoringPlayer.points++
             // 40
-            3 -> {
-                when (otherPlayer.points) {
-                    0, 1, 2 -> {
-                        addGame(whichPlayer)
-                        consumed = false
-                    }
-                    3 -> scoringPlayer.points++
-                    4 -> otherPlayer.points--
+            3 -> when (otherPlayer.points) {
+                0, 1, 2 -> {
+                    addGame(whichPlayer)
+                    consumed = false
                 }
+                3 -> scoringPlayer.points++
+                4 -> otherPlayer.points--
             }
             // A
             4 -> {

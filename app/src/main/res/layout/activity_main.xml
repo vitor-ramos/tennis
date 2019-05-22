@@ -16,7 +16,8 @@
         android:background="@drawable/main_form_bg"
         android:elevation="@dimen/main_form_elevation"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="UnusedAttribute">
 
         <android.support.v7.widget.AppCompatImageView
             android:layout_width="@dimen/main_icon_size"

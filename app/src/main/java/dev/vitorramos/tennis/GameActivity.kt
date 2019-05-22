@@ -22,6 +22,9 @@ class GameActivity : AppCompatActivity() {
         val gamesToWin = intent.getIntExtra(EXTRA_FIELD_GAMES, -1)
         val setsToWin = intent.getIntExtra(EXTRA_FIELD_SETS, -1)
 
+        host_name.text = if(hostName != "") hostName else getString(R.string.you)
+        guest_name.text = if(guestName != "") guestName else getString(R.string.guest)
+
         val game = Game(hostName, guestName, gamesToWin, setsToWin, onScoreChanged, onMatchFinished)
         host_add_point.setOnClickListener {
             game.addPoint(Game.WhichPlayer.HOST)
