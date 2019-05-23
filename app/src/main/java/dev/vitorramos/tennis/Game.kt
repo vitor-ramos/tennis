@@ -1,15 +1,13 @@
 package dev.vitorramos.tennis
 
 class Game(
-    hostName: String,
-    guestName: String,
     private val gamesToSet: Int,
     private val setsToMatch: Int,
     private val onScoreChanged: (HashMap<String, String>, HashMap<String, String>) -> Unit,
     private val onMatchFinished: () -> Unit
 ) {
-    private val hostScore = Score(hostName)
-    private val guestScore = Score(guestName)
+    private val hostScore = Score()
+    private val guestScore = Score()
 
     fun addPoint(whichPlayer: WhichPlayer) {
         var consumed = true

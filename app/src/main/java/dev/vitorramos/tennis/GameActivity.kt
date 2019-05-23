@@ -25,8 +25,8 @@ class GameActivity : AppCompatActivity() {
         host_name.text = hostName
         guest_name.text = guestName
 
-        with(Game(hostName, guestName, gamesToSet, setsToMatch, onScoreChanged, onMatchFinished)) {
-            host_add_point.setOnClickListener {
+        with(Game(gamesToSet, setsToMatch, onScoreChanged, onMatchFinished)) {
+            host_layout.setOnClickListener {
                 addPoint(Game.WhichPlayer.HOST)
             }
             guest_add_point.setOnClickListener {

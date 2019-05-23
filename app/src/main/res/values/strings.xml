@@ -1,15 +1,15 @@
 <resources>
     <string name="app_name">Tennis</string>
 
-    <string name="add_point_bt_label">Ponto</string>
-    <string name="games_to_win">Games</string>
+    <string name="add_point_label">Clique Para Pontuar</string>
+    <string name="games">Games</string>
     <string name="guest_name">Convidado</string>
     <string name="match_over">Fim de Jogo</string>
-    <string name="sets_to_win">Sets</string>
-    <string name="score_games">Games:</string>
-    <string name="score_sets">Sets:</string>
+    <string name="points">Pontos</string>
+    <string name="sets">Sets</string>
     <string name="start_match">Começar partida</string>
     <string name="you">Você</string>
     <string name="your_name">Seu Nome</string>
     <string name="zero">0</string>
+    <string name="match">Partida</string>
 </resources>

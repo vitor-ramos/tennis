@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/mainBg"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".MainActivity">
@@ -41,13 +40,13 @@
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/games_count"
             style="@style/MainField"
-            android:hint="@string/games_to_win"
+            android:hint="@string/games"
             android:inputType="textPersonName" />
 
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/sets_count"
             style="@style/MainField"
-            android:hint="@string/sets_to_win"
+            android:hint="@string/sets"
             android:inputType="textPersonName" />
 
         <android.support.v7.widget.AppCompatButton
@@ -60,7 +59,7 @@
             android:layout_marginBottom="@dimen/default_margin"
             android:background="@drawable/main_button_bg"
             android:text="@string/start_match"
-            android:textColor="@color/mainButtonTextColor" />
+            android:textColor="@color/textColor" />
 
     </LinearLayout>
 

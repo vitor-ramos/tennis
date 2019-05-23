@@ -7,5 +7,5 @@
   <color name="mainBg">#e8f5e9</color>
   <color name="mainFieldBg">#c8e6c9</color>
   <color name="mainFormBg">#a5d6a7</color>
-  <color name="mainButtonTextColor">#1b5e20</color>
+  <color name="textColor">#1b5e20</color>
 </resources>
