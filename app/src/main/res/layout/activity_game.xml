@@ -12,31 +12,31 @@
         android:id="@+id/host_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_margin"
         android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginTop="@dimen/default_margin"
         android:layout_marginEnd="@dimen/default_margin"
-        android:padding="@dimen/default_margin"
+        android:background="@drawable/main_form_bg"
         android:clickable="true"
         android:focusable="true"
-        android:background="@drawable/main_form_bg">
+        android:padding="@dimen/default_margin">
 
         <FrameLayout
             android:id="@+id/layout_host_name"
-            app:layout_constraintTop_toTopOf="parent"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/main_field_bg"
             android:paddingTop="@dimen/half_default_margin"
             android:paddingBottom="@dimen/half_default_margin"
-            android:background="@drawable/main_field_bg"
-            android:layout_height="wrap_content">
+            app:layout_constraintTop_toTopOf="parent">
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/host_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 android:layout_gravity="center"
                 android:textSize="@dimen/player_name_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </FrameLayout>
@@ -46,20 +46,20 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_margin"
-            android:orientation="vertical"
             android:background="@drawable/main_field_bg"
             android:gravity="center"
-            android:padding="4dp"
+            android:orientation="vertical"
+            android:padding="@dimen/score_layout_padding"
             app:layout_constraintDimensionRatio="w,1:1"
-            app:layout_constraintTop_toBottomOf="@id/layout_host_name"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_host_name">
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/host_games"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/points_size"
-                android:text="@string/zero" />
+                android:text="@string/zero"
+                android:textSize="@dimen/points_size" />
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/host_games_label"
@@ -73,23 +73,23 @@
             android:id="@+id/layout_host_points"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/default_margin"
-            android:background="@drawable/main_field_bg"
             android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
             android:layout_marginEnd="@dimen/default_margin"
-            android:padding="4dp"
-            app:layout_constraintStart_toEndOf="@id/layout_host_games"
+            android:background="@drawable/main_field_bg"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/score_layout_padding"
             app:layout_constraintEnd_toStartOf="@id/layout_host_sets"
+            app:layout_constraintStart_toEndOf="@id/layout_host_games"
             app:layout_constraintTop_toBottomOf="@id/layout_host_name">
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/host_points"
                 android:layout_width="wrap_content"
-                android:textSize="@dimen/points_size"
                 android:layout_height="wrap_content"
-                android:text="@string/zero" />
+                android:text="@string/zero"
+                android:textSize="@dimen/points_size" />
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/host_points_label"
@@ -103,14 +103,14 @@
             android:id="@+id/layout_host_sets"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:padding="4dp"
             android:layout_marginTop="@dimen/default_margin"
             android:background="@drawable/main_field_bg"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/score_layout_padding"
             app:layout_constraintDimensionRatio="w,1:1"
-            app:layout_constraintTop_toBottomOf="@id/layout_host_name"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_host_name">
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/host_sets"
@@ -118,18 +118,18 @@
                 android:layout_height="wrap_content"
                 android:text="@string/zero"
                 android:textSize="@dimen/points_size"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/host_sets_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/sets"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
         </LinearLayout>
@@ -142,8 +142,8 @@
             android:background="@android:color/transparent"
             android:text="@string/add_point_label"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layout_host_sets"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_host_sets" />
 
     </android.support.constraint.ConstraintLayout>
 
@@ -151,14 +151,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/guest_name"
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/guest_add_point"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/add_point_label"
             app:layout_constraintEnd_toEndOf="parent"
-            android:textSize="@dimen/player_name_size"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/guest_games_label" />
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/guest_points"
@@ -205,14 +205,14 @@
             app:layout_constraintStart_toEndOf="@id/guest_sets_label"
             app:layout_constraintTop_toBottomOf="@id/guest_points" />
 
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/guest_add_point"
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/guest_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/add_point_label"
+            android:textSize="@dimen/player_name_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/guest_games_label" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 
