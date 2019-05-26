@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="2"
     tools:context=".GameActivity">
 
     <android.support.constraint.ConstraintLayout
@@ -34,10 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textSize="@dimen/player_name_size"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textSize="@dimen/player_name_size" />
 
         </FrameLayout>
 
@@ -117,20 +113,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/zero"
-                android:textSize="@dimen/points_size"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textSize="@dimen/points_size" />
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/host_sets_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/sets"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:text="@string/sets" />
 
         </LinearLayout>
 
@@ -148,71 +137,131 @@
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/guest_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginTop="@dimen/default_margin"
+        android:layout_marginEnd="@dimen/default_margin"
+        android:background="@drawable/main_form_bg"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="@dimen/default_margin">
 
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/guest_add_point"
+        <FrameLayout
+            android:id="@+id/layout_guest_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/main_field_bg"
+            android:paddingTop="@dimen/half_default_margin"
+            android:paddingBottom="@dimen/half_default_margin"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/guest_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="@dimen/player_name_size" />
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_guest_games"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
+            android:background="@drawable/main_field_bg"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/score_layout_padding"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_guest_name">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/guest_games"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/zero"
+                android:textSize="@dimen/points_size" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/guest_games_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/games" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_guest_points"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:background="@drawable/main_field_bg"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/score_layout_padding"
+            app:layout_constraintEnd_toStartOf="@id/layout_guest_sets"
+            app:layout_constraintStart_toEndOf="@id/layout_guest_games"
+            app:layout_constraintTop_toBottomOf="@id/layout_guest_name">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/guest_points"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/zero"
+                android:textSize="@dimen/points_size" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/guest_points_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/points" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_guest_sets"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
+            android:background="@drawable/main_field_bg"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/score_layout_padding"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_guest_name">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/guest_sets"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/zero"
+                android:textSize="@dimen/points_size" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/guest_sets_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sets" />
+
+        </LinearLayout>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/guest_add_point_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
+            android:background="@android:color/transparent"
             android:text="@string/add_point_label"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/guest_games_label" />
-
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/guest_points"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/zero"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/guest_name" />
-
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/guest_games_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/games"
-            app:layout_constraintEnd_toStartOf="@id/guest_games"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/guest_points" />
-
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/guest_games"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/zero"
-            app:layout_constraintEnd_toStartOf="@id/guest_sets_label"
-            app:layout_constraintStart_toEndOf="@id/guest_games_label"
-            app:layout_constraintTop_toBottomOf="@id/guest_points" />
-
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/guest_sets_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/sets"
-            app:layout_constraintEnd_toStartOf="@id/guest_sets"
-            app:layout_constraintStart_toEndOf="@id/guest_games"
-            app:layout_constraintTop_toBottomOf="@id/guest_points" />
-
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/guest_sets"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/zero"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/guest_sets_label"
-            app:layout_constraintTop_toBottomOf="@id/guest_points" />
-
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/guest_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/player_name_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/layout_guest_sets" />
 
     </android.support.constraint.ConstraintLayout>
 

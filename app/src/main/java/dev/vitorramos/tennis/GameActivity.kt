@@ -29,7 +29,7 @@ class GameActivity : AppCompatActivity() {
             host_layout.setOnClickListener {
                 addPoint(Game.WhichPlayer.HOST)
             }
-            guest_add_point.setOnClickListener {
+            guest_layout.setOnClickListener {
                 addPoint(Game.WhichPlayer.GUEST)
             }
         }
