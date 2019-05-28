@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/default_margin"
         android:layout_marginEnd="@dimen/default_margin"
-        android:background="@drawable/main_form_bg"
+        android:background="@drawable/lime_bg"
         android:elevation="@dimen/main_form_elevation"
         android:gravity="center"
         android:orientation="vertical"
