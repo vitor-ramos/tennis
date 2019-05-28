@@ -26,31 +26,31 @@
             android:src="@drawable/ic_tennis_ball" />
 
         <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/host_name"
+            android:id="@+id/main_host_name"
             style="@style/MainField"
             android:hint="@string/your_name"
             android:inputType="textPersonName" />
 
         <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/guest_name"
+            android:id="@+id/main_guest_name"
             style="@style/MainField"
             android:hint="@string/guest_name"
             android:inputType="textPersonName" />
 
         <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/games_count"
+            android:id="@+id/main_games_count"
             style="@style/MainField"
             android:hint="@string/games"
             android:inputType="textPersonName" />
 
         <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/sets_count"
+            android:id="@+id/main_sets_count"
             style="@style/MainField"
             android:hint="@string/sets"
             android:inputType="textPersonName" />
 
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/start_match"
+            android:id="@+id/main_start_match"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/default_margin"

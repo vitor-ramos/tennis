@@ -11,17 +11,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        start_match.setOnClickListener {
-            val hostNameInput = host_name.text?.toString() ?: ""
+        main_start_match.setOnClickListener {
+            val hostNameInput = main_host_name.text?.toString() ?: ""
             val hostName = if(hostNameInput != "") hostNameInput else getString(R.string.you)
 
-            val guestNameInput = host_name.text?.toString() ?: ""
+            val guestNameInput = main_host_name.text?.toString() ?: ""
             val guestName = if(guestNameInput != "") guestNameInput else getString(R.string.guest_name)
 
-            val gamesInput = games_count.text?.toString() ?: ""
+            val gamesInput = main_games_count.text?.toString() ?: ""
             val games = if(gamesInput != "") gamesInput.toInt() else 3
 
-            val setsInput = sets_count.text?.toString() ?: ""
+            val setsInput = main_sets_count.text?.toString() ?: ""
             val sets = if(setsInput != "") setsInput.toInt() else 2
 
             startActivity(with(Intent(this, GameActivity::class.java)) {

@@ -22,27 +22,27 @@ class GameActivity : AppCompatActivity() {
         val gamesToSet = intent.getIntExtra(EXTRA_FIELD_GAMES, -1)
         val setsToMatch = intent.getIntExtra(EXTRA_FIELD_SETS, -1)
 
-        host_name.text = hostName
-        guest_name.text = guestName
+        game_host_name.text = hostName
+        game_guest_name.text = guestName
 
         with(Game(gamesToSet, setsToMatch, onScoreChanged, onMatchFinished)) {
-            host_layout.setOnClickListener {
+            game_host_layout.setOnClickListener {
                 addPoint(Game.WhichPlayer.HOST)
             }
-            guest_layout.setOnClickListener {
+            game_guest_layout.setOnClickListener {
                 addPoint(Game.WhichPlayer.GUEST)
             }
         }
     }
 
     private val onScoreChanged = { hostPoints: HashMap<String, String>, guestPoints: HashMap<String, String> ->
-        host_points.text = hostPoints[MAP_FIELD_POINTS]
-        host_games.text = hostPoints[MAP_FIELD_GAMES]
-        host_sets.text = hostPoints[MAP_FIELD_SETS]
+        game_host_points.text = hostPoints[MAP_FIELD_POINTS]
+        game_host_games.text = hostPoints[MAP_FIELD_GAMES]
+        game_host_sets.text = hostPoints[MAP_FIELD_SETS]
 
-        guest_points.text = guestPoints[MAP_FIELD_POINTS]
-        guest_games.text = guestPoints[MAP_FIELD_GAMES]
-        guest_sets.text = guestPoints[MAP_FIELD_SETS]
+        game_guest_points.text = guestPoints[MAP_FIELD_POINTS]
+        game_guest_games.text = guestPoints[MAP_FIELD_GAMES]
+        game_guest_sets.text = guestPoints[MAP_FIELD_SETS]
     }
 
     private val onMatchFinished = {
