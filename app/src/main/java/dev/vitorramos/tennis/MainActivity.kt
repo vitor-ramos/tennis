@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
             val hostNameInput = main_host_name.text?.toString() ?: ""
             val hostName = if(hostNameInput != "") hostNameInput else getString(R.string.you)
 
-            val guestNameInput = main_host_name.text?.toString() ?: ""
+            val guestNameInput = main_guest_name.text?.toString() ?: ""
             val guestName = if(guestNameInput != "") guestNameInput else getString(R.string.guest_name)
 
             val gamesInput = main_games_count.text?.toString() ?: ""
