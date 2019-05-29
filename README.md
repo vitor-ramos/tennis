@@ -1,16 +1,10 @@
 # Tennis
 
-## O que é
-Um placar de tênis para Android bonito e simples de usar. No futuro, histórico de partidas e sincronização pela com outros jogadores farão parte da lista de funcionalidades do aplicativo. Mais sobre os itens a serem implementados abaixo.
+## Descrição
+Esse projeto tem como objetivo ser parte do meu portfólio e como exemplo de um app para Android. Por enquanto, o app é um placar de tênis para Android bonito e simples de usar. No futuro, histórico de partidas e sincronização pela com outros jogadores farão parte da lista de funcionalidades do aplicativo. Mais sobre os itens a serem implementados abaixo. Com o aumento do uso de Kotlin no Android, cada vez mais se fazem necessários exemplos que se aproveitam das vantagens do Kotlin, e não somente códigos "Java" que usam *keywords* do Kotlin. XMLs de *drawable* foram utilizados por permitir formatos e preenchimentos personalizados, além de ajudar com a organização do código.
 
-## Objetivo
-Esse projeto tem como objetivo servir como portfólio deste que vos fala e como exemplo de um app para Android que utiliza variadas ferramentas do sistema. No momento, é possível exemplificar um uso mais idiomático do Kotlin no Android e do uso do XML nos *layouts*, estilos e *drawables*. No futuro, também haverão exemplos de código usando Bluetooth, Firebase e a biblioteca Room.
-
-## Quem está por trás
-Meu nome é Vitor, tenho 21 anos, sou formado e pós-graduado em desenvolvimento de games. Apesar da minha formação trabalho com aplicativos e adoro o que faço. Estou sempre buscando formas de crescer profissionalmente e inovar e esse projeto faz parte disso. Este é o primeiro aplicativo que faço com o intuito de constituir um portfólio aberto e espero que seja o primeiro de muitos. Veja meu perfil no [LinkedIn](https://www.linkedin.com/in/vitor-sramos).
-
-## Como está feito
-Com o aumento do uso de Kotlin no Android, cada vez mais se fazem necessários exemplos que se aproveitam das vantagens do Kotlin, e não somente códigos "Java" que usam *keywords* do Kotlin. XMLs de *drawable* foram utilizados por permitir formatos e preenchimentos personalizados, além de ajudar com a organização do código. Com a programação reativa ainda engatinhando no Android com o Jetpack Compose, o XML é uma forma versátil de personalizar o visual do aplicativo, que ocupa pouco espaço e é adaptável a diferentes tamanhos e formatos de tela.
+## Quem sou eu
+Meu nome é Vitor, tenho 21 anos, sou formado e pós-graduado em desenvolvimento de games. Apesar da minha formação trabalho com aplicativos e adoro o que faço. Estou sempre buscando formas de crescer profissionalmente e inovar e esse projeto faz parte disso. Este é o primeiro aplicativo que faço com o intuito de constituir um portfólio aberto e será o primeiro de muitos. Veja meu perfil no [LinkedIn](https://www.linkedin.com/in/vitor-sramos).
 
 ## Roadmap
 ### Melhorias
