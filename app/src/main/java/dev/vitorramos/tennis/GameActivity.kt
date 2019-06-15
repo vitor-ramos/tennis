@@ -1,9 +1,8 @@
 package dev.vitorramos.tennis
 
 import android.os.Bundle
-import android.support.v7.app.AlertDialog
-import android.support.v7.app.AppCompatActivity
-import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import dev.vitorramos.tennis.Game.Companion.MAP_FIELD_GAMES
 import dev.vitorramos.tennis.Game.Companion.MAP_FIELD_POINTS
 import dev.vitorramos.tennis.Game.Companion.MAP_FIELD_SETS
@@ -53,7 +52,7 @@ class GameActivity : AppCompatActivity() {
         with(AlertDialog.Builder(this)) {
             setCancelable(false)
             setTitle(getString(R.string.match_over))
-            val winnerName = if(winner == WhichPlayer.HOST) hostName else guestName
+            val winnerName = if (winner == WhichPlayer.HOST) hostName else guestName
             setMessage("$winnerName ${getString(R.string.won)}")
             setPositiveButton(getString(R.string.ok)) { dialog, _ ->
                 dialog.dismiss()
