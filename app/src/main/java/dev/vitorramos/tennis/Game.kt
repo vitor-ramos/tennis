@@ -4,7 +4,7 @@ class Game(
     private val gamesToSet: Int,
     private val setsToMatch: Int,
     private val onScoreChanged: (HashMap<String, String>, HashMap<String, String>) -> Unit,
-    private val onMatchFinished: () -> Unit
+    private val onMatchFinished: (WhichPlayer) -> Unit
 ) {
     private val hostScore = Score()
     private val guestScore = Score()
@@ -49,7 +49,7 @@ class Game(
         guestScore.games = 0
         val scoringPlayer = if (whichPlayer == WhichPlayer.HOST) hostScore else guestScore
         scoringPlayer.sets++
-        if (scoringPlayer.sets == setsToMatch) onMatchFinished()
+        if (scoringPlayer.sets == setsToMatch) onMatchFinished(whichPlayer)
         else onScoreChanged(getHashMap(scoringPlayer), getHashMap(guestScore))
     }
 
@@ -70,11 +70,6 @@ class Game(
             4 -> "A"
             else -> ""
         }
-    }
-
-    enum class WhichPlayer {
-        HOST,
-        GUEST
     }
 
     companion object {

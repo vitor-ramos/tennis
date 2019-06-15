@@ -1,6 +1,7 @@
 package dev.vitorramos.tennis
 
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import dev.vitorramos.tennis.Game.Companion.MAP_FIELD_GAMES
@@ -13,12 +14,15 @@ import dev.vitorramos.tennis.MainActivity.Companion.EXTRA_FIELD_SETS
 import kotlinx.android.synthetic.main.activity_game.*
 
 class GameActivity : AppCompatActivity() {
+    private var hostName = ""
+    private var guestName = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
-        val hostName = intent.getStringExtra(EXTRA_FIELD_HOST)
-        val guestName = intent.getStringExtra(EXTRA_FIELD_GUEST)
+        hostName = intent.getStringExtra(EXTRA_FIELD_HOST)
+        guestName = intent.getStringExtra(EXTRA_FIELD_GUEST)
         val gamesToSet = intent.getIntExtra(EXTRA_FIELD_GAMES, -1)
         val setsToMatch = intent.getIntExtra(EXTRA_FIELD_SETS, -1)
 
@@ -27,10 +31,10 @@ class GameActivity : AppCompatActivity() {
 
         with(Game(gamesToSet, setsToMatch, onScoreChanged, onMatchFinished)) {
             game_host_layout.setOnClickListener {
-                addPoint(Game.WhichPlayer.HOST)
+                addPoint(WhichPlayer.HOST)
             }
             game_guest_layout.setOnClickListener {
-                addPoint(Game.WhichPlayer.GUEST)
+                addPoint(WhichPlayer.GUEST)
             }
         }
     }
@@ -45,7 +49,18 @@ class GameActivity : AppCompatActivity() {
         game_guest_sets.text = guestPoints[MAP_FIELD_SETS]
     }
 
-    private val onMatchFinished = {
-        Toast.makeText(this, getString(R.string.match_over), Toast.LENGTH_SHORT).show()
+    private val onMatchFinished = { winner: WhichPlayer ->
+        with(AlertDialog.Builder(this)) {
+            setCancelable(false)
+            setTitle(getString(R.string.match_over))
+            val winnerName = if(winner == WhichPlayer.HOST) hostName else guestName
+            setMessage("$winnerName ${getString(R.string.won)}")
+            setPositiveButton(getString(R.string.ok)) { dialog, _ ->
+                dialog.dismiss()
+                finish()
+            }
+            create().show()
+        }
+        Unit
     }
 }
