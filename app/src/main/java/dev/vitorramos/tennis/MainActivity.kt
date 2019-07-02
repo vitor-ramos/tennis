@@ -3,7 +3,12 @@ package dev.vitorramos.tennis
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import dev.vitorramos.tennis.db.TheDatabase
+import dev.vitorramos.tennis.db.entity.GameEntity
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,19 +29,25 @@ class MainActivity : AppCompatActivity() {
             val setsInput = main_sets_count.text?.toString() ?: ""
             val sets = if(setsInput != "") setsInput.toInt() else 2
 
-            startActivity(with(Intent(this, GameActivity::class.java)) {
-                putExtra(EXTRA_FIELD_HOST, hostName)
-                putExtra(EXTRA_FIELD_GUEST, guestName)
-                putExtra(EXTRA_FIELD_GAMES, games)
-                putExtra(EXTRA_FIELD_SETS, sets)
-            })
+            GlobalScope.launch {
+                val gameId = TheDatabase.db(applicationContext).gameDao().insertGame(
+                    GameEntity(
+                        started = Calendar.getInstance().timeInMillis,
+                        gamesToSet = games,
+                        setsToMatch = sets,
+                        hostName = hostName,
+                        guestName = guestName
+                    )
+                )
+
+                startActivity(with(Intent(this@MainActivity, GameActivity::class.java)) {
+                    putExtra(EXTRA_FIELD_GAME_ID, gameId)
+                })
+            }
         }
     }
 
     companion object {
-        const val EXTRA_FIELD_HOST = "hostName"
-        const val EXTRA_FIELD_GUEST = "guestName"
-        const val EXTRA_FIELD_GAMES = "games"
-        const val EXTRA_FIELD_SETS = "sets"
+        const val EXTRA_FIELD_GAME_ID = "gameId"
     }
 }

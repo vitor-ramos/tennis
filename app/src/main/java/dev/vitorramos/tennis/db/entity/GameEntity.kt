@@ -3,7 +3,7 @@ package dev.vitorramos.tennis.db.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "game")
+@Entity(tableName = "games")
 data class GameEntity(
     @PrimaryKey var id: Int? = null,
 

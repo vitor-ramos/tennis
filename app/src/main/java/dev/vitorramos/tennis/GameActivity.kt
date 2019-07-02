@@ -6,11 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import dev.vitorramos.tennis.Game.Companion.MAP_FIELD_GAMES
 import dev.vitorramos.tennis.Game.Companion.MAP_FIELD_POINTS
 import dev.vitorramos.tennis.Game.Companion.MAP_FIELD_SETS
-import dev.vitorramos.tennis.MainActivity.Companion.EXTRA_FIELD_GAMES
-import dev.vitorramos.tennis.MainActivity.Companion.EXTRA_FIELD_GUEST
-import dev.vitorramos.tennis.MainActivity.Companion.EXTRA_FIELD_HOST
-import dev.vitorramos.tennis.MainActivity.Companion.EXTRA_FIELD_SETS
+import dev.vitorramos.tennis.MainActivity.Companion.EXTRA_FIELD_GAME_ID
+import dev.vitorramos.tennis.db.TheDatabase
 import kotlinx.android.synthetic.main.activity_game.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class GameActivity : AppCompatActivity() {
     private var hostName = ""
@@ -20,20 +20,26 @@ class GameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
-        hostName = intent.getStringExtra(EXTRA_FIELD_HOST)
-        guestName = intent.getStringExtra(EXTRA_FIELD_GUEST)
-        val gamesToSet = intent.getIntExtra(EXTRA_FIELD_GAMES, -1)
-        val setsToMatch = intent.getIntExtra(EXTRA_FIELD_SETS, -1)
+        val gameId = intent.getLongExtra(EXTRA_FIELD_GAME_ID, -1)
+        if (gameId != -1L) {
+            GlobalScope.launch {
+                val gameDao = TheDatabase.db(applicationContext).gameDao()
+                val gameEntity = gameDao.getGame(gameId)
+                gameEntity?.let {
+                    hostName = it.hostName
+                    guestName = it.guestName
 
-        game_host_name.text = hostName
-        game_guest_name.text = guestName
+                    game_host_name.text = hostName
+                    game_guest_name.text = guestName
 
-        with(Game(gamesToSet, setsToMatch, onScoreChanged, onMatchFinished)) {
-            game_host_layout.setOnClickListener {
-                addPoint(WhichPlayer.HOST)
-            }
-            game_guest_layout.setOnClickListener {
-                addPoint(WhichPlayer.GUEST)
+                    val game = Game(it.gamesToSet, it.setsToMatch, onScoreChanged, onMatchFinished)
+                    game_host_layout.setOnClickListener {
+                        game.addPoint(WhichPlayer.HOST)
+                    }
+                    game_guest_layout.setOnClickListener {
+                        game.addPoint(WhichPlayer.GUEST)
+                    }
+                }
             }
         }
     }
