@@ -2,14 +2,13 @@ package dev.vitorramos.tennis.db.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.sql.Date
 
 @Entity(tableName = "game")
 data class GameEntity(
     @PrimaryKey var id: Int? = null,
 
-    var started: Date,
-    var ended: Date? = null,
+    var started: Long,
+    var ended: Long? = null,
 
     var gamesToSet: Int,
     var setsToMatch: Int,
