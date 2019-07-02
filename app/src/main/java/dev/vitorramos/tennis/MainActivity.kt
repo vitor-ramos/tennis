@@ -18,16 +18,17 @@ class MainActivity : AppCompatActivity() {
 
         main_start_match.setOnClickListener {
             val hostNameInput = main_host_name.text?.toString() ?: ""
-            val hostName = if(hostNameInput != "") hostNameInput else getString(R.string.you)
+            val hostName = if (hostNameInput != "") hostNameInput else getString(R.string.you)
 
             val guestNameInput = main_guest_name.text?.toString() ?: ""
-            val guestName = if(guestNameInput != "") guestNameInput else getString(R.string.guest_name)
+            val guestName =
+                if (guestNameInput != "") guestNameInput else getString(R.string.guest_name)
 
             val gamesInput = main_games_count.text?.toString() ?: ""
-            val games = if(gamesInput != "") gamesInput.toInt() else 3
+            val games = if (gamesInput != "") gamesInput.toInt() else 3
 
             val setsInput = main_sets_count.text?.toString() ?: ""
-            val sets = if(setsInput != "") setsInput.toInt() else 2
+            val sets = if (setsInput != "") setsInput.toInt() else 2
 
             GlobalScope.launch {
                 val gameId = TheDatabase.db(applicationContext).gameDao().insertGame(
@@ -40,9 +41,15 @@ class MainActivity : AppCompatActivity() {
                     )
                 )
 
-                startActivity(with(Intent(this@MainActivity, GameActivity::class.java)) {
-                    putExtra(EXTRA_FIELD_GAME_ID, gameId)
-                })
+                startActivity(
+                    with(
+                        Intent(
+                            this@MainActivity,
+                            GameActivity::class.java
+                        )
+                    ) {
+                        putExtra(EXTRA_FIELD_GAME_ID, gameId)
+                    })
             }
         }
     }

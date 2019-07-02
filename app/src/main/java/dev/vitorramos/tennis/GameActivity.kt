@@ -44,15 +44,16 @@ class GameActivity : AppCompatActivity() {
         }
     }
 
-    private val onScoreChanged = { hostPoints: HashMap<String, String>, guestPoints: HashMap<String, String> ->
-        game_host_points.text = hostPoints[MAP_FIELD_POINTS]
-        game_host_games.text = hostPoints[MAP_FIELD_GAMES]
-        game_host_sets.text = hostPoints[MAP_FIELD_SETS]
+    private val onScoreChanged =
+        { hostPoints: HashMap<String, String>, guestPoints: HashMap<String, String> ->
+            game_host_points.text = hostPoints[MAP_FIELD_POINTS]
+            game_host_games.text = hostPoints[MAP_FIELD_GAMES]
+            game_host_sets.text = hostPoints[MAP_FIELD_SETS]
 
-        game_guest_points.text = guestPoints[MAP_FIELD_POINTS]
-        game_guest_games.text = guestPoints[MAP_FIELD_GAMES]
-        game_guest_sets.text = guestPoints[MAP_FIELD_SETS]
-    }
+            game_guest_points.text = guestPoints[MAP_FIELD_POINTS]
+            game_guest_games.text = guestPoints[MAP_FIELD_GAMES]
+            game_guest_sets.text = guestPoints[MAP_FIELD_SETS]
+        }
 
     private val onMatchFinished = { winner: WhichPlayer ->
         with(AlertDialog.Builder(this)) {
