@@ -1,16 +1,17 @@
 package dev.vitorramos.tennis
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import dev.vitorramos.tennis.db.TheDatabase
+import dev.vitorramos.tennis.db.dao.MatchDao
 import dev.vitorramos.tennis.db.entity.MatchEntity
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class GameViewModel(): ViewModel() {
-//    private val dao = TheDatabase.db(applicationContext).matchDao()
+@Deprecated(message = "Use MatchViewModel instead")
+class GameViewModel : ViewModel() {
+    private lateinit var dao: MatchDao
+    private val matchId = 0
 
     private val match: MutableLiveData<MatchEntity> by lazy {
         MutableLiveData<MatchEntity>().also {
@@ -18,10 +19,10 @@ class GameViewModel(): ViewModel() {
         }
     }
 
-    private fun loadGame(applicationContext: Context, matchId: Int) {
+    private fun loadGame() {
         GlobalScope.launch {
-            val gameEntity = TheDatabase.db(applicationContext).matchDao().getMatch(matchId)
-            if(gameEntity != null) match.value = gameEntity
+            val gameEntity = dao.getMatch(matchId)
+            if (gameEntity != null) match.value = gameEntity
         }
     }
 
@@ -29,15 +30,14 @@ class GameViewModel(): ViewModel() {
 
     fun addHostPoint() {
         val currentGame = getGame().value ?: return
-        val dao = TheDatabase.db(applicationContext).matchDao()
 
-        when(currentGame.hostPoints) {
+        when (currentGame.hostPoints) {
             // 0, 15, 30
             0, 1, 2 -> GlobalScope.launch {
                 dao.updateHostPoints(currentGame.id!!, currentGame.hostPoints + 1)
             }
             // 40
-            3 -> when(currentGame.guestPoints) {
+            3 -> when (currentGame.guestPoints) {
                 0, 1, 2 -> {
                     addHostGame()
                 }
@@ -53,9 +53,8 @@ class GameViewModel(): ViewModel() {
         }
     }
 
-    fun addHostGame(matchId: Int) {
+    private fun addHostGame() {
         val currentGame = getGame().value ?: return
-        val dao = TheDatabase.db(applicationContext).matchDao()
 
         GlobalScope.launch {
             dao.updateHostPoints(matchId, 0)
@@ -63,13 +62,12 @@ class GameViewModel(): ViewModel() {
 
             val gamesCount = currentGame.hostGames + 1
             dao.updateHostGames(matchId, gamesCount)
-            if(gamesCount == currentGame.gamesToSet) addHostSet()
+            if (gamesCount == currentGame.gamesToSet) addHostSet()
         }
     }
 
-    fun addHostSet(matchId: Int) {
+    private fun addHostSet() {
         val currentGame = getGame().value ?: return
-        val dao = TheDatabase.db(applicationContext).matchDao()
 
         GlobalScope.launch {
             dao.updateHostGames(matchId, 0)
@@ -77,21 +75,20 @@ class GameViewModel(): ViewModel() {
 
             val setsCount = currentGame.hostSets + 1
             dao.updateHostSets(matchId, setsCount)
-            if(setsCount == currentGame.setsToMatch) endMatch()
+            if (setsCount == currentGame.setsToMatch) endMatch()
         }
     }
 
     fun addGuestPoint() {
         val currentGame = getGame().value ?: return
-        val dao = TheDatabase.db(applicationContext).matchDao()
 
-        when(currentGame.guestPoints) {
+        when (currentGame.guestPoints) {
             // 0, 15, 30
             0, 1, 2 -> GlobalScope.launch {
                 dao.updateGuestPoints(currentGame.id!!, currentGame.guestPoints + 1)
             }
             // 40
-            3 -> when(currentGame.hostPoints) {
+            3 -> when (currentGame.hostPoints) {
                 0, 1, 2 -> {
                     addGuestGame()
                 }
@@ -107,7 +104,7 @@ class GameViewModel(): ViewModel() {
         }
     }
 
-    fun addGuestGame(matchId: Int) {
+    private fun addGuestGame() {
         val currentGame = getGame().value ?: return
 
         GlobalScope.launch {
@@ -116,11 +113,11 @@ class GameViewModel(): ViewModel() {
 
             val gamesCount = currentGame.guestGames + 1
             dao.updateGuestGames(matchId, gamesCount)
-            if(gamesCount == currentGame.gamesToSet) addGuestSet()
+            if (gamesCount == currentGame.gamesToSet) addGuestSet()
         }
     }
 
-    fun addGuestSet(matchId: Int) {
+    private fun addGuestSet() {
         val currentGame = getGame().value ?: return
 
         GlobalScope.launch {
@@ -129,7 +126,7 @@ class GameViewModel(): ViewModel() {
 
             val setsCount = currentGame.guestSets + 1
             dao.updateGuestSets(matchId, setsCount)
-            if(setsCount == currentGame.setsToMatch) endMatch()
+            if (setsCount == currentGame.setsToMatch) endMatch()
         }
     }
 
