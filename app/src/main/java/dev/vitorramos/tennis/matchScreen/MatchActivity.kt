@@ -22,16 +22,20 @@ class MatchActivity : AppCompatActivity() {
         val matchId = intent.getLongExtra(EXTRA_FIELD_GAME_ID, -1)
         if (matchId == -1L) return
 
-        val model = ViewModelProviders.of(this).get(GameViewModel::class.java)
-        model.getGame().observe(this, Observer {
+        val model = ViewModelProviders.of(this).get(MatchViewModel::class.java)
+        model.getMatch().observe(this, Observer {
             if(it != null) {
-                game_host_points.text = getFormattedPoints(it.hostPoints)
-                game_host_games.text = it.hostGames.toString()
-                game_host_sets.text = it.hostSets.toString()
+                // TODO: change which player
+                if(it.ended != null) onMatchFinished(WhichPlayer.HOST)
+                else {
+                    game_host_points.text = getFormattedPoints(it.hostPoints)
+                    game_host_games.text = it.hostGames.toString()
+                    game_host_sets.text = it.hostSets.toString()
 
-                game_guest_points.text = getFormattedPoints(it.guestPoints)
-                game_guest_games.text = it.guestGames.toString()
-                game_guest_sets.text = it.guestSets.toString()
+                    game_guest_points.text = getFormattedPoints(it.guestPoints)
+                    game_guest_games.text = it.guestGames.toString()
+                    game_guest_sets.text = it.guestSets.toString()
+                }
             }
         })
 
