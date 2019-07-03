@@ -4,7 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import dev.vitorramos.tennis.db.TheDatabase
-import dev.vitorramos.tennis.db.entity.GameEntity
+import dev.vitorramos.tennis.db.entity.MatchEntity
+import dev.vitorramos.tennis.matchScreen.MatchActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -31,8 +32,8 @@ class MainActivity : AppCompatActivity() {
             val sets = if (setsInput != "") setsInput.toInt() else 2
 
             GlobalScope.launch {
-                val gameId = TheDatabase.db(applicationContext).gameDao().insertGame(
-                    GameEntity(
+                val matchId = TheDatabase.db(applicationContext).matchDao().insertMatch(
+                    MatchEntity(
                         started = Calendar.getInstance().timeInMillis,
                         gamesToSet = games,
                         setsToMatch = sets,
@@ -45,16 +46,16 @@ class MainActivity : AppCompatActivity() {
                     with(
                         Intent(
                             this@MainActivity,
-                            GameActivity::class.java
+                            MatchActivity::class.java
                         )
                     ) {
-                        putExtra(EXTRA_FIELD_GAME_ID, gameId)
+                        putExtra(EXTRA_FIELD_GAME_ID, matchId)
                     })
             }
         }
     }
 
     companion object {
-        const val EXTRA_FIELD_GAME_ID = "gameId"
+        const val EXTRA_FIELD_GAME_ID = "matchId"
     }
 }

@@ -4,12 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import dev.vitorramos.tennis.db.dao.GameDao
-import dev.vitorramos.tennis.db.entity.GameEntity
+import dev.vitorramos.tennis.db.dao.MatchDao
+import dev.vitorramos.tennis.db.entity.MatchEntity
 
-@Database(entities = [GameEntity::class], version = 1)
+@Database(entities = [MatchEntity::class], version = 1)
 abstract class TheDatabase : RoomDatabase() {
-    abstract fun gameDao(): GameDao
+    abstract fun matchDao(): MatchDao
 
     companion object {
         private var INSTANCE: TheDatabase? = null

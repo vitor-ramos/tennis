@@ -1,23 +1,26 @@
-package dev.vitorramos.tennis
+package dev.vitorramos.tennis.matchScreen
 
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import dev.vitorramos.tennis.GameViewModel
 import dev.vitorramos.tennis.MainActivity.Companion.EXTRA_FIELD_GAME_ID
-import kotlinx.android.synthetic.main.activity_game.*
+import dev.vitorramos.tennis.R
+import dev.vitorramos.tennis.WhichPlayer
+import kotlinx.android.synthetic.main.activity_match.*
 
-class GameActivity : AppCompatActivity() {
+class MatchActivity : AppCompatActivity() {
     private var hostName = ""
     private var guestName = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_game)
+        setContentView(R.layout.activity_match)
 
-        val gameId = intent.getLongExtra(EXTRA_FIELD_GAME_ID, -1)
-        if (gameId == -1L) return
+        val matchId = intent.getLongExtra(EXTRA_FIELD_GAME_ID, -1)
+        if (matchId == -1L) return
 
         val model = ViewModelProviders.of(this).get(GameViewModel::class.java)
         model.getGame().observe(this, Observer {

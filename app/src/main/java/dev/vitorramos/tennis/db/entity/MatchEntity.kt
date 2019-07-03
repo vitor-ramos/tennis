@@ -3,8 +3,8 @@ package dev.vitorramos.tennis.db.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "games")
-data class GameEntity(
+@Entity(tableName = "matches")
+data class MatchEntity(
     @PrimaryKey var id: Int? = null,
 
     var started: Long,
