@@ -5,8 +5,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import dev.vitorramos.tennis.GameViewModel
-import dev.vitorramos.tennis.MainActivity.Companion.EXTRA_FIELD_GAME_ID
+import dev.vitorramos.tennis.MainActivity.Companion.EXTRA_FIELD_MATCH_ID
 import dev.vitorramos.tennis.R
 import dev.vitorramos.tennis.WhichPlayer
 import kotlinx.android.synthetic.main.activity_match.*
@@ -19,7 +18,7 @@ class MatchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_match)
 
-        val matchId = intent.getLongExtra(EXTRA_FIELD_GAME_ID, -1)
+        val matchId = intent.getLongExtra(EXTRA_FIELD_MATCH_ID, -1)
         if (matchId == -1L) return
 
         val model = ViewModelProviders.of(this).get(MatchViewModel::class.java)

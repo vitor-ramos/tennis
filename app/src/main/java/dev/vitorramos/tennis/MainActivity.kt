@@ -3,20 +3,24 @@ package dev.vitorramos.tennis
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import dev.vitorramos.tennis.db.TheDatabase
-import dev.vitorramos.tennis.db.entity.MatchEntity
+import androidx.lifecycle.ViewModelProviders
 import dev.vitorramos.tennis.matchScreen.MatchActivity
+import dev.vitorramos.tennis.matchScreen.MatchViewModel
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
+    lateinit var viewModel: MatchViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        viewModel = ViewModelProviders.of(this).get(MatchViewModel::class.java)
+        initializeViews()
+    }
+
+    private fun initializeViews() {
         main_start_match.setOnClickListener {
             val hostNameInput = main_host_name.text?.toString() ?: ""
             val hostName = if (hostNameInput != "") hostNameInput else getString(R.string.you)
@@ -31,31 +35,27 @@ class MainActivity : AppCompatActivity() {
             val setsInput = main_sets_count.text?.toString() ?: ""
             val sets = if (setsInput != "") setsInput.toInt() else 2
 
-            GlobalScope.launch {
-                val matchId = TheDatabase.INSTANCE?.db()?.matchDao()?.insertMatch(
-                    MatchEntity(
-                        started = Calendar.getInstance().timeInMillis,
-                        gamesToSet = games,
-                        setsToMatch = sets,
-                        hostName = hostName,
-                        guestName = guestName
-                    )
-                )
+            viewModel.startMatch(
+                started = Calendar.getInstance().timeInMillis,
+                gamesToSet = games,
+                setsToMatch = sets,
+                hostName = hostName,
+                guestName = guestName
+            )
 
-                startActivity(
-                    with(
-                        Intent(
-                            this@MainActivity,
-                            MatchActivity::class.java
-                        )
-                    ) {
-                        putExtra(EXTRA_FIELD_GAME_ID, matchId)
-                    })
-            }
+            startActivity(with(
+                Intent(
+                    this@MainActivity,
+                    MatchActivity::class.java
+                )
+            ) {
+                // TODO: use match id
+                putExtra(EXTRA_FIELD_MATCH_ID, 0)
+            })
         }
     }
 
     companion object {
-        const val EXTRA_FIELD_GAME_ID = "matchId"
+        const val EXTRA_FIELD_MATCH_ID = "matchId"
     }
 }
