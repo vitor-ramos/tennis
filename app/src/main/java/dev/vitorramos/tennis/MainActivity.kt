@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
             val sets = if (setsInput != "") setsInput.toInt() else 2
 
             GlobalScope.launch {
-                val matchId = TheDatabase.db(applicationContext).matchDao().insertMatch(
+                val matchId = TheDatabase.INSTANCE?.db()?.matchDao()?.insertMatch(
                     MatchEntity(
                         started = Calendar.getInstance().timeInMillis,
                         gamesToSet = games,
