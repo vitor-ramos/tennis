@@ -7,11 +7,9 @@ import dev.vitorramos.tennis.TheRepository
 import dev.vitorramos.tennis.db.entity.MatchEntity
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 class MatchViewModel : ViewModel() {
-    @Inject
-    lateinit var theRepository: TheRepository
+    var theRepository: TheRepository? = null
 
     fun getMatch(): LiveData<MatchEntity?> {
         return MutableLiveData()
@@ -26,7 +24,7 @@ class MatchViewModel : ViewModel() {
         onMatchCreated: (Long) -> Unit
     ) {
         GlobalScope.launch {
-            val matchId = theRepository.insertMatch(
+            val matchId = theRepository?.insertMatch(
                 started = started,
                 gamesToSet = gamesToSet,
                 setsToMatch = setsToMatch,

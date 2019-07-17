@@ -3,12 +3,8 @@ package dev.vitorramos.tennis
 import dev.vitorramos.tennis.db.MatchModel
 import dev.vitorramos.tennis.db.entity.MatchEntity
 import kotlinx.coroutines.Deferred
-import javax.inject.Inject
 
-class TheRepository {
-    @Inject
-    lateinit var matchModel: MatchModel
-
+class TheRepository(private val matchModel: MatchModel) {
     fun getMatch(matchId: Int): Deferred<MatchEntity?> {
         return matchModel.getMatch(matchId)
     }

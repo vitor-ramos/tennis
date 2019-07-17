@@ -6,7 +6,7 @@ import dev.vitorramos.tennis.db.MatchModel
 import dev.vitorramos.tennis.db.TheDatabase
 
 class TheApplication : Application() {
-    lateinit var component: ApplicationComponent
+    lateinit var theRepository: TheRepository
 
     override fun onCreate() {
         super.onCreate()
@@ -16,17 +16,7 @@ class TheApplication : Application() {
             TheDatabase::class.java,
             DATABASE_NAME
         ).build()
-
-        component = DaggerApplicationComponent
-            .builder()
-            .applicationModule(
-                ApplicationModule(
-                    TheRepository(),
-                    MatchModel(),
-                    db
-                )
-            )
-            .build()
+        theRepository = TheRepository(MatchModel(db))
     }
 
     companion object {

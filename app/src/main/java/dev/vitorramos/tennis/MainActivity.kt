@@ -3,24 +3,21 @@ package dev.vitorramos.tennis
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import dev.vitorramos.tennis.matchScreen.MatchActivity
 import dev.vitorramos.tennis.matchScreen.MatchViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
-import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
     lateinit var viewModel: MatchViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        viewModel = ViewModelProviders.of(this, viewModelFactory)[MatchViewModel::class.java]
+        viewModel = ViewModelProviders.of(this)[MatchViewModel::class.java]
+        viewModel.theRepository = (application as TheApplication).theRepository
         initializeViews()
     }
 

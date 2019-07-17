@@ -4,12 +4,8 @@ import dev.vitorramos.tennis.db.entity.MatchEntity
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
-import javax.inject.Inject
 
-class MatchModel {
-    @Inject
-    lateinit var theDatabase: TheDatabase
-
+class MatchModel(private val theDatabase: TheDatabase) {
     fun getMatch(matchId: Int): Deferred<MatchEntity?> {
         return GlobalScope.async {
             theDatabase.matchDao().getMatch(matchId)
