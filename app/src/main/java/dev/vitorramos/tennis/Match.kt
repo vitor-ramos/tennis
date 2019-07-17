@@ -1,13 +1,8 @@
 package dev.vitorramos.tennis
 
-class Game(
-    private val gamesToSet: Int,
-    private val setsToMatch: Int,
-    private val onScoreChanged: (HashMap<String, String>, HashMap<String, String>) -> Unit,
-    private val onMatchFinished: (WhichPlayer) -> Unit
-) {
-    private val hostScore = Score()
-    private val guestScore = Score()
+class Match(val id: Long, private val gamesToSet: Int, private val setsToMatch: Int) {
+    val hostScore = Score()
+    val guestScore = Score()
 
     fun addPoint(whichPlayer: WhichPlayer) {
         var consumed = true
@@ -32,7 +27,9 @@ class Game(
                 consumed = false
             }
         }
-        if (consumed) onScoreChanged(getHashMap(hostScore), getHashMap(guestScore))
+        if (consumed) {
+            // TODO: score changed
+        }
     }
 
     private fun addGame(whichPlayer: WhichPlayer) {
@@ -41,7 +38,9 @@ class Game(
         val scoringPlayer = if (whichPlayer == WhichPlayer.HOST) hostScore else guestScore
         scoringPlayer.games++
         if (scoringPlayer.games == gamesToSet) addSet(whichPlayer)
-        else onScoreChanged(getHashMap(hostScore), getHashMap(guestScore))
+        else {
+            // TODO: score changed
+        }
     }
 
     private fun addSet(whichPlayer: WhichPlayer) {
@@ -49,16 +48,9 @@ class Game(
         guestScore.games = 0
         val scoringPlayer = if (whichPlayer == WhichPlayer.HOST) hostScore else guestScore
         scoringPlayer.sets++
-        if (scoringPlayer.sets == setsToMatch) onMatchFinished(whichPlayer)
-        else onScoreChanged(getHashMap(scoringPlayer), getHashMap(guestScore))
-    }
-
-    private fun getHashMap(score: Score): HashMap<String, String> {
-        val hashMap = hashMapOf<String, String>()
-        hashMap[MAP_FIELD_POINTS] = getFormattedPoints(score.points)
-        hashMap[MAP_FIELD_GAMES] = score.games.toString()
-        hashMap[MAP_FIELD_SETS] = score.sets.toString()
-        return hashMap
+        if (scoringPlayer.sets == setsToMatch) {
+            // TODO: match finished
+        }
     }
 
     private fun getFormattedPoints(points: Int): String {

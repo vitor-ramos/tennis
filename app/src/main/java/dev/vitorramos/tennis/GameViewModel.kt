@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 @Deprecated(message = "Use MatchViewModel instead")
 class GameViewModel : ViewModel() {
     private lateinit var dao: MatchDao
-    private val matchId = 0
+    private val matchId = 0L
 
     private val match: MutableLiveData<MatchEntity> by lazy {
         MutableLiveData<MatchEntity>().also {
@@ -21,7 +21,7 @@ class GameViewModel : ViewModel() {
 
     private fun loadGame() {
         GlobalScope.launch {
-            val gameEntity = dao.getMatch(matchId.toLong())
+            val gameEntity = dao.getMatch(matchId)
             if (gameEntity != null) match.value = gameEntity
         }
     }

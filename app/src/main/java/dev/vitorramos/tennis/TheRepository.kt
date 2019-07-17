@@ -1,11 +1,20 @@
 package dev.vitorramos.tennis
 
+import androidx.lifecycle.LiveData
 import dev.vitorramos.tennis.db.MatchModel
 import dev.vitorramos.tennis.db.entity.MatchEntity
 
 class TheRepository(private val matchModel: MatchModel) {
-    suspend fun getMatch(matchId: Long): MatchEntity? {
+    fun getMatch(matchId: Long): LiveData<MatchEntity?>? {
         return matchModel.getMatch(matchId)
+    }
+
+    suspend fun updateHostScore(matchId: Long, score: Score) {
+        return matchModel.updateHostScore(matchId, score)
+    }
+
+    suspend fun updateGuestScore(matchId: Long, score: Score) {
+        return matchModel.updateGuestScore(matchId, score)
     }
 
     suspend fun insertMatch(
@@ -14,14 +23,7 @@ class TheRepository(private val matchModel: MatchModel) {
         gamesToSet: Int,
         setsToMatch: Int,
         hostName: String = "",
-        hostPoints: Int = 0,
-        hostGames: Int = 0,
-        hostSets: Int = 0,
-
-        guestName: String = "",
-        guestPoints: Int = 0,
-        guestGames: Int = 0,
-        guestSets: Int = 0
+        guestName: String = ""
     ): Long? {
         return matchModel.insertMatch(
             started = started,
@@ -29,13 +31,7 @@ class TheRepository(private val matchModel: MatchModel) {
             gamesToSet = gamesToSet,
             setsToMatch = setsToMatch,
             hostName = hostName,
-            hostPoints = hostPoints,
-            hostGames = hostGames,
-            hostSets = hostSets,
-            guestName = guestName,
-            guestPoints = guestPoints,
-            guestGames = guestGames,
-            guestSets = guestSets
+            guestName = guestName
         )
     }
 }

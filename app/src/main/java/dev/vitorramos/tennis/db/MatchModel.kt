@@ -1,11 +1,20 @@
 package dev.vitorramos.tennis.db
 
+import androidx.lifecycle.LiveData
+import dev.vitorramos.tennis.Score
 import dev.vitorramos.tennis.db.entity.MatchEntity
 
 class MatchModel(private val theDatabase: TheDatabase) {
-    suspend fun getMatch(matchId: Long): MatchEntity? {
+    fun getMatch(matchId: Long): LiveData<MatchEntity?>? {
         return theDatabase.matchDao().getMatch(matchId)
+    }
 
+    suspend fun updateHostScore(matchId: Long, score: Score) {
+        return theDatabase.matchDao().updateHostScore(matchId, score)
+    }
+
+    suspend fun updateGuestScore(matchId: Long, score: Score) {
+        return theDatabase.matchDao().updateGuestScore(matchId, score)
     }
 
     suspend fun insertMatch(
@@ -14,14 +23,7 @@ class MatchModel(private val theDatabase: TheDatabase) {
         gamesToSet: Int,
         setsToMatch: Int,
         hostName: String = "",
-        hostPoints: Int = 0,
-        hostGames: Int = 0,
-        hostSets: Int = 0,
-
-        guestName: String = "",
-        guestPoints: Int = 0,
-        guestGames: Int = 0,
-        guestSets: Int = 0
+        guestName: String = ""
     ): Long? {
         val match = MatchEntity(
             started = started,
@@ -29,13 +31,7 @@ class MatchModel(private val theDatabase: TheDatabase) {
             gamesToSet = gamesToSet,
             setsToMatch = setsToMatch,
             hostName = hostName,
-            hostPoints = hostPoints,
-            hostGames = hostGames,
-            hostSets = hostSets,
-            guestName = guestName,
-            guestPoints = guestPoints,
-            guestGames = guestGames,
-            guestSets = guestSets
+            guestName = guestName
         )
         return theDatabase.matchDao().insertMatch(match)
     }

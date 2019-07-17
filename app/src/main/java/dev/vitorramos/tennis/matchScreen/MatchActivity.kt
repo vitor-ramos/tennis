@@ -24,7 +24,8 @@ class MatchActivity : AppCompatActivity() {
 
         val viewModel = ViewModelProviders.of(this).get(MatchViewModel::class.java)
         viewModel.theRepository = (application as TheApplication).theRepository
-        viewModel.getMatch(matchId).observe(this, Observer {
+        viewModel.matchId = matchId
+        viewModel.currentMatch.observe(this, Observer {
             if (it != null) {
                 // TODO: change which player
                 if (it.ended != null) onMatchFinished(WhichPlayer.HOST)

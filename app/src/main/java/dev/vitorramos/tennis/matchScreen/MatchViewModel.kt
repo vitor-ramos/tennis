@@ -1,24 +1,19 @@
 package dev.vitorramos.tennis.matchScreen
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import dev.vitorramos.tennis.Match
 import dev.vitorramos.tennis.TheRepository
-import dev.vitorramos.tennis.db.entity.MatchEntity
+import dev.vitorramos.tennis.WhichPlayer
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class MatchViewModel : ViewModel() {
     var theRepository: TheRepository? = null
+    var matchId: Long? = null
+    private var match: Match? = null
 
-    fun getMatch(matchId: Long): LiveData<MatchEntity?> {
-        val mutableLiveData = MutableLiveData<MatchEntity?>()
-        GlobalScope.launch {
-            val match = theRepository?.getMatch(matchId)
-            mutableLiveData.postValue(match)
-        }
-        return mutableLiveData
-    }
+    val currentMatch by lazy { theRepository?.getMatch(matchId!!) ?: MutableLiveData() }
 
     fun startMatch(
         started: Long,
@@ -36,13 +31,28 @@ class MatchViewModel : ViewModel() {
                 hostName = hostName,
                 guestName = guestName
             )
-            if(matchId != null) onMatchCreated(matchId)
+            if (matchId != null) {
+                match = Match(matchId, gamesToSet, setsToMatch)
+                onMatchCreated(matchId)
+            }
         }
     }
 
     fun addHostPoint() {
+        GlobalScope.launch {
+            match?.let {
+                it.addPoint(WhichPlayer.HOST)
+                theRepository?.updateHostScore(it.id, it.hostScore)
+            }
+        }
     }
 
     fun addGuestPoint() {
+        GlobalScope.launch {
+            match?.let{
+                it.addPoint(WhichPlayer.GUEST)
+                theRepository?.updateGuestScore(it.id, it.guestScore)
+            }
+        }
     }
 }
