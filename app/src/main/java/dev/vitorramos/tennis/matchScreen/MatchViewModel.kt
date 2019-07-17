@@ -11,7 +11,6 @@ import kotlinx.coroutines.launch
 class MatchViewModel : ViewModel() {
     var theRepository: TheRepository? = null
     var matchId: Long? = null
-    private var match: Match? = null
 
     val currentMatch by lazy { theRepository?.getMatch(matchId!!) ?: MutableLiveData() }
 
@@ -32,26 +31,20 @@ class MatchViewModel : ViewModel() {
                 guestName = guestName
             )
             if (matchId != null) {
-                match = Match(matchId, gamesToSet, setsToMatch)
                 onMatchCreated(matchId)
             }
         }
     }
 
-    fun addHostPoint() {
-        GlobalScope.launch {
-            match?.let {
-                it.addPoint(WhichPlayer.HOST)
-                theRepository?.updateHostScore(it.id, it.hostScore)
-            }
-        }
-    }
+    fun addHostPoint() = addPoint(WhichPlayer.HOST)
 
-    fun addGuestPoint() {
-        GlobalScope.launch {
-            match?.let{
-                it.addPoint(WhichPlayer.GUEST)
-                theRepository?.updateGuestScore(it.id, it.guestScore)
+    fun addGuestPoint() = addPoint(WhichPlayer.GUEST)
+
+    private fun addPoint(whichPlayer: WhichPlayer) {
+        if (currentMatch.value != null) {
+            val updatedMatch = Match.addPoint(whichPlayer, currentMatch.value!!)
+            GlobalScope.launch {
+                theRepository?.updateMatch(updatedMatch)
             }
         }
     }

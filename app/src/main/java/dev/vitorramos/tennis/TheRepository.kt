@@ -1,21 +1,12 @@
 package dev.vitorramos.tennis
 
-import androidx.lifecycle.LiveData
 import dev.vitorramos.tennis.db.MatchModel
 import dev.vitorramos.tennis.db.entity.MatchEntity
 
 class TheRepository(private val matchModel: MatchModel) {
-    fun getMatch(matchId: Long): LiveData<MatchEntity?>? {
-        return matchModel.getMatch(matchId)
-    }
+    fun getMatch(matchId: Long) = matchModel.getMatch(matchId)
 
-    suspend fun updateHostScore(matchId: Long, score: Score) {
-        return matchModel.updateHostScore(matchId, score)
-    }
-
-    suspend fun updateGuestScore(matchId: Long, score: Score) {
-        return matchModel.updateGuestScore(matchId, score)
-    }
+    suspend fun updateMatch(matchEntity: MatchEntity) = matchModel.updateMatch(matchEntity)
 
     suspend fun insertMatch(
         started: Long,

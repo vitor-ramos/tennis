@@ -1,7 +1,6 @@
 package dev.vitorramos.tennis.db
 
 import androidx.lifecycle.LiveData
-import dev.vitorramos.tennis.Score
 import dev.vitorramos.tennis.db.entity.MatchEntity
 
 class MatchModel(private val theDatabase: TheDatabase) {
@@ -9,12 +8,8 @@ class MatchModel(private val theDatabase: TheDatabase) {
         return theDatabase.matchDao().getMatch(matchId)
     }
 
-    suspend fun updateHostScore(matchId: Long, score: Score) {
-        return theDatabase.matchDao().updateHostScore(matchId, score)
-    }
-
-    suspend fun updateGuestScore(matchId: Long, score: Score) {
-        return theDatabase.matchDao().updateGuestScore(matchId, score)
+    suspend fun updateMatch(matchEntity: MatchEntity) {
+        return theDatabase.matchDao().updateMatch(matchEntity)
     }
 
     suspend fun insertMatch(
