@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        viewModel = ViewModelProviders.of(this).get(MatchViewModel::class.java)
+        viewModel = ViewModelProviders.of(this)[MatchViewModel::class.java]
         initializeViews()
     }
 
@@ -41,17 +41,16 @@ class MainActivity : AppCompatActivity() {
                 setsToMatch = sets,
                 hostName = hostName,
                 guestName = guestName
-            )
-
-            startActivity(with(
-                Intent(
-                    this@MainActivity,
-                    MatchActivity::class.java
-                )
-            ) {
-                // TODO: use match id
-                putExtra(EXTRA_FIELD_MATCH_ID, 0)
-            })
+            ) { matchId ->
+                startActivity(with(
+                    Intent(
+                        this@MainActivity,
+                        MatchActivity::class.java
+                    )
+                ) {
+                    putExtra(EXTRA_FIELD_MATCH_ID, matchId)
+                })
+            }
         }
     }
 

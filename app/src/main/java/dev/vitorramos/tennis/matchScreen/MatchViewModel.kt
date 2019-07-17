@@ -5,9 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dev.vitorramos.tennis.TheRepository
 import dev.vitorramos.tennis.db.entity.MatchEntity
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MatchViewModel : ViewModel() {
+    @Inject
+    lateinit var theRepository: TheRepository
+
     fun getMatch(): LiveData<MatchEntity?> {
         return MutableLiveData()
     }
@@ -17,15 +22,19 @@ class MatchViewModel : ViewModel() {
         gamesToSet: Int,
         setsToMatch: Int,
         hostName: String,
-        guestName: String
+        guestName: String,
+        onMatchCreated: (Long) -> Unit
     ) {
-        TheRepository.insertMatch(
-            started = started,
-            gamesToSet = gamesToSet,
-            setsToMatch = setsToMatch,
-            hostName = hostName,
-            guestName = guestName
-        )
+        GlobalScope.launch {
+            val matchId = theRepository.insertMatch(
+                started = started,
+                gamesToSet = gamesToSet,
+                setsToMatch = setsToMatch,
+                hostName = hostName,
+                guestName = guestName
+            )
+            if(matchId != null) onMatchCreated(matchId)
+        }
     }
 
     fun addHostPoint() {
