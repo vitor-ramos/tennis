@@ -1,15 +1,11 @@
 package dev.vitorramos.tennis.db
 
 import dev.vitorramos.tennis.db.entity.MatchEntity
-import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
 
 class MatchModel(private val theDatabase: TheDatabase) {
-    fun getMatch(matchId: Int): Deferred<MatchEntity?> {
-        return GlobalScope.async {
-            theDatabase.matchDao().getMatch(matchId)
-        }
+    suspend fun getMatch(matchId: Long): MatchEntity? {
+        return theDatabase.matchDao().getMatch(matchId)
+
     }
 
     suspend fun insertMatch(

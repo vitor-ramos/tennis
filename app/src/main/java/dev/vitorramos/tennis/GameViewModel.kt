@@ -21,7 +21,7 @@ class GameViewModel : ViewModel() {
 
     private fun loadGame() {
         GlobalScope.launch {
-            val gameEntity = dao.getMatch(matchId)
+            val gameEntity = dao.getMatch(matchId.toLong())
             if (gameEntity != null) match.value = gameEntity
         }
     }

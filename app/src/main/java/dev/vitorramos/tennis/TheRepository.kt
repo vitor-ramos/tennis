@@ -2,10 +2,9 @@ package dev.vitorramos.tennis
 
 import dev.vitorramos.tennis.db.MatchModel
 import dev.vitorramos.tennis.db.entity.MatchEntity
-import kotlinx.coroutines.Deferred
 
 class TheRepository(private val matchModel: MatchModel) {
-    fun getMatch(matchId: Int): Deferred<MatchEntity?> {
+    suspend fun getMatch(matchId: Long): MatchEntity? {
         return matchModel.getMatch(matchId)
     }
 

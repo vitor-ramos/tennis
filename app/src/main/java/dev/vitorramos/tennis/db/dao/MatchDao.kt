@@ -18,7 +18,7 @@ interface MatchDao {
     suspend fun getMatches(): Array<MatchEntity>
 
     @Query("SELECT * FROM matches WHERE id == :matchId")
-    suspend fun getMatch(matchId: Int): MatchEntity?
+    suspend fun getMatch(matchId: Long): MatchEntity?
 
     @Query(value = "UPDATE matches SET hostPoints = :points WHERE id == :matchId")
     suspend fun updateHostPoints(matchId: Int, points: Int)

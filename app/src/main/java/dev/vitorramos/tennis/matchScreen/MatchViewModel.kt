@@ -11,8 +11,13 @@ import kotlinx.coroutines.launch
 class MatchViewModel : ViewModel() {
     var theRepository: TheRepository? = null
 
-    fun getMatch(): LiveData<MatchEntity?> {
-        return MutableLiveData()
+    fun getMatch(matchId: Long): LiveData<MatchEntity?> {
+        val mutableLiveData = MutableLiveData<MatchEntity?>()
+        GlobalScope.launch {
+            val match = theRepository?.getMatch(matchId)
+            mutableLiveData.postValue(match)
+        }
+        return mutableLiveData
     }
 
     fun startMatch(
