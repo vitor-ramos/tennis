@@ -19,7 +19,7 @@ class TheApplication : Application() {
 
         component = DaggerApplicationComponent
             .builder()
-            .theModule(
+            .applicationModule(
                 ApplicationModule(
                     TheRepository(),
                     MatchModel(),
