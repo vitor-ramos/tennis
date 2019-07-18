@@ -71,4 +71,9 @@ class Match {
             return updatedEntity
         }
     }
+
+    enum class WhichPlayer {
+        HOST,
+        GUEST
+    }
 }
