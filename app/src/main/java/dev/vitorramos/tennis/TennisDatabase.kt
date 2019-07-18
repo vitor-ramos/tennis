@@ -6,6 +6,6 @@ import dev.vitorramos.tennis.dao.MatchDao
 import dev.vitorramos.tennis.entity.MatchEntity
 
 @Database(entities = [MatchEntity::class], version = 1)
-abstract class TheDatabase : RoomDatabase() {
+abstract class TennisDatabase : RoomDatabase() {
     abstract fun matchDao(): MatchDao
 }

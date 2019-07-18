@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         viewModel = ViewModelProviders.of(this)[MainViewModel::class.java]
-        viewModel.matchRepository = (application as TennisApplication).matchRepository
+        viewModel.tennisRepository = (application as TennisApplication).tennisRepository
         initializeViews()
     }
 

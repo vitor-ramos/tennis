@@ -1,16 +1,16 @@
 package dev.vitorramos.tennis.model
 
-import androidx.lifecycle.LiveData
-import dev.vitorramos.tennis.TheDatabase
+import dev.vitorramos.tennis.TennisDatabase
 import dev.vitorramos.tennis.entity.MatchEntity
 
-class MatchModel(private val theDatabase: TheDatabase) {
-    fun getMatch(matchId: Long): LiveData<MatchEntity?>? {
-        return theDatabase.matchDao().getMatch(matchId)
-    }
+class MatchModel(private val tennisDatabase: TennisDatabase) {
+    fun getMatch(matchId: Long) = tennisDatabase.matchDao().getMatch(matchId)
+
+
+    fun getMatches() = tennisDatabase.matchDao().getMatches()
 
     suspend fun updateMatch(matchEntity: MatchEntity) {
-        return theDatabase.matchDao().updateMatch(matchEntity)
+        return tennisDatabase.matchDao().updateMatch(matchEntity)
     }
 
     suspend fun insertMatch(
@@ -29,6 +29,6 @@ class MatchModel(private val theDatabase: TheDatabase) {
             hostName = hostName,
             guestName = guestName
         )
-        return theDatabase.matchDao().insertMatch(match)
+        return tennisDatabase.matchDao().insertMatch(match)
     }
 }

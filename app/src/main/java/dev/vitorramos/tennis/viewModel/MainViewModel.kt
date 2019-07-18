@@ -1,12 +1,12 @@
 package dev.vitorramos.tennis.viewModel
 
 import androidx.lifecycle.ViewModel
-import dev.vitorramos.tennis.repository.MatchRepository
+import dev.vitorramos.tennis.repository.TennisRepository
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
-    var matchRepository: MatchRepository? = null
+    var tennisRepository: TennisRepository? = null
 
     fun startMatch(
         started: Long,
@@ -17,7 +17,7 @@ class MainViewModel : ViewModel() {
         onMatchCreated: (Long) -> Unit
     ) {
         GlobalScope.launch {
-            val matchId = matchRepository?.insertMatch(
+            val matchId = tennisRepository?.insertMatch(
                 started = started,
                 gamesToSet = gamesToSet,
                 setsToMatch = setsToMatch,

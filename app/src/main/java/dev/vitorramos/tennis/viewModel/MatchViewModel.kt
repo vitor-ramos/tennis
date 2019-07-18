@@ -4,15 +4,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dev.vitorramos.tennis.Match
 import dev.vitorramos.tennis.Match.WhichPlayer
-import dev.vitorramos.tennis.repository.MatchRepository
+import dev.vitorramos.tennis.repository.TennisRepository
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class MatchViewModel : ViewModel() {
-    var matchRepository: MatchRepository? = null
+    var tennisRepository: TennisRepository? = null
     var matchId: Long? = null
 
-    val currentMatch by lazy { matchRepository?.getMatch(matchId!!) ?: MutableLiveData() }
+    val currentMatch by lazy { tennisRepository?.getMatch(matchId!!) ?: MutableLiveData() }
 
     fun addHostPoint() = addPoint(WhichPlayer.HOST)
 
@@ -22,7 +22,7 @@ class MatchViewModel : ViewModel() {
         if (currentMatch.value != null) {
             val updatedMatch = Match.addPoint(whichPlayer, currentMatch.value!!)
             GlobalScope.launch {
-                matchRepository?.updateMatch(updatedMatch)
+                tennisRepository?.updateMatch(updatedMatch)
             }
         }
     }

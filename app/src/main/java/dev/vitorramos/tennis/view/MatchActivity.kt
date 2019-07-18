@@ -24,7 +24,7 @@ class MatchActivity : AppCompatActivity() {
         if (matchId == -1L) return
 
         val viewModel = ViewModelProviders.of(this).get(MatchViewModel::class.java)
-        viewModel.matchRepository = (application as TennisApplication).matchRepository
+        viewModel.tennisRepository = (application as TennisApplication).tennisRepository
         viewModel.matchId = matchId
         viewModel.currentMatch.observe(this, Observer {
             if (it != null) {

@@ -3,23 +3,23 @@ package dev.vitorramos.tennis
 import android.app.Application
 import androidx.room.Room
 import dev.vitorramos.tennis.model.MatchModel
-import dev.vitorramos.tennis.repository.MatchRepository
+import dev.vitorramos.tennis.repository.TennisRepository
 
 class TennisApplication : Application() {
-    lateinit var matchRepository: MatchRepository
+    lateinit var tennisRepository: TennisRepository
 
     override fun onCreate() {
         super.onCreate()
 
         val db = Room.databaseBuilder(
             applicationContext,
-            TheDatabase::class.java,
+            TennisDatabase::class.java,
             DATABASE_NAME
         ).build()
-        matchRepository = MatchRepository(MatchModel(db))
+        tennisRepository = TennisRepository(MatchModel(db))
     }
 
     companion object {
-        private const val DATABASE_NAME = "the-database"
+        private const val DATABASE_NAME = "tennis-database"
     }
 }

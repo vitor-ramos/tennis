@@ -13,7 +13,7 @@ interface MatchDao {
     suspend fun deleteMatch(match: MatchEntity)
 
     @Query("SELECT * FROM matches")
-    suspend fun getMatches(): Array<MatchEntity>
+    fun getMatches(): LiveData<Array<MatchEntity?>?>?
 
     @Query("SELECT * FROM matches WHERE id == :matchId")
     fun getMatch(matchId: Long): LiveData<MatchEntity?>?
