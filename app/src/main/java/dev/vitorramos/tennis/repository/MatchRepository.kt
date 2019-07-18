@@ -1,9 +1,9 @@
-package dev.vitorramos.tennis
+package dev.vitorramos.tennis.repository
 
-import dev.vitorramos.tennis.db.MatchModel
-import dev.vitorramos.tennis.db.entity.MatchEntity
+import dev.vitorramos.tennis.model.MatchModel
+import dev.vitorramos.tennis.entity.MatchEntity
 
-class TheRepository(private val matchModel: MatchModel) {
+class MatchRepository(private val matchModel: MatchModel) {
     fun getMatch(matchId: Long) = matchModel.getMatch(matchId)
 
     suspend fun updateMatch(matchEntity: MatchEntity) = matchModel.updateMatch(matchEntity)

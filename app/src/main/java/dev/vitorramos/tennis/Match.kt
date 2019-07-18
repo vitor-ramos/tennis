@@ -1,6 +1,6 @@
 package dev.vitorramos.tennis
 
-import dev.vitorramos.tennis.db.entity.MatchEntity
+import dev.vitorramos.tennis.entity.MatchEntity
 import java.lang.IllegalArgumentException
 
 class Match {

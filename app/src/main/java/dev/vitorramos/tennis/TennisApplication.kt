@@ -2,11 +2,11 @@ package dev.vitorramos.tennis
 
 import android.app.Application
 import androidx.room.Room
-import dev.vitorramos.tennis.db.MatchModel
-import dev.vitorramos.tennis.db.TheDatabase
+import dev.vitorramos.tennis.model.MatchModel
+import dev.vitorramos.tennis.repository.MatchRepository
 
-class TheApplication : Application() {
-    lateinit var theRepository: TheRepository
+class TennisApplication : Application() {
+    lateinit var matchRepository: MatchRepository
 
     override fun onCreate() {
         super.onCreate()
@@ -16,7 +16,7 @@ class TheApplication : Application() {
             TheDatabase::class.java,
             DATABASE_NAME
         ).build()
-        theRepository = TheRepository(MatchModel(db))
+        matchRepository = MatchRepository(MatchModel(db))
     }
 
     companion object {

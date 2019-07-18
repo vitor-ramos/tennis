@@ -1,7 +1,8 @@
-package dev.vitorramos.tennis.db
+package dev.vitorramos.tennis.model
 
 import androidx.lifecycle.LiveData
-import dev.vitorramos.tennis.db.entity.MatchEntity
+import dev.vitorramos.tennis.TheDatabase
+import dev.vitorramos.tennis.entity.MatchEntity
 
 class MatchModel(private val theDatabase: TheDatabase) {
     fun getMatch(matchId: Long): LiveData<MatchEntity?>? {

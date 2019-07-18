@@ -10,7 +10,7 @@
     android:elevation="@dimen/main_form_elevation"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".view.MainActivity">
 
 
     <androidx.appcompat.widget.AppCompatImageView

@@ -1,4 +1,4 @@
-package dev.vitorramos.tennis.db.entity
+package dev.vitorramos.tennis.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

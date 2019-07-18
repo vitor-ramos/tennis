@@ -1,18 +1,18 @@
-package dev.vitorramos.tennis.matchScreen
+package dev.vitorramos.tennis.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dev.vitorramos.tennis.Match
-import dev.vitorramos.tennis.TheRepository
+import dev.vitorramos.tennis.repository.MatchRepository
 import dev.vitorramos.tennis.WhichPlayer
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class MatchViewModel : ViewModel() {
-    var theRepository: TheRepository? = null
+    var matchRepository: MatchRepository? = null
     var matchId: Long? = null
 
-    val currentMatch by lazy { theRepository?.getMatch(matchId!!) ?: MutableLiveData() }
+    val currentMatch by lazy { matchRepository?.getMatch(matchId!!) ?: MutableLiveData() }
 
     fun startMatch(
         started: Long,
@@ -23,7 +23,7 @@ class MatchViewModel : ViewModel() {
         onMatchCreated: (Long) -> Unit
     ) {
         GlobalScope.launch {
-            val matchId = theRepository?.insertMatch(
+            val matchId = matchRepository?.insertMatch(
                 started = started,
                 gamesToSet = gamesToSet,
                 setsToMatch = setsToMatch,
@@ -44,7 +44,7 @@ class MatchViewModel : ViewModel() {
         if (currentMatch.value != null) {
             val updatedMatch = Match.addPoint(whichPlayer, currentMatch.value!!)
             GlobalScope.launch {
-                theRepository?.updateMatch(updatedMatch)
+                matchRepository?.updateMatch(updatedMatch)
             }
         }
     }

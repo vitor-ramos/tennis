@@ -1,14 +1,15 @@
-package dev.vitorramos.tennis.matchScreen
+package dev.vitorramos.tennis.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import dev.vitorramos.tennis.MainActivity.Companion.EXTRA_FIELD_MATCH_ID
+import dev.vitorramos.tennis.view.MainActivity.Companion.EXTRA_FIELD_MATCH_ID
 import dev.vitorramos.tennis.R
-import dev.vitorramos.tennis.TheApplication
+import dev.vitorramos.tennis.TennisApplication
 import dev.vitorramos.tennis.WhichPlayer
+import dev.vitorramos.tennis.viewModel.MatchViewModel
 import kotlinx.android.synthetic.main.activity_match.*
 
 class MatchActivity : AppCompatActivity() {
@@ -23,7 +24,7 @@ class MatchActivity : AppCompatActivity() {
         if (matchId == -1L) return
 
         val viewModel = ViewModelProviders.of(this).get(MatchViewModel::class.java)
-        viewModel.theRepository = (application as TheApplication).theRepository
+        viewModel.matchRepository = (application as TennisApplication).matchRepository
         viewModel.matchId = matchId
         viewModel.currentMatch.observe(this, Observer {
             if (it != null) {
@@ -31,12 +32,14 @@ class MatchActivity : AppCompatActivity() {
                 if (it.ended != null) onMatchFinished(WhichPlayer.HOST)
                 else {
                     game_host_name.text = it.hostName
-                    game_host_points.text = getFormattedPoints(it.hostPoints)
+                    game_host_points.text =
+                        getFormattedPoints(it.hostPoints)
                     game_host_games.text = it.hostGames.toString()
                     game_host_sets.text = it.hostSets.toString()
 
                     game_guest_name.text = it.guestName
-                    game_guest_points.text = getFormattedPoints(it.guestPoints)
+                    game_guest_points.text =
+                        getFormattedPoints(it.guestPoints)
                     game_guest_games.text = it.guestGames.toString()
                     game_guest_sets.text = it.guestSets.toString()
                 }

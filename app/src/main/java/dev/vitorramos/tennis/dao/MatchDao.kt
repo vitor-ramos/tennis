@@ -1,8 +1,8 @@
-package dev.vitorramos.tennis.db.dao
+package dev.vitorramos.tennis.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import dev.vitorramos.tennis.db.entity.MatchEntity
+import dev.vitorramos.tennis.entity.MatchEntity
 
 @Dao
 interface MatchDao {
