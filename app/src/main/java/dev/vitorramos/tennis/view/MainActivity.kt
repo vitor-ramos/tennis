@@ -6,18 +6,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import dev.vitorramos.tennis.R
 import dev.vitorramos.tennis.TennisApplication
-import dev.vitorramos.tennis.viewModel.MatchViewModel
+import dev.vitorramos.tennis.viewModel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
-    lateinit var viewModel: MatchViewModel
+    private lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        viewModel = ViewModelProviders.of(this)[MatchViewModel::class.java]
+        viewModel = ViewModelProviders.of(this)[MainViewModel::class.java]
         viewModel.matchRepository = (application as TennisApplication).matchRepository
         initializeViews()
     }
