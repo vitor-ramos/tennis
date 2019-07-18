@@ -4,9 +4,11 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import dev.vitorramos.tennis.R
 import dev.vitorramos.tennis.TennisApplication
 import dev.vitorramos.tennis.viewModel.HistoryViewModel
+import kotlinx.android.synthetic.main.activity_history.*
 
 class HistoryActivity : AppCompatActivity() {
     private lateinit var viewModel: HistoryViewModel
@@ -18,12 +20,14 @@ class HistoryActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this)[HistoryViewModel::class.java]
         viewModel.tennisRepository = (application as TennisApplication).tennisRepository
 
-        viewModel.matches.observe(this, Observer {
-            it?.let {
-                it.forEach {
-                    it?.let {
-                        println(it)
-                    }
+        rv_history_content.layoutManager = LinearLayoutManager(this)
+        rv_history_content.adapter = HistoryAdapter(layoutInflater, arrayOf())
+
+        viewModel.matches.observe(this, Observer { array ->
+            if (array != null && rv_history_content.adapter != null) {
+                with(rv_history_content.adapter as HistoryAdapter) {
+                    content = array
+                    notifyDataSetChanged()
                 }
             }
         })
