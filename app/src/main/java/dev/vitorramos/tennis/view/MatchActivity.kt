@@ -5,9 +5,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import dev.vitorramos.tennis.EXTRA_FIELD_MATCH_ID
 import dev.vitorramos.tennis.Match.WhichPlayer
 import dev.vitorramos.tennis.R
-import dev.vitorramos.tennis.view.StartMatchActivity.Companion.EXTRA_FIELD_MATCH_ID
 import dev.vitorramos.tennis.viewModel.MatchViewModel
 import kotlinx.android.synthetic.main.activity_match.*
 

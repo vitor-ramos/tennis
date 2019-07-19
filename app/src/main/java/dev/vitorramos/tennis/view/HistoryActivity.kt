@@ -10,13 +10,11 @@ import dev.vitorramos.tennis.viewModel.HistoryViewModel
 import kotlinx.android.synthetic.main.activity_history.*
 
 class HistoryActivity : AppCompatActivity() {
-    private lateinit var viewModel: HistoryViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_history)
 
-        viewModel = ViewModelProviders.of(this)[HistoryViewModel::class.java]
+        val viewModel = ViewModelProviders.of(this)[HistoryViewModel::class.java]
 
         rv_history_content.layoutManager = LinearLayoutManager(this)
         rv_history_content.adapter = HistoryAdapter(layoutInflater)

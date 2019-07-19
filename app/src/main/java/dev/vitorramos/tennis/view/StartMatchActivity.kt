@@ -1,10 +1,14 @@
 package dev.vitorramos.tennis.view
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
+import dev.vitorramos.tennis.EXTRA_FIELD_MATCH_ID
+import dev.vitorramos.tennis.PREF_FIELD_MATCH_ID
 import dev.vitorramos.tennis.R
+import dev.vitorramos.tennis.PREF_FILE_NAME
 import dev.vitorramos.tennis.viewModel.StartMatchViewModel
 import kotlinx.android.synthetic.main.activity_start_match.*
 import java.util.*
@@ -42,6 +46,11 @@ class StartMatchActivity : AppCompatActivity() {
                 hostName = hostName,
                 guestName = guestName
             ) { matchId ->
+                getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE).edit().apply {
+                    putLong(PREF_FIELD_MATCH_ID, matchId)
+                    apply()
+                }
+
                 startActivity(with(
                     Intent(
                         this@StartMatchActivity,
@@ -52,9 +61,5 @@ class StartMatchActivity : AppCompatActivity() {
                 })
             }
         }
-    }
-
-    companion object {
-        const val EXTRA_FIELD_MATCH_ID = "matchId"
     }
 }

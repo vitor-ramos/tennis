@@ -1,0 +1,9 @@
+package dev.vitorramos.tennis.viewModel
+
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import dev.vitorramos.tennis.repository.Repository
+
+class HomeViewModel : ViewModel() {
+    fun currentMatch(matchId: Long) = Repository.it?.getMatch(matchId) ?: MutableLiveData()
+}
