@@ -6,7 +6,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import dev.vitorramos.tennis.R
-import dev.vitorramos.tennis.TennisApplication
 import dev.vitorramos.tennis.viewModel.HistoryViewModel
 import kotlinx.android.synthetic.main.activity_history.*
 
@@ -18,7 +17,6 @@ class HistoryActivity : AppCompatActivity() {
         setContentView(R.layout.activity_history)
 
         viewModel = ViewModelProviders.of(this)[HistoryViewModel::class.java]
-        viewModel.tennisRepository = (application as TennisApplication).tennisRepository
 
         rv_history_content.layoutManager = LinearLayoutManager(this)
         rv_history_content.adapter = HistoryAdapter(layoutInflater)

@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import dev.vitorramos.tennis.R
-import dev.vitorramos.tennis.TennisApplication
 import dev.vitorramos.tennis.viewModel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
@@ -18,7 +17,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         viewModel = ViewModelProviders.of(this)[MainViewModel::class.java]
-        viewModel.tennisRepository = (application as TennisApplication).tennisRepository
         initializeViews()
     }
 

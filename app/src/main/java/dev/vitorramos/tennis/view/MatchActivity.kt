@@ -5,10 +5,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import dev.vitorramos.tennis.view.MainActivity.Companion.EXTRA_FIELD_MATCH_ID
-import dev.vitorramos.tennis.R
-import dev.vitorramos.tennis.TennisApplication
 import dev.vitorramos.tennis.Match.WhichPlayer
+import dev.vitorramos.tennis.R
+import dev.vitorramos.tennis.view.MainActivity.Companion.EXTRA_FIELD_MATCH_ID
 import dev.vitorramos.tennis.viewModel.MatchViewModel
 import kotlinx.android.synthetic.main.activity_match.*
 
@@ -24,7 +23,6 @@ class MatchActivity : AppCompatActivity() {
         if (matchId == -1L) return
 
         val viewModel = ViewModelProviders.of(this).get(MatchViewModel::class.java)
-        viewModel.tennisRepository = (application as TennisApplication).tennisRepository
         viewModel.matchId = matchId
         viewModel.currentMatch.observe(this, Observer {
             if (it != null) {

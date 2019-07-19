@@ -1,9 +1,9 @@
 package dev.vitorramos.tennis.repository
 
-import dev.vitorramos.tennis.model.MatchModel
 import dev.vitorramos.tennis.entity.MatchEntity
+import dev.vitorramos.tennis.model.MatchModel
 
-class TennisRepository(private val matchModel: MatchModel) {
+class Repository private constructor(private val matchModel: MatchModel) {
     fun getMatch(matchId: Long) = matchModel.getMatch(matchId)
 
     fun getMatches() = matchModel.getMatches()
@@ -26,5 +26,13 @@ class TennisRepository(private val matchModel: MatchModel) {
             hostName = hostName,
             guestName = guestName
         )
+    }
+
+    companion object {
+        fun init(matchModel: MatchModel) {
+            it = Repository(matchModel)
+        }
+
+        var it: Repository? = null
     }
 }
