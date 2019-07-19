@@ -21,15 +21,10 @@ class HistoryActivity : AppCompatActivity() {
         viewModel.tennisRepository = (application as TennisApplication).tennisRepository
 
         rv_history_content.layoutManager = LinearLayoutManager(this)
-        rv_history_content.adapter = HistoryAdapter(layoutInflater, arrayOf())
+        rv_history_content.adapter = HistoryAdapter(layoutInflater)
 
         viewModel.matches.observe(this, Observer { array ->
-            if (array != null && rv_history_content.adapter != null) {
-                with(rv_history_content.adapter as HistoryAdapter) {
-                    content = array
-                    notifyDataSetChanged()
-                }
-            }
+            if (array != null) (rv_history_content.adapter as HistoryAdapter?)?.content = array
         })
     }
 }
