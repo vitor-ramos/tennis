@@ -8,6 +8,6 @@
         android:topLeftRadius="@dimen/default_radius"
         android:topRightRadius="@dimen/default_radius" />
 
-    <solid android:color="@color/mainFieldBg" />
+    <solid android:color="@color/startMatchFieldBg" />
 
 </shape>

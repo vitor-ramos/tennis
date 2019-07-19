@@ -13,7 +13,7 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
 
         bt_home_start_match.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, StartMatchActivity::class.java))
         }
 
         bt_home_history.setOnClickListener {

@@ -7,52 +7,52 @@
     android:layout_marginStart="@dimen/default_margin"
     android:layout_marginEnd="@dimen/default_margin"
     android:background="@drawable/lime_bg"
-    android:elevation="@dimen/main_form_elevation"
+    android:elevation="@dimen/start_match_form_elevation"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".view.MainActivity">
+    tools:context=".view.StartMatchActivity">
 
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="@dimen/main_icon_size"
-        android:layout_height="@dimen/main_icon_size"
+        android:layout_width="@dimen/start_match_icon_size"
+        android:layout_height="@dimen/start_match_icon_size"
         android:layout_marginTop="@dimen/default_margin"
         android:layout_marginBottom="@dimen/default_margin"
         android:src="@drawable/ic_tennis_ball" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/main_host_name"
-        style="@style/MainField"
+        android:id="@+id/start_match_host_name"
+        style="@style/StartMatchField"
         android:hint="@string/your_name"
         android:inputType="textPersonName" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/main_guest_name"
-        style="@style/MainField"
+        android:id="@+id/start_match_guest_name"
+        style="@style/StartMatchField"
         android:hint="@string/guest_name"
         android:inputType="textPersonName" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/main_games_count"
-        style="@style/MainField"
+        android:id="@+id/start_match_games_count"
+        style="@style/StartMatchField"
         android:hint="@string/games"
         android:inputType="textPersonName" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/main_sets_count"
-        style="@style/MainField"
+        android:id="@+id/start_match_sets_count"
+        style="@style/StartMatchField"
         android:hint="@string/sets"
         android:inputType="textPersonName" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/main_start_match"
+        android:id="@+id/start_match_start_match"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/default_margin"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="@dimen/default_margin"
         android:layout_marginBottom="@dimen/default_margin"
-        android:background="@drawable/main_button_bg"
+        android:background="@drawable/start_match_button_bg"
         android:text="@string/start_match"
         android:textColor="@color/textColor" />
 

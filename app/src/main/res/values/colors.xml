@@ -4,8 +4,8 @@
   <color name="colorPrimary">#81c784</color>
   <color name="colorPrimaryDark">#519657</color>
 
-  <color name="mainBg">#e8f5e9</color>
-  <color name="mainFieldBg">#c8e6c9</color>
-  <color name="mainFormBg">#a5d6a7</color>
+  <color name="startMatchBg">#e8f5e9</color>
+  <color name="startMatchFieldBg">#c8e6c9</color>
+  <color name="startMatchFormBg">#a5d6a7</color>
   <color name="textColor">#1b5e20</color>
 </resources>

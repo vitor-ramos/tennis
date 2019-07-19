@@ -5,34 +5,34 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import dev.vitorramos.tennis.R
-import dev.vitorramos.tennis.viewModel.MainViewModel
-import kotlinx.android.synthetic.main.activity_main.*
+import dev.vitorramos.tennis.viewModel.StartMatchViewModel
+import kotlinx.android.synthetic.main.activity_start_match.*
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
-    private lateinit var viewModel: MainViewModel
+class StartMatchActivity : AppCompatActivity() {
+    private lateinit var viewModel: StartMatchViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_start_match)
 
-        viewModel = ViewModelProviders.of(this)[MainViewModel::class.java]
+        viewModel = ViewModelProviders.of(this)[StartMatchViewModel::class.java]
         initializeViews()
     }
 
     private fun initializeViews() {
-        main_start_match.setOnClickListener {
-            val hostNameInput = main_host_name.text?.toString() ?: ""
+        start_match_start_match.setOnClickListener {
+            val hostNameInput = start_match_host_name.text?.toString() ?: ""
             val hostName = if (hostNameInput != "") hostNameInput else getString(R.string.you)
 
-            val guestNameInput = main_guest_name.text?.toString() ?: ""
+            val guestNameInput = start_match_guest_name.text?.toString() ?: ""
             val guestName =
                 if (guestNameInput != "") guestNameInput else getString(R.string.guest_name)
 
-            val gamesInput = main_games_count.text?.toString() ?: ""
+            val gamesInput = start_match_games_count.text?.toString() ?: ""
             val games = if (gamesInput != "") gamesInput.toInt() else 3
 
-            val setsInput = main_sets_count.text?.toString() ?: ""
+            val setsInput = start_match_sets_count.text?.toString() ?: ""
             val sets = if (setsInput != "") setsInput.toInt() else 2
 
             viewModel.startMatch(
@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
             ) { matchId ->
                 startActivity(with(
                     Intent(
-                        this@MainActivity,
+                        this@StartMatchActivity,
                         MatchActivity::class.java
                     )
                 ) {

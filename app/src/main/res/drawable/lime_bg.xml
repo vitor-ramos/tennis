@@ -3,11 +3,11 @@
     android:shape="rectangle">
 
     <corners
-        android:bottomLeftRadius="@dimen/main_form_radius"
-        android:bottomRightRadius="@dimen/main_form_radius"
-        android:topLeftRadius="@dimen/main_form_radius"
-        android:topRightRadius="@dimen/main_form_radius" />
+        android:bottomLeftRadius="@dimen/start_match_form_radius"
+        android:bottomRightRadius="@dimen/start_match_form_radius"
+        android:topLeftRadius="@dimen/start_match_form_radius"
+        android:topRightRadius="@dimen/start_match_form_radius" />
 
-    <solid android:color="@color/mainFormBg" />
+    <solid android:color="@color/startMatchFormBg" />
 
 </shape>

@@ -5,7 +5,7 @@ import dev.vitorramos.tennis.repository.Repository
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class MainViewModel : ViewModel() {
+class StartMatchViewModel : ViewModel() {
     fun startMatch(
         started: Long,
         gamesToSet: Int,

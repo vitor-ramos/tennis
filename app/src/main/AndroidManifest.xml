@@ -28,7 +28,7 @@
                 android:value=".view.HomeActivity" />
         </activity>
         <activity
-            android:name=".view.MainActivity"
+            android:name=".view.StartMatchActivity"
             android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".view.MatchActivity"
