@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-          package="dev.vitorramos.tennis">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="dev.vitorramos.tennis">
 
     <application
         android:name=".TennisApplication"
@@ -12,31 +12,32 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity
-            android:name=".view.HistoryActivity"
-            android:parentActivityName=".view.MainActivity"
-            tools:ignore="UnusedAttribute">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".view.MainActivity"/>
-        </activity>
-        <activity
-            android:name=".view.MainActivity"
-            android:theme="@style/AppThemeNoActionBar">
+        <activity android:name=".view.HomeActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.MatchActivity"
-            android:label="@string/match"
-            android:parentActivityName=".view.MainActivity"
+            android:name=".view.HistoryActivity"
+            android:parentActivityName=".view.HomeActivity"
             tools:ignore="UnusedAttribute">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".view.MainActivity"/>
+                android:value=".view.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".view.MainActivity"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity
+            android:name=".view.MatchActivity"
+            android:label="@string/match"
+            android:parentActivityName=".view.HomeActivity"
+            tools:ignore="UnusedAttribute">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".view.HomeActivity" />
         </activity>
     </application>
 
