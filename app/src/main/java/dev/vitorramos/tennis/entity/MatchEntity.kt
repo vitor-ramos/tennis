@@ -21,5 +21,8 @@ data class MatchEntity(
     var guestName: String = "",
     var guestPoints: Int = 0,
     var guestGames: Int = 0,
-    var guestSets: Int = 0
+    var guestSets: Int = 0,
+
+    // 0 for host, 1 for guest
+    var winner: Int? = null
 )

@@ -28,18 +28,18 @@ class MatchActivity : AppCompatActivity() {
         viewModel.matchId = matchId
         viewModel.currentMatch.observe(this, Observer {
             if (it != null) {
-                // TODO: change which player
-                if (it.ended != null) onMatchFinished(WhichPlayer.HOST)
+                if (it.ended != null) onMatchFinished(if (it.winner == 0) WhichPlayer.HOST else WhichPlayer.GUEST)
                 else {
-                    game_host_name.text = it.hostName
-                    game_host_points.text =
-                        getFormattedPoints(it.hostPoints)
+                    hostName = if (it.hostName != "") it.hostName else getString(R.string.you)
+                    guestName = if (it.guestName != "") it.guestName else getString(R.string.guest_name)
+
+                    game_host_name.text = hostName
+                    game_host_points.text = getFormattedPoints(it.hostPoints)
                     game_host_games.text = it.hostGames.toString()
                     game_host_sets.text = it.hostSets.toString()
 
-                    game_guest_name.text = it.guestName
-                    game_guest_points.text =
-                        getFormattedPoints(it.guestPoints)
+                    game_guest_name.text = guestName
+                    game_guest_points.text = getFormattedPoints(it.guestPoints)
                     game_guest_games.text = it.guestGames.toString()
                     game_guest_sets.text = it.guestSets.toString()
                 }

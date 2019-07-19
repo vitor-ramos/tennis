@@ -2,6 +2,7 @@ package dev.vitorramos.tennis
 
 import dev.vitorramos.tennis.entity.MatchEntity
 import java.lang.IllegalArgumentException
+import java.util.*
 
 class Match {
     companion object {
@@ -59,12 +60,14 @@ class Match {
             if (whichPlayer == WhichPlayer.HOST) {
                 updatedEntity.hostSets++
                 if (updatedEntity.hostSets == matchEntity.setsToMatch) {
-                    // TODO: match finished
+                    updatedEntity.winner = 0
+                    updatedEntity.ended = Date().time
                 }
             } else {
                 updatedEntity.guestSets++
                 if (updatedEntity.guestSets == matchEntity.setsToMatch) {
-                    // TODO: match finished
+                    updatedEntity.winner = 1
+                    updatedEntity.ended = Date().time
                 }
             }
 
