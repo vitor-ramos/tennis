@@ -16,7 +16,7 @@ class StartMatchTest {
 
     @Test
     fun gameNoNames() {
-        onView(withId(R.id.start_match_start_match)).perform(click())
+        onView(withId(R.id.et_start_match_confirm)).perform(click())
 
         onView(withId(R.id.game_host_name)).check(matches(withText(YOU)))
         onView(withId(R.id.game_guest_name)).check(matches(withText(GUEST)))
@@ -24,10 +24,10 @@ class StartMatchTest {
 
     @Test
     fun gameWithNames() {
-        onView(withId(R.id.start_match_host_name)).perform(typeText(HOST_NAME), closeSoftKeyboard())
-        onView(withId(R.id.start_match_guest_name)).perform(typeText(GUEST_NAME), closeSoftKeyboard())
+        onView(withId(R.id.et_start_match_host_name)).perform(typeText(HOST_NAME), closeSoftKeyboard())
+        onView(withId(R.id.et_start_match_guest_name)).perform(typeText(GUEST_NAME), closeSoftKeyboard())
 
-        onView(withId(R.id.start_match_start_match)).perform(click())
+        onView(withId(R.id.et_start_match_confirm)).perform(click())
 
         onView(withId(R.id.game_host_name)).check(matches(withText(HOST_NAME)))
         onView(withId(R.id.game_guest_name)).check(matches(withText(GUEST_NAME)))
@@ -35,7 +35,7 @@ class StartMatchTest {
 
     @Test
     fun gameScore() {
-        onView(withId(R.id.start_match_start_match)).perform(click())
+        onView(withId(R.id.et_start_match_confirm)).perform(click())
 
         onView(withId(R.id.game_host_games)).check(matches(withText(ZERO)))
         onView(withId(R.id.game_guest_games)).check(matches(withText(ZERO)))
