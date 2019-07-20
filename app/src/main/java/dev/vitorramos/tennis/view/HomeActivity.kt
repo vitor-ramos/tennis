@@ -45,13 +45,13 @@ class HomeActivity : AppCompatActivity() {
             if (matchId != -1L) viewModel.currentMatch(matchId).observe(this, Observer {
                 if (it != null) {
                     home_current_host_name.text = it.hostName
-                    home_current_host_points_label.text = it.hostPoints.toString()
-                    home_current_host_games_label.text = it.hostGames.toString()
-                    home_current_host_sets_label.text = it.hostSets.toString()
+                    home_current_host_points.text = it.hostPoints.toString()
+                    home_current_host_games.text = it.hostGames.toString()
+                    home_current_host_sets.text = it.hostSets.toString()
 
-                    home_current_guest_points_label.text = it.guestPoints.toString()
-                    home_current_guest_games_label.text = it.guestGames.toString()
-                    home_current_guest_sets_label.text = it.guestSets.toString()
+                    home_current_guest_points.text = it.guestPoints.toString()
+                    home_current_guest_games.text = it.guestGames.toString()
+                    home_current_guest_sets.text = it.guestSets.toString()
                     home_current_guest_name.text = it.guestName
 
                     home_current_host_layout.visibility = VISIBLE
