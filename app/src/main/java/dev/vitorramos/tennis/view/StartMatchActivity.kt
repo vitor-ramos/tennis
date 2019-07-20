@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
-import dev.vitorramos.tennis.EXTRA_FIELD_MATCH_ID
 import dev.vitorramos.tennis.PREF_FIELD_MATCH_ID
 import dev.vitorramos.tennis.PREF_FILE_NAME
 import dev.vitorramos.tennis.R
@@ -55,14 +54,7 @@ class StartMatchActivity : AppCompatActivity() {
                 apply()
             }
 
-            startActivity(with(
-                Intent(
-                    this@StartMatchActivity,
-                    MatchActivity::class.java
-                )
-            ) {
-                putExtra(EXTRA_FIELD_MATCH_ID, matchId)
-            })
+            startActivity(Intent(this@StartMatchActivity, MatchActivity::class.java))
         }
     }
 }
