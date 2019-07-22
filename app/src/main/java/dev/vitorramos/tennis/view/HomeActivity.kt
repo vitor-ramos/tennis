@@ -53,9 +53,6 @@ class HomeActivity : AppCompatActivity() {
                     home_current_guest_games.text = it.guestGames.toString()
                     home_current_guest_sets.text = it.guestSets.toString()
                     home_current_guest_name.text = it.guestName
-
-                    home_current_host_layout.visibility = VISIBLE
-                    home_current_guest_layout.visibility = VISIBLE
                 }
             })
         }
