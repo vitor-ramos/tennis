@@ -32,24 +32,24 @@ class MatchActivity : AppCompatActivity() {
                         hostName = if (it.hostName != "") it.hostName else getString(R.string.you)
                         guestName = if (it.guestName != "") it.guestName else getString(R.string.guest_name)
 
-                        game_host_name.text = hostName
-                        game_host_points.text = getFormattedPoints(it.hostPoints)
-                        game_host_games.text = it.hostGames.toString()
-                        game_host_sets.text = it.hostSets.toString()
+                        match_host_name.text = hostName
+                        match_host_points.text = getFormattedPoints(it.hostPoints)
+                        match_host_games.text = it.hostGames.toString()
+                        match_host_sets.text = it.hostSets.toString()
 
-                        game_guest_name.text = guestName
-                        game_guest_points.text = getFormattedPoints(it.guestPoints)
-                        game_guest_games.text = it.guestGames.toString()
-                        game_guest_sets.text = it.guestSets.toString()
+                        match_guest_name.text = guestName
+                        match_guest_points.text = getFormattedPoints(it.guestPoints)
+                        match_guest_games.text = it.guestGames.toString()
+                        match_guest_sets.text = it.guestSets.toString()
                     }
                 }
             })
         }
 
-        game_host_layout.setOnClickListener {
+        bt_match_host_add_point.setOnClickListener {
             viewModel.addHostPoint()
         }
-        game_guest_layout.setOnClickListener {
+        bt_match_guest_add_point.setOnClickListener {
             viewModel.addGuestPoint()
         }
     }
