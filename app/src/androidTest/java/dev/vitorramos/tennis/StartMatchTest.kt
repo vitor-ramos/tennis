@@ -18,8 +18,8 @@ class StartMatchTest {
     fun gameNoNames() {
         onView(withId(R.id.et_start_match_confirm)).perform(click())
 
-        onView(withId(R.id.game_host_name)).check(matches(withText(YOU)))
-        onView(withId(R.id.game_guest_name)).check(matches(withText(GUEST)))
+        onView(withId(R.id.match_host_name)).check(matches(withText(YOU)))
+        onView(withId(R.id.match_guest_name)).check(matches(withText(GUEST)))
     }
 
     @Test
@@ -29,22 +29,22 @@ class StartMatchTest {
 
         onView(withId(R.id.et_start_match_confirm)).perform(click())
 
-        onView(withId(R.id.game_host_name)).check(matches(withText(HOST_NAME)))
-        onView(withId(R.id.game_guest_name)).check(matches(withText(GUEST_NAME)))
+        onView(withId(R.id.match_host_name)).check(matches(withText(HOST_NAME)))
+        onView(withId(R.id.match_guest_name)).check(matches(withText(GUEST_NAME)))
     }
 
     @Test
     fun gameScore() {
         onView(withId(R.id.et_start_match_confirm)).perform(click())
 
-        onView(withId(R.id.game_host_games)).check(matches(withText(ZERO)))
-        onView(withId(R.id.game_guest_games)).check(matches(withText(ZERO)))
+        onView(withId(R.id.match_host_games)).check(matches(withText(ZERO)))
+        onView(withId(R.id.match_guest_games)).check(matches(withText(ZERO)))
 
-        onView(withId(R.id.game_host_sets)).check(matches(withText(ZERO)))
-        onView(withId(R.id.game_guest_sets)).check(matches(withText(ZERO)))
+        onView(withId(R.id.match_host_sets)).check(matches(withText(ZERO)))
+        onView(withId(R.id.match_guest_sets)).check(matches(withText(ZERO)))
 
-        onView(withId(R.id.game_host_points)).check(matches(withText(ZERO)))
-        onView(withId(R.id.game_guest_points)).check(matches(withText(ZERO)))
+        onView(withId(R.id.match_host_points)).check(matches(withText(ZERO)))
+        onView(withId(R.id.match_guest_points)).check(matches(withText(ZERO)))
     }
 
     companion object {
