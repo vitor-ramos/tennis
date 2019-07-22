@@ -29,7 +29,12 @@
         </activity>
         <activity
             android:name=".view.StartMatchActivity"
-            android:theme="@style/AppThemeNoActionBar" />
+            android:parentActivityName=".view.HomeActivity"
+            tools:ignore="UnusedAttribute">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".view.HomeActivity" />
+        </activity>
         <activity
             android:name=".view.MatchActivity"
             android:label="@string/match"
