@@ -4,11 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import dev.vitorramos.tennis.R
 import dev.vitorramos.tennis.entity.MatchEntity
 
-class HistoryAdapter(private val inflater: LayoutInflater) : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
+class HistoryAdapter(private val inflater: LayoutInflater, private val onItemClick: (Int) -> Unit) : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
 
     var content = arrayOf<MatchEntity?>()
         set(value) {
@@ -27,6 +28,10 @@ class HistoryAdapter(private val inflater: LayoutInflater) : RecyclerView.Adapte
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
         content[position]?.let {
             with(holder) {
+                item_history_layout.setOnClickListener {
+                    onItemClick(holder.adapterPosition)
+                }
+
                 history_current_host_name.text = it.hostName
                 history_current_host_points.text = it.hostPoints.toString()
                 history_current_host_games.text = it.hostGames.toString()
@@ -40,6 +45,7 @@ class HistoryAdapter(private val inflater: LayoutInflater) : RecyclerView.Adapte
     }
 
     class HistoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val item_history_layout: ConstraintLayout = itemView.findViewById(R.id.item_history_layout)
         val history_current_host_name: AppCompatTextView = itemView.findViewById(R.id.history_current_host_name)
         val history_current_host_points: AppCompatTextView = itemView.findViewById(R.id.history_current_host_points)
         val history_current_host_games: AppCompatTextView = itemView.findViewById(R.id.history_current_host_games)
