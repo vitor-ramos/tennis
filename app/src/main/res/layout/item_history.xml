@@ -1,115 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="@dimen/default_margin"
-    android:layout_marginTop="@dimen/default_margin"
-    android:layout_marginEnd="@dimen/default_margin"
-    android:background="@drawable/lime_bg"
-    android:padding="@dimen/default_margin">
-
-    <FrameLayout
-        android:id="@+id/fl_history_item_layout_host_name"
-        android:layout_width="0dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/half_default_margin"
-        android:layout_marginRight="@dimen/half_default_margin"
-        android:layout_weight="1"
-        android:background="@drawable/light_lime_bg"
-        android:paddingTop="@dimen/half_default_margin"
-        android:paddingBottom="@dimen/half_default_margin"
-        app:layout_constraintEnd_toStartOf="@id/fl_history_item_layout_guest_name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_history_item_host_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="@dimen/label_text_size" />
-
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/fl_history_item_layout_guest_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/half_default_margin"
-        android:layout_marginLeft="@dimen/half_default_margin"
-        android:layout_weight="1"
-        android:background="@drawable/light_lime_bg"
-        android:paddingTop="@dimen/half_default_margin"
-        android:paddingBottom="@dimen/half_default_margin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/fl_history_item_layout_host_name"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_history_item_guest_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="@dimen/label_text_size" />
-
-    </FrameLayout>
-
-
-    <LinearLayout
-        android:id="@+id/ll_history_item_layout_host_sets"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_margin"
         android:layout_marginTop="@dimen/default_margin"
-        android:background="@drawable/light_lime_bg"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="@dimen/score_layout_padding"
-        app:layout_constraintEnd_toEndOf="@id/fl_history_item_layout_host_name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fl_history_item_layout_host_name">
+        android:layout_marginEnd="@dimen/default_margin"
+        android:background="@android:color/white"
+        android:padding="@dimen/default_margin"
+        >
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_history_item_host_sets"
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/history_current_host_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/label_text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Vitor"
+            />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/history_current_host_points"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/zero"
-            android:textSize="@dimen/score_text_size" />
+            android:textSize="@dimen/score_text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/history_current_host_points_label"
+            />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_history_item_host_sets_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/sets" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_history_item_layout_guest_sets"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_margin"
-        android:background="@drawable/light_lime_bg"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="@dimen/score_layout_padding"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/fl_history_item_layout_guest_name"
-        app:layout_constraintTop_toBottomOf="@id/fl_history_item_layout_guest_name">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_history_item_guest_sets"
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/history_current_host_games"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/zero"
-            android:textSize="@dimen/score_text_size" />
+            android:textSize="@dimen/score_text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/history_current_host_games_label"
+            />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_history_item_guest_sets_label"
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/history_current_host_sets"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/sets" />
+            android:text="@string/zero"
+            android:textSize="@dimen/score_text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/history_current_host_sets_label"
+            />
 
-    </LinearLayout>
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/history_current_host_points_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
+            android:text="@string/points"
+            android:textSize="@dimen/label_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/history_current_host_name"
+            />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/history_current_host_games_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
+            android:text="@string/games"
+            android:textSize="@dimen/label_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/history_current_host_points_label"
+            />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/history_current_host_sets_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
+            android:text="@string/sets"
+            android:textSize="@dimen/label_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/history_current_host_games_label"
+            />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/history_current_guest_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/label_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Besta"
+            />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/history_current_guest_points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/zero"
+            android:textSize="@dimen/score_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/history_current_host_points_label"
+            />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/history_current_guest_games"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/zero"
+            android:textSize="@dimen/score_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/history_current_host_games_label"
+            />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/history_current_guest_sets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/zero"
+            android:textSize="@dimen/score_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/history_current_host_sets_label"
+            />
 
 </android.support.constraint.ConstraintLayout>

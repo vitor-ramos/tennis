@@ -26,28 +26,16 @@ class HomeActivity : AppCompatActivity() {
         }
         val viewModel = ViewModelProviders.of(this)[HomeViewModel::class.java]
 
+        bt_home_start_match.setOnClickListener {
+            startActivity(Intent(this, StartMatchActivity::class.java))
+        }
+
         getSharedPreferences(PREF_FILE_NAME, MODE_PRIVATE).getLong(PREF_FIELD_MATCH_ID, -1).also { matchId ->
             if (matchId != -1L) {
                 viewModel.currentMatch(matchId).observe(this, Observer {
                     if (it != null) onMatchLoaded(it)
                 })
-            } else {
-                bt_home_start_match.setOnClickListener {
-                    startActivity(Intent(this, StartMatchActivity::class.java))
-                }
             }
-        }
-    }
-
-    private fun showDialogOnGoingMatch() {
-        AlertDialog.Builder(this).apply {
-            setCancelable(false)
-            setTitle("Partida em Andamento")
-            setMessage("Por favor, encerre a partida atual antes de iniciar outra")
-            setPositiveButton("OK") { dialog, _ ->
-                dialog.dismiss()
-            }
-            show()
         }
     }
 
@@ -55,9 +43,6 @@ class HomeActivity : AppCompatActivity() {
         if (matchEntity.id == null) return
 
         populateTextViews(matchEntity)
-        bt_home_start_match.setOnClickListener {
-            showDialogOnGoingMatch()
-        }
         bt_home_resume_match.setOnClickListener {
             getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE).edit().apply {
                 putLong(PREF_FIELD_MATCH_ID, matchEntity.id!!)

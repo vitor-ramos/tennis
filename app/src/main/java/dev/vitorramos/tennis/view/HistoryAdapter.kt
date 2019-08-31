@@ -27,18 +27,26 @@ class HistoryAdapter(private val inflater: LayoutInflater) : RecyclerView.Adapte
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
         content[position]?.let {
             with(holder) {
-                tvHistoryItemHostName.text = it.hostName
-                tvHistoryItemGuestName.text = it.guestName
-                tvHistoryItemHostSets.text = it.hostSets.toString()
-                tvHistoryItemGuestSets.text = it.guestSets.toString()
+                history_current_host_name.text = it.hostName
+                history_current_host_points.text = it.hostPoints.toString()
+                history_current_host_games.text = it.hostGames.toString()
+                history_current_host_sets.text = it.hostSets.toString()
+                history_current_guest_name.text = it.guestName
+                history_current_guest_points.text = it.guestPoints.toString()
+                history_current_guest_games.text = it.guestGames.toString()
+                history_current_guest_sets.text = it.guestSets.toString()
             }
         }
     }
 
     class HistoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tvHistoryItemHostName: AppCompatTextView = itemView.findViewById(R.id.tv_history_item_host_name)
-        val tvHistoryItemGuestName: AppCompatTextView = itemView.findViewById(R.id.tv_history_item_guest_name)
-        val tvHistoryItemHostSets: AppCompatTextView = itemView.findViewById(R.id.tv_history_item_host_sets)
-        val tvHistoryItemGuestSets: AppCompatTextView = itemView.findViewById(R.id.tv_history_item_guest_sets)
+        val history_current_host_name: AppCompatTextView = itemView.findViewById(R.id.history_current_host_name)
+        val history_current_host_points: AppCompatTextView = itemView.findViewById(R.id.history_current_host_points)
+        val history_current_host_games: AppCompatTextView = itemView.findViewById(R.id.history_current_host_games)
+        val history_current_host_sets: AppCompatTextView = itemView.findViewById(R.id.history_current_host_sets)
+        val history_current_guest_name: AppCompatTextView = itemView.findViewById(R.id.history_current_guest_name)
+        val history_current_guest_points: AppCompatTextView = itemView.findViewById(R.id.history_current_guest_points)
+        val history_current_guest_games: AppCompatTextView = itemView.findViewById(R.id.history_current_guest_games)
+        val history_current_guest_sets: AppCompatTextView = itemView.findViewById(R.id.history_current_guest_sets)
     }
 }

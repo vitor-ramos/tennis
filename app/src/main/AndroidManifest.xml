@@ -12,20 +12,14 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.HomeActivity">
+        <activity android:name=".view.HomeActivity" />
+        <activity
+            android:name=".view.HistoryActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".view.HistoryActivity"
-            android:parentActivityName=".view.HomeActivity"
-            tools:ignore="UnusedAttribute">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".view.HomeActivity" />
         </activity>
         <activity
             android:name=".view.StartMatchActivity"
