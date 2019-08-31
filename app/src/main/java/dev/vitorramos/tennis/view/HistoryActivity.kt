@@ -1,5 +1,6 @@
 package dev.vitorramos.tennis.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -22,5 +23,9 @@ class HistoryActivity : AppCompatActivity() {
         viewModel.matches.observe(this, Observer { array ->
             if (array != null) (rv_history_content.adapter as HistoryAdapter?)?.content = array
         })
+
+        fab_history_start_match.setOnClickListener {
+            startActivity(Intent(this, StartMatchActivity::class.java))
+        }
     }
 }

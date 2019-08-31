@@ -52,6 +52,7 @@ class StartMatchActivity : AppCompatActivity() {
                 apply()
             }
 
+            finish()
             startActivity(Intent(this@StartMatchActivity, MatchActivity::class.java))
         }
     }
