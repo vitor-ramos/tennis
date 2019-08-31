@@ -1,81 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".view.HomeActivity">
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".view.HomeActivity"
+        >
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/home_current_host_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/player_name_size" />
+            android:id="@+id/home_current_host_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/player_name_size"
+            />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/home_current_host_points"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/zero"
-        android:textSize="@dimen/points_size" />
+            android:id="@+id/home_current_host_points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/zero"
+            android:textSize="@dimen/points_size"
+            />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/home_current_host_games"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/zero"
-        android:textSize="@dimen/points_size" />
+            android:id="@+id/home_current_host_games"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/zero"
+            android:textSize="@dimen/points_size"
+            />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/home_current_host_sets"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/zero"
-        android:textSize="@dimen/points_size" />
+            android:id="@+id/home_current_host_sets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/zero"
+            android:textSize="@dimen/points_size"
+            />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/home_current_guest_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/player_name_size" />
+            android:id="@+id/home_current_guest_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/player_name_size"
+            />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/home_current_guest_games"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/zero"
-        android:textSize="@dimen/points_size" />
+            android:id="@+id/home_current_guest_points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/zero"
+            android:textSize="@dimen/points_size"
+            />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/home_current_guest_points"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/zero"
-        android:textSize="@dimen/points_size" />
+            android:id="@+id/home_current_guest_games"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/zero"
+            android:textSize="@dimen/points_size"
+            />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/home_current_guest_sets"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/zero"
-        android:textSize="@dimen/points_size" />
+            android:id="@+id/home_current_guest_sets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/zero"
+            android:textSize="@dimen/points_size"
+            />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/bt_home_resume_match"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Continuar Partida" />
+            android:id="@+id/bt_home_resume_match"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Continuar Partida"
+            />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/bt_home_start_match"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Iniciar Partida" />
+            android:id="@+id/bt_home_start_match"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Iniciar Partida"
+            />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/bt_home_history"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Histórico de Partidas" />
+            android:id="@+id/bt_home_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Histórico de Partidas"
+            />
 
 </LinearLayout>

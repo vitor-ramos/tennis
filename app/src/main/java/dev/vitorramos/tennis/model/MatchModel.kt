@@ -10,7 +10,7 @@ class MatchModel(private val tennisDatabase: TennisDatabase) {
     fun getMatches() = tennisDatabase.matchDao().getMatches()
 
     suspend fun updateMatch(matchEntity: MatchEntity) {
-        return tennisDatabase.matchDao().updateMatch(matchEntity)
+        tennisDatabase.matchDao().updateMatch(matchEntity)
     }
 
     suspend fun insertMatch(

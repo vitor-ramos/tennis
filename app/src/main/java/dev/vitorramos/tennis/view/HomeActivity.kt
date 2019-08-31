@@ -11,6 +11,7 @@ import dev.vitorramos.tennis.PREF_FIELD_MATCH_ID
 import dev.vitorramos.tennis.PREF_FILE_NAME
 import dev.vitorramos.tennis.R
 import dev.vitorramos.tennis.entity.MatchEntity
+import dev.vitorramos.tennis.getFormattedPoints
 import dev.vitorramos.tennis.viewModel.HomeViewModel
 import kotlinx.android.synthetic.main.activity_home.*
 
@@ -68,13 +69,13 @@ class HomeActivity : AppCompatActivity() {
 
     private fun populateTextViews(matchEntity: MatchEntity) {
         home_current_host_name.text = matchEntity.hostName
-        home_current_host_points.text = matchEntity.hostPoints.toString()
+        home_current_host_points.text = getFormattedPoints(matchEntity.hostPoints)
         home_current_host_games.text = matchEntity.hostGames.toString()
         home_current_host_sets.text = matchEntity.hostSets.toString()
 
-        home_current_guest_points.text = matchEntity.guestPoints.toString()
+        home_current_guest_name.text = matchEntity.guestName
+        home_current_guest_points.text = getFormattedPoints(matchEntity.guestPoints)
         home_current_guest_games.text = matchEntity.guestGames.toString()
         home_current_guest_sets.text = matchEntity.guestSets.toString()
-        home_current_guest_name.text = matchEntity.guestName
     }
 }
