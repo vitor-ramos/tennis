@@ -1,6 +1,8 @@
 package dev.vitorramos.tennis.view
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -13,15 +15,17 @@ class MatchActivity : AppCompatActivity() {
     private var hostName = ""
     private var guestName = ""
 
+    private var viewModel: MatchViewModel? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_match)
 
-        val viewModel = ViewModelProviders.of(this).get(MatchViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(MatchViewModel::class.java)
 
         intent.extras?.getLong(EXTRA_MATCH_ID)?.let { matchId ->
-            viewModel.matchId = matchId
-            viewModel.currentMatch.observe(this, Observer {
+            viewModel?.matchId = matchId
+            viewModel?.currentMatch?.observe(this, Observer {
                 it?.let {
                     hostName = if (it.hostName != "") it.hostName else getString(R.string.you)
                     guestName =
@@ -41,11 +45,24 @@ class MatchActivity : AppCompatActivity() {
         }
 
         match_host_add_point.setOnClickListener {
-            viewModel.addHostPoint()
+            viewModel?.addHostPoint()
         }
         match_guest_add_point.setOnClickListener {
-            viewModel.addGuestPoint()
+            viewModel?.addGuestPoint()
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_match, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return if (item.itemId == R.id.menu_match_delete) {
+            viewModel?.deleteMatch()
+            finish()
+            true
+        } else false
     }
 
     companion object {

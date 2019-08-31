@@ -25,4 +25,12 @@ class MatchViewModel : ViewModel() {
             }
         }
     }
+
+    fun deleteMatch() {
+        if(matchId != null) {
+            GlobalScope.launch {
+                Repository.it?.deleteMatch(matchId!!)
+            }
+        }
+    }
 }

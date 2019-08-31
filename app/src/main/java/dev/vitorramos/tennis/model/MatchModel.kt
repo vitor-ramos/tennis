@@ -27,4 +27,8 @@ class MatchModel(private val tennisDatabase: TennisDatabase) {
         )
         return tennisDatabase.matchDao().insertMatch(match)
     }
+
+    suspend fun deleteMatch(matchId: Long) {
+        tennisDatabase.matchDao().deleteMatch(matchId)
+    }
 }

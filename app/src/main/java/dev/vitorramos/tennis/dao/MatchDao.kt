@@ -9,8 +9,8 @@ interface MatchDao {
     @Insert
     suspend fun insertMatch(match: MatchEntity): Long
 
-    @Delete
-    suspend fun deleteMatch(match: MatchEntity)
+    @Query("DELETE FROM matches WHERE id == :matchId")
+    fun deleteMatch(matchId: Long)
 
     @Query("SELECT * FROM matches")
     fun getMatches(): LiveData<Array<MatchEntity?>?>?
