@@ -6,7 +6,7 @@
   <dimen name="start_match_form_elevation">8dp</dimen>
   <dimen name="start_match_form_radius">32dp</dimen>
   <dimen name="start_match_icon_size">96dp</dimen>
-  <dimen name="player_name_size">24sp</dimen>
-  <dimen name="points_size">32sp</dimen>
+  <dimen name="label_text_size">24sp</dimen>
+  <dimen name="score_text_size">32sp</dimen>
   <dimen name="score_layout_padding">4dp</dimen>
 </resources>
