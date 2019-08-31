@@ -7,9 +7,6 @@ import androidx.room.PrimaryKey
 data class MatchEntity(
     @PrimaryKey var id: Long? = null,
 
-    var started: Long,
-    var ended: Long? = null,
-
     var gamesToSet: Int,
     var setsToMatch: Int,
 
@@ -21,8 +18,5 @@ data class MatchEntity(
     var guestName: String = "",
     var guestPoints: Int = 0,
     var guestGames: Int = 0,
-    var guestSets: Int = 0,
-
-    // 0 for host, 1 for guest
-    var winner: Int? = null
+    var guestSets: Int = 0
 )

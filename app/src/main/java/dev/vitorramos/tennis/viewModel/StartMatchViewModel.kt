@@ -7,7 +7,6 @@ import kotlinx.coroutines.launch
 
 class StartMatchViewModel : ViewModel() {
     fun startMatch(
-        started: Long,
         gamesToSet: Int,
         setsToMatch: Int,
         hostName: String,
@@ -16,7 +15,6 @@ class StartMatchViewModel : ViewModel() {
     ) {
         GlobalScope.launch {
             val matchId = Repository.it?.insertMatch(
-                started = started,
                 gamesToSet = gamesToSet,
                 setsToMatch = setsToMatch,
                 hostName = hostName,

@@ -1,8 +1,6 @@
 package dev.vitorramos.tennis
 
 import dev.vitorramos.tennis.entity.MatchEntity
-import java.lang.IllegalArgumentException
-import java.util.*
 
 class Match {
     companion object {
@@ -45,10 +43,16 @@ class Match {
 
             if (whichPlayer == WhichPlayer.HOST) {
                 updatedEntity.hostGames++
-                if (updatedEntity.hostGames == matchEntity.gamesToSet) return addSet(whichPlayer, matchEntity)
+                if (updatedEntity.hostGames == matchEntity.gamesToSet) return addSet(
+                    whichPlayer,
+                    matchEntity
+                )
             } else {
                 updatedEntity.guestGames++
-                if (updatedEntity.guestGames == matchEntity.gamesToSet) return addSet(whichPlayer, matchEntity)
+                if (updatedEntity.guestGames == matchEntity.gamesToSet) return addSet(
+                    whichPlayer,
+                    matchEntity
+                )
             }
 
             return updatedEntity
@@ -57,19 +61,8 @@ class Match {
         private fun addSet(whichPlayer: WhichPlayer, matchEntity: MatchEntity): MatchEntity {
             val updatedEntity = matchEntity.copy(hostGames = 0, guestGames = 0)
 
-            if (whichPlayer == WhichPlayer.HOST) {
-                updatedEntity.hostSets++
-                if (updatedEntity.hostSets == matchEntity.setsToMatch) {
-                    updatedEntity.winner = 0
-                    updatedEntity.ended = Date().time
-                }
-            } else {
-                updatedEntity.guestSets++
-                if (updatedEntity.guestSets == matchEntity.setsToMatch) {
-                    updatedEntity.winner = 1
-                    updatedEntity.ended = Date().time
-                }
-            }
+            if (whichPlayer == WhichPlayer.HOST) updatedEntity.hostSets++
+            else updatedEntity.guestSets++
 
             return updatedEntity
         }

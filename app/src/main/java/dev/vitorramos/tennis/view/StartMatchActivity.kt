@@ -11,7 +11,6 @@ import dev.vitorramos.tennis.PREF_FILE_NAME
 import dev.vitorramos.tennis.R
 import dev.vitorramos.tennis.viewModel.StartMatchViewModel
 import kotlinx.android.synthetic.main.activity_start_match.*
-import java.util.*
 
 class StartMatchActivity : AppCompatActivity() {
     private lateinit var viewModel: StartMatchViewModel
@@ -43,7 +42,6 @@ class StartMatchActivity : AppCompatActivity() {
 
     private fun startMatch(games: Int, sets: Int, hostName: String, guestName: String) {
         viewModel.startMatch(
-            started = Calendar.getInstance().timeInMillis,
             gamesToSet = games,
             setsToMatch = sets,
             hostName = hostName,

@@ -11,16 +11,12 @@ class Repository private constructor(private val matchModel: MatchModel) {
     suspend fun updateMatch(matchEntity: MatchEntity) = matchModel.updateMatch(matchEntity)
 
     suspend fun insertMatch(
-        started: Long,
-        ended: Long? = null,
         gamesToSet: Int,
         setsToMatch: Int,
         hostName: String = "",
         guestName: String = ""
     ): Long? {
         return matchModel.insertMatch(
-            started = started,
-            ended = ended,
             gamesToSet = gamesToSet,
             setsToMatch = setsToMatch,
             hostName = hostName,

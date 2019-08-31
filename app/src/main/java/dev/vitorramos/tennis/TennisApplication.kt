@@ -5,6 +5,7 @@ import androidx.room.Room
 import dev.vitorramos.tennis.model.MatchModel
 import dev.vitorramos.tennis.repository.Repository
 
+@Suppress("unused") // Used in Manifest.xml
 class TennisApplication : Application() {
     override fun onCreate() {
         super.onCreate()

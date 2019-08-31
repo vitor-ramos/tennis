@@ -14,16 +14,12 @@ class MatchModel(private val tennisDatabase: TennisDatabase) {
     }
 
     suspend fun insertMatch(
-        started: Long,
-        ended: Long? = null,
         gamesToSet: Int,
         setsToMatch: Int,
         hostName: String = "",
         guestName: String = ""
     ): Long? {
         val match = MatchEntity(
-            started = started,
-            ended = ended,
             gamesToSet = gamesToSet,
             setsToMatch = setsToMatch,
             hostName = hostName,
