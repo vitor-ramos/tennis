@@ -2,6 +2,7 @@ package dev.vitorramos.tennis.model
 
 import dev.vitorramos.tennis.TennisDatabase
 import dev.vitorramos.tennis.entity.MatchEntity
+import java.util.*
 
 class MatchModel(private val tennisDatabase: TennisDatabase) {
     fun getMatch(matchId: Long) = tennisDatabase.matchDao().getMatch(matchId)
@@ -14,12 +15,14 @@ class MatchModel(private val tennisDatabase: TennisDatabase) {
     }
 
     suspend fun insertMatch(
+        started: Long,
         gamesToSet: Int,
         setsToMatch: Int,
         hostName: String = "",
         guestName: String = ""
     ): Long? {
         val match = MatchEntity(
+            started = started,
             gamesToSet = gamesToSet,
             setsToMatch = setsToMatch,
             hostName = hostName,

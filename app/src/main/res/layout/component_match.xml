@@ -2,20 +2,19 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/item_history_layout"
+        android:id="@+id/component_match_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/default_margin"
         android:layout_marginTop="@dimen/default_margin"
         android:layout_marginEnd="@dimen/default_margin"
-        android:background="?attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
         android:padding="@dimen/default_margin"
         >
 
     <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/history_current_host_name"
+            android:id="@+id/component_match_host_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/label_text_size"
@@ -25,37 +24,47 @@
             />
 
     <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/history_current_host_points"
+            android:id="@+id/component_match_host_points"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/zero"
             android:textSize="@dimen/score_text_size"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/history_current_host_points_label"
+            app:layout_constraintTop_toTopOf="@id/component_match_points_label"
             />
 
     <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/history_current_host_games"
+            android:id="@+id/component_match_host_games"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/zero"
             android:textSize="@dimen/score_text_size"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/history_current_host_games_label"
+            app:layout_constraintTop_toTopOf="@id/component_match_games_label"
             />
 
     <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/history_current_host_sets"
+            android:id="@+id/component_match_host_sets"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/zero"
             android:textSize="@dimen/score_text_size"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/history_current_host_sets_label"
+            app:layout_constraintTop_toTopOf="@id/component_match_sets_label"
             />
 
     <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/history_current_host_points_label"
+            android:id="@+id/component_match_started"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="05 Fev"
+            />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/component_match_points_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_margin"
@@ -63,11 +72,11 @@
             android:textSize="@dimen/label_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/history_current_host_name"
+            app:layout_constraintTop_toBottomOf="@id/component_match_host_name"
             />
 
     <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/history_current_host_games_label"
+            android:id="@+id/component_match_games_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_margin"
@@ -75,11 +84,11 @@
             android:textSize="@dimen/label_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/history_current_host_points_label"
+            app:layout_constraintTop_toBottomOf="@id/component_match_points_label"
             />
 
     <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/history_current_host_sets_label"
+            android:id="@+id/component_match_sets_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_margin"
@@ -87,11 +96,11 @@
             android:textSize="@dimen/label_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/history_current_host_games_label"
+            app:layout_constraintTop_toBottomOf="@id/component_match_games_label"
             />
 
     <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/history_current_guest_name"
+            android:id="@+id/component_match_guest_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/label_text_size"
@@ -101,33 +110,33 @@
             />
 
     <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/history_current_guest_points"
+            android:id="@+id/component_match_guest_points"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/zero"
             android:textSize="@dimen/score_text_size"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/history_current_host_points_label"
+            app:layout_constraintTop_toTopOf="@id/component_match_points_label"
             />
 
     <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/history_current_guest_games"
+            android:id="@+id/component_match_guest_games"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/zero"
             android:textSize="@dimen/score_text_size"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/history_current_host_games_label"
+            app:layout_constraintTop_toTopOf="@id/component_match_games_label"
             />
 
     <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/history_current_guest_sets"
+            android:id="@+id/component_match_guest_sets"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/zero"
             android:textSize="@dimen/score_text_size"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/history_current_host_sets_label"
+            app:layout_constraintTop_toTopOf="@id/component_match_sets_label"
             />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

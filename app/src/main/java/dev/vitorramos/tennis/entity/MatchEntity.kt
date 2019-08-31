@@ -7,6 +7,8 @@ import androidx.room.PrimaryKey
 data class MatchEntity(
     @PrimaryKey var id: Long? = null,
 
+    val started: Long,
+
     var gamesToSet: Int,
     var setsToMatch: Int,
 

@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import dev.vitorramos.tennis.repository.Repository
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.util.*
 
 class StartMatchViewModel : ViewModel() {
     fun startMatch(
@@ -15,6 +16,7 @@ class StartMatchViewModel : ViewModel() {
     ) {
         GlobalScope.launch {
             val matchId = Repository.it?.insertMatch(
+                started = Date().time,
                 gamesToSet = gamesToSet,
                 setsToMatch = setsToMatch,
                 hostName = hostName,

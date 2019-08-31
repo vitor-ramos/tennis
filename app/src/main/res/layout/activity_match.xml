@@ -1,128 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white"
         android:padding="@dimen/default_margin"
         >
 
-    <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/match_host_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/label_text_size"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Vitor"
-            />
-
-    <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/match_host_points"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/zero"
-            android:textSize="@dimen/score_text_size"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/match_host_points_label"
-            />
-
-    <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/match_host_games"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/zero"
-            android:textSize="@dimen/score_text_size"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/match_host_games_label"
-            />
-
-    <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/match_host_sets"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/zero"
-            android:textSize="@dimen/score_text_size"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/match_host_sets_label"
-            />
-
-    <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/match_host_points_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/default_margin"
-            android:text="@string/points"
-            android:textSize="@dimen/label_text_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/match_host_name"
-            />
-
-    <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/match_host_games_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/default_margin"
-            android:text="@string/games"
-            android:textSize="@dimen/label_text_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/match_host_points_label"
-            />
-
-    <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/match_host_sets_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/default_margin"
-            android:text="@string/sets"
-            android:textSize="@dimen/label_text_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/match_host_games_label"
-            />
-
-    <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/match_guest_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/label_text_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Besta"
-            />
-
-    <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/match_guest_points"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/zero"
-            android:textSize="@dimen/score_text_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/match_host_points_label"
-            />
-
-    <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/match_guest_games"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/zero"
-            android:textSize="@dimen/score_text_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/match_host_games_label"
-            />
-
-    <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/match_guest_sets"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/zero"
-            android:textSize="@dimen/score_text_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/match_host_sets_label"
-            />
+    <include layout="@layout/component_match" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/match_host_add_point"

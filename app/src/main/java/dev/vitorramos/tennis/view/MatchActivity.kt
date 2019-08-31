@@ -10,6 +10,7 @@ import dev.vitorramos.tennis.R
 import dev.vitorramos.tennis.getFormattedPoints
 import dev.vitorramos.tennis.viewModel.MatchViewModel
 import kotlinx.android.synthetic.main.activity_match.*
+import kotlinx.android.synthetic.main.component_match.*
 
 class MatchActivity : AppCompatActivity() {
     private var hostName = ""
@@ -31,15 +32,17 @@ class MatchActivity : AppCompatActivity() {
                     guestName =
                         if (it.guestName != "") it.guestName else getString(R.string.guest_name)
 
-                    match_host_name.text = hostName
-                    match_host_points.text = getFormattedPoints(it.hostPoints)
-                    match_host_games.text = it.hostGames.toString()
-                    match_host_sets.text = it.hostSets.toString()
+                    component_match_started.text = it.started.toString()
 
-                    match_guest_name.text = guestName
-                    match_guest_points.text = getFormattedPoints(it.guestPoints)
-                    match_guest_games.text = it.guestGames.toString()
-                    match_guest_sets.text = it.guestSets.toString()
+                    component_match_host_name.text = hostName
+                    component_match_host_points.text = getFormattedPoints(it.hostPoints)
+                    component_match_host_games.text = it.hostGames.toString()
+                    component_match_host_sets.text = it.hostSets.toString()
+
+                    component_match_guest_name.text = guestName
+                    component_match_guest_points.text = getFormattedPoints(it.guestPoints)
+                    component_match_guest_games.text = it.guestGames.toString()
+                    component_match_guest_sets.text = it.guestSets.toString()
                 }
             })
         }
