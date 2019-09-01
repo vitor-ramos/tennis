@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
 import dev.vitorramos.tennis.R
 import dev.vitorramos.tennis.entity.MatchEntity
-import dev.vitorramos.tennis.getFormattedPoints
 
 class HistoryAdapter(private val inflater: LayoutInflater, private val onItemClick: (Int) -> Unit) :
     RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
@@ -20,7 +19,7 @@ class HistoryAdapter(private val inflater: LayoutInflater, private val onItemCli
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
-        return HistoryViewHolder(inflater.inflate(R.layout.component_match, parent, false))
+        return HistoryViewHolder(inflater.inflate(R.layout.item_history, parent, false))
     }
 
     override fun getItemCount(): Int {
@@ -30,44 +29,32 @@ class HistoryAdapter(private val inflater: LayoutInflater, private val onItemCli
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
         content[position]?.let {
             with(holder) {
-                component_match_card.setOnClickListener {
+                item_history_card.setOnClickListener {
                     onItemClick(holder.adapterPosition)
                 }
 
-                component_match_started.text = it.started.toString()
+                item_history_started.text = it.started.toString()
 
-                component_match_host_name.text = it.hostName
-                component_match_host_points.text = getFormattedPoints(it.hostPoints)
-                component_match_host_games.text = it.hostGames.toString()
-                component_match_host_sets.text = it.hostSets.toString()
-                component_match_guest_name.text = it.guestName
-                component_match_guest_points.text = getFormattedPoints(it.guestPoints)
-                component_match_guest_games.text = it.guestGames.toString()
-                component_match_guest_sets.text = it.guestSets.toString()
+                item_history_host_name.text = it.hostName
+                item_history_host_sets.text = it.hostSets.toString()
+                item_history_guest_name.text = it.guestName
+                item_history_guest_sets.text = it.guestSets.toString()
             }
         }
     }
 
     class HistoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val component_match_card: MaterialCardView =
-            itemView.findViewById(R.id.component_match_card)
-        val component_match_started: AppCompatTextView =
-            itemView.findViewById(R.id.component_match_started)
-        val component_match_host_name: AppCompatTextView =
-            itemView.findViewById(R.id.component_match_host_name)
-        val component_match_host_points: AppCompatTextView =
-            itemView.findViewById(R.id.component_match_host_points)
-        val component_match_host_games: AppCompatTextView =
-            itemView.findViewById(R.id.component_match_host_games)
-        val component_match_host_sets: AppCompatTextView =
-            itemView.findViewById(R.id.component_match_host_sets)
-        val component_match_guest_name: AppCompatTextView =
-            itemView.findViewById(R.id.component_match_guest_name)
-        val component_match_guest_points: AppCompatTextView =
-            itemView.findViewById(R.id.component_match_guest_points)
-        val component_match_guest_games: AppCompatTextView =
-            itemView.findViewById(R.id.component_match_guest_games)
-        val component_match_guest_sets: AppCompatTextView =
-            itemView.findViewById(R.id.component_match_guest_sets)
+        val item_history_card: MaterialCardView =
+            itemView.findViewById(R.id.item_history_card)
+        val item_history_started: AppCompatTextView =
+            itemView.findViewById(R.id.item_history_started)
+        val item_history_host_name: AppCompatTextView =
+            itemView.findViewById(R.id.item_history_host_name)
+        val item_history_host_sets: AppCompatTextView =
+            itemView.findViewById(R.id.item_history_host_sets)
+        val item_history_guest_name: AppCompatTextView =
+            itemView.findViewById(R.id.item_history_guest_name)
+        val item_history_guest_sets: AppCompatTextView =
+            itemView.findViewById(R.id.item_history_guest_sets)
     }
 }

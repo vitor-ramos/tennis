@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/item_history_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginTop="@dimen/default_margin"
+        android:layout_marginEnd="@dimen/default_margin"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:cardElevation="@dimen/default_margin"
+        >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/default_margin"
+            >
+
+        <View
+                android:id="@+id/item_history_anchor"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/item_history_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/label_text_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Sábado a tarde"
+                />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/item_history_host_sets"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textSize="@dimen/score_text_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_history_title"
+                tools:text="0"
+                />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/item_history_guest_sets"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textSize="@dimen/score_text_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_history_title"
+                tools:text="0"
+                />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/item_history_host_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textSize="@dimen/label_text_size"
+                app:layout_constraintEnd_toStartOf="@id/item_history_anchor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_history_host_sets"
+                tools:text="Vitor"
+                />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/item_history_started"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="05 Fev"
+                />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/item_history_guest_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="end"
+                android:maxLines="1"
+                android:textSize="@dimen/label_text_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.062"
+                app:layout_constraintStart_toEndOf="@id/item_history_host_name"
+                app:layout_constraintTop_toBottomOf="@id/item_history_guest_sets"
+                tools:text="Isadora"
+                />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
