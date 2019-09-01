@@ -7,10 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import dev.vitorramos.tennis.R
+import dev.vitorramos.tennis.getFormattedDate
 import dev.vitorramos.tennis.getFormattedPoints
 import dev.vitorramos.tennis.viewModel.MatchViewModel
 import kotlinx.android.synthetic.main.activity_match.*
-import kotlinx.android.synthetic.main.component_match.*
 
 class MatchActivity : AppCompatActivity() {
     private var hostName = ""
@@ -32,7 +32,7 @@ class MatchActivity : AppCompatActivity() {
                     guestName =
                         if (it.guestName != "") it.guestName else getString(R.string.guest_name)
 
-                    component_match_started.text = it.started.toString()
+                    component_match_started.text = getFormattedDate(resources, it.started)
 
                     component_match_host_name.text = hostName
                     component_match_host_points.text = getFormattedPoints(it.hostPoints)

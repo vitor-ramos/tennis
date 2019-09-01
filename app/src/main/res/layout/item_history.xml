@@ -34,10 +34,10 @@
                 android:id="@+id/item_history_started"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/label_text_size"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="Sábado a tarde"
+                tools:text="17 Dez"
                 />
 
         <androidx.appcompat.widget.AppCompatTextView
