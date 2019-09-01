@@ -4,13 +4,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.card.MaterialCardView
 import dev.vitorramos.tennis.R
 import dev.vitorramos.tennis.entity.MatchEntity
 import dev.vitorramos.tennis.getFormattedPoints
 
-class HistoryAdapter(private val inflater: LayoutInflater, private val onItemClick: (Int) -> Unit) : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
+class HistoryAdapter(private val inflater: LayoutInflater, private val onItemClick: (Int) -> Unit) :
+    RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
 
     var content = arrayOf<MatchEntity?>()
         set(value) {
@@ -29,7 +30,7 @@ class HistoryAdapter(private val inflater: LayoutInflater, private val onItemCli
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
         content[position]?.let {
             with(holder) {
-                component_match_layout.setOnClickListener {
+                component_match_card.setOnClickListener {
                     onItemClick(holder.adapterPosition)
                 }
 
@@ -48,15 +49,25 @@ class HistoryAdapter(private val inflater: LayoutInflater, private val onItemCli
     }
 
     class HistoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val component_match_layout: ConstraintLayout = itemView.findViewById(R.id.component_match_layout)
-        val component_match_started: AppCompatTextView = itemView.findViewById(R.id.component_match_started)
-        val component_match_host_name: AppCompatTextView = itemView.findViewById(R.id.component_match_host_name)
-        val component_match_host_points: AppCompatTextView = itemView.findViewById(R.id.component_match_host_points)
-        val component_match_host_games: AppCompatTextView = itemView.findViewById(R.id.component_match_host_games)
-        val component_match_host_sets: AppCompatTextView = itemView.findViewById(R.id.component_match_host_sets)
-        val component_match_guest_name: AppCompatTextView = itemView.findViewById(R.id.component_match_guest_name)
-        val component_match_guest_points: AppCompatTextView = itemView.findViewById(R.id.component_match_guest_points)
-        val component_match_guest_games: AppCompatTextView = itemView.findViewById(R.id.component_match_guest_games)
-        val component_match_guest_sets: AppCompatTextView = itemView.findViewById(R.id.component_match_guest_sets)
+        val component_match_card: MaterialCardView =
+            itemView.findViewById(R.id.component_match_card)
+        val component_match_started: AppCompatTextView =
+            itemView.findViewById(R.id.component_match_started)
+        val component_match_host_name: AppCompatTextView =
+            itemView.findViewById(R.id.component_match_host_name)
+        val component_match_host_points: AppCompatTextView =
+            itemView.findViewById(R.id.component_match_host_points)
+        val component_match_host_games: AppCompatTextView =
+            itemView.findViewById(R.id.component_match_host_games)
+        val component_match_host_sets: AppCompatTextView =
+            itemView.findViewById(R.id.component_match_host_sets)
+        val component_match_guest_name: AppCompatTextView =
+            itemView.findViewById(R.id.component_match_guest_name)
+        val component_match_guest_points: AppCompatTextView =
+            itemView.findViewById(R.id.component_match_guest_points)
+        val component_match_guest_games: AppCompatTextView =
+            itemView.findViewById(R.id.component_match_guest_games)
+        val component_match_guest_sets: AppCompatTextView =
+            itemView.findViewById(R.id.component_match_guest_sets)
     }
 }
