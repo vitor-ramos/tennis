@@ -15,4 +15,20 @@
     <string name="your_name">Seu Nome</string>
     <string name="zero">0</string>
     <string name="delete">Excluir</string>
+
+    <string-array name="week_days">
+        <item>Domingo</item>
+        <item>Segunda</item>
+        <item>Terça</item>
+        <item>Quarta</item>
+        <item>Quinta</item>
+        <item>Sexta</item>
+        <item>Sábado</item>
+    </string-array>
+
+    <string-array name="day_period">
+        <item>de manhã</item>
+        <item>à tarde</item>
+        <item>à noite</item>
+    </string-array>
 </resources>

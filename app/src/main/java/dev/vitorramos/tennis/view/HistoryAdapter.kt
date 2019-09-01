@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
 import dev.vitorramos.tennis.R
 import dev.vitorramos.tennis.entity.MatchEntity
+import dev.vitorramos.tennis.getFormattedDate
 
 class HistoryAdapter(private val inflater: LayoutInflater, private val onItemClick: (Int) -> Unit) :
     RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
@@ -33,7 +34,7 @@ class HistoryAdapter(private val inflater: LayoutInflater, private val onItemCli
                     onItemClick(holder.adapterPosition)
                 }
 
-                item_history_started.text = it.started.toString()
+                item_history_started.text = getFormattedDate(holder.itemView.resources, it.started)
 
                 item_history_host_name.text = it.hostName
                 item_history_host_sets.text = it.hostSets.toString()
