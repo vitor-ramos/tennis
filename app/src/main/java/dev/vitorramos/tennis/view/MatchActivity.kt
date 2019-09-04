@@ -47,10 +47,10 @@ class MatchActivity : AppCompatActivity() {
             })
         }
 
-        match_host_add_point.setOnClickListener {
+        component_match_host_button.setOnClickListener {
             viewModel?.addHostPoint()
         }
-        match_guest_add_point.setOnClickListener {
+        component_match_guest_button.setOnClickListener {
             viewModel?.addGuestPoint()
         }
     }

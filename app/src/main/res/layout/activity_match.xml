@@ -4,198 +4,170 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="@dimen/default_margin"
         >
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/match_host_add_point"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/default_margin"
-            android:layout_marginLeft="@dimen/default_margin"
-            android:layout_marginBottom="@dimen/default_margin"
-            android:src="@drawable/ic_tennis"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/match_guest_add_point"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/default_margin"
-            android:layout_marginRight="@dimen/default_margin"
-            android:layout_marginBottom="@dimen/default_margin"
-            android:src="@drawable/ic_tennis"
-            app:layout_constraintBottom_toBottomOf="parent"
+    <View
+            android:id="@+id/component_match_anchor"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             />
 
-
-    <com.google.android.material.card.MaterialCardView
-            android:id="@+id/component_match_card"
-            android:layout_width="match_parent"
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/component_match_host_name"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/default_margin"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textSize="@dimen/label_text_size"
+            app:layout_constraintEnd_toStartOf="@id/component_match_anchor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/component_match_started"
+            tools:text="Vitor"
+            />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/component_match_host_points"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/zero"
+            android:textSize="@dimen/score_text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/component_match_points_label"
+            />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/component_match_host_games"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/zero"
+            android:textSize="@dimen/score_text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/component_match_games_label"
+            />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/component_match_host_sets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/zero"
+            android:textSize="@dimen/score_text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/component_match_sets_label"
+            />
+
+    <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/component_match_host_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_margin"
-            android:layout_marginEnd="@dimen/default_margin"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?attr/selectableItemBackground"
-            app:cardElevation="@dimen/default_margin"
+            android:text="Pontuar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/component_match_host_sets"
+            />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/component_match_started"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            >
+            tools:text="05 Fev"
+            />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/default_margin"
-                >
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/component_match_points_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
+            android:text="@string/points"
+            android:textSize="@dimen/label_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/component_match_host_name"
+            />
 
-            <View
-                    android:id="@+id/component_match_anchor"
-                    android:layout_width="1dp"
-                    android:layout_height="1dp"
-                    android:visibility="invisible"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    />
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/component_match_games_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
+            android:text="@string/games"
+            android:textSize="@dimen/label_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/component_match_points_label"
+            />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/component_match_host_name"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:textSize="@dimen/label_text_size"
-                    app:layout_constraintEnd_toStartOf="@id/component_match_anchor"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/component_match_started"
-                    tools:text="Vitor"
-                    />
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/component_match_sets_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
+            android:text="@string/sets"
+            android:textSize="@dimen/label_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/component_match_games_label"
+            />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/component_match_host_points"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/zero"
-                    android:textSize="@dimen/score_text_size"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/component_match_points_label"
-                    />
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/component_match_guest_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="end"
+            android:maxLines="1"
+            android:textSize="@dimen/label_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/component_match_host_name"
+            app:layout_constraintTop_toBottomOf="@id/component_match_started"
+            tools:text="Isadora"
+            />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/component_match_host_games"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/zero"
-                    android:textSize="@dimen/score_text_size"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/component_match_games_label"
-                    />
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/component_match_guest_points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/zero"
+            android:textSize="@dimen/score_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/component_match_points_label"
+            />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/component_match_host_sets"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/zero"
-                    android:textSize="@dimen/score_text_size"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/component_match_sets_label"
-                    />
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/component_match_guest_games"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/zero"
+            android:textSize="@dimen/score_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/component_match_games_label"
+            />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/component_match_started"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="05 Fev"
-                    />
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/component_match_guest_sets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/zero"
+            android:textSize="@dimen/score_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/component_match_sets_label"
+            />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/component_match_points_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/default_margin"
-                    android:text="@string/points"
-                    android:textSize="@dimen/label_text_size"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/component_match_host_name"
-                    />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/component_match_games_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/default_margin"
-                    android:text="@string/games"
-                    android:textSize="@dimen/label_text_size"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/component_match_points_label"
-                    />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/component_match_sets_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/default_margin"
-                    android:text="@string/sets"
-                    android:textSize="@dimen/label_text_size"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/component_match_games_label"
-                    />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/component_match_guest_name"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:gravity="end"
-                    android:maxLines="1"
-                    android:textSize="@dimen/label_text_size"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/component_match_host_name"
-                    app:layout_constraintTop_toBottomOf="@id/component_match_started"
-                    tools:text="Isadora"
-                    />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/component_match_guest_points"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/zero"
-                    android:textSize="@dimen/score_text_size"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/component_match_points_label"
-                    />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/component_match_guest_games"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/zero"
-                    android:textSize="@dimen/score_text_size"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/component_match_games_label"
-                    />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/component_match_guest_sets"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/zero"
-                    android:textSize="@dimen/score_text_size"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/component_match_sets_label"
-                    />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
-
+    <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/component_match_guest_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
+            android:text="Pontuar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/component_match_guest_sets"
+            />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

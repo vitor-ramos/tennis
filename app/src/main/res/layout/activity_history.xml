@@ -12,7 +12,7 @@
         android:id="@+id/rv_history_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/component_match"
+        tools:listitem="@layout/item_history"
         />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

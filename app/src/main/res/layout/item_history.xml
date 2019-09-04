@@ -56,8 +56,6 @@
                 android:id="@+id/item_history_guest_sets"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textSize="@dimen/score_text_size"
