@@ -1,10 +1,11 @@
 package dev.vitorramos.tennis
 
+import androidx.annotation.IdRes
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.withId
-import androidx.test.espresso.matcher.ViewMatchers.withText
+import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
 import dev.vitorramos.tennis.view.StartMatchActivity
 import org.junit.Rule
@@ -16,42 +17,32 @@ class StartMatchTest {
 
     @Test
     fun gameNoNames() {
-        onView(withId(R.id.et_start_match_confirm)).perform(click())
+        onView(withText(getString(R.string.start_match)))
+            .perform(click())
 
-        onView(withId(R.id.match_host_name)).check(matches(withText(YOU)))
-        onView(withId(R.id.match_guest_name)).check(matches(withText(GUEST)))
+        onView(withText(getString(R.string.you)))
+            .check(matches(isDisplayed()))
+        onView(withText(getString(R.string.guest)))
+            .check(matches(isDisplayed()))
     }
 
     @Test
     fun gameWithNames() {
-        onView(withId(R.id.et_start_match_host_name)).perform(typeText(HOST_NAME), closeSoftKeyboard())
-        onView(withId(R.id.et_start_match_guest_name)).perform(typeText(GUEST_NAME), closeSoftKeyboard())
+        onView(withHint(getString(R.string.your_name)))
+            .perform(typeText(getString(R.string.placeholder_host)), closeSoftKeyboard())
+        onView(withHint(getString(R.string.guest)))
+            .perform(typeText(getString(R.string.placeholder_guest)), closeSoftKeyboard())
 
-        onView(withId(R.id.et_start_match_confirm)).perform(click())
+        onView(withText(getString(R.string.start_match)))
+            .perform(click())
 
-        onView(withId(R.id.match_host_name)).check(matches(withText(HOST_NAME)))
-        onView(withId(R.id.match_guest_name)).check(matches(withText(GUEST_NAME)))
+        onView(withText(getString(R.string.placeholder_host)))
+            .check(matches(isDisplayed()))
+        onView(withText(getString(R.string.placeholder_guest)))
+            .check(matches(isDisplayed()))
     }
 
-    @Test
-    fun gameScore() {
-        onView(withId(R.id.et_start_match_confirm)).perform(click())
-
-        onView(withId(R.id.match_host_games)).check(matches(withText(ZERO)))
-        onView(withId(R.id.match_guest_games)).check(matches(withText(ZERO)))
-
-        onView(withId(R.id.match_host_sets)).check(matches(withText(ZERO)))
-        onView(withId(R.id.match_guest_sets)).check(matches(withText(ZERO)))
-
-        onView(withId(R.id.match_host_points)).check(matches(withText(ZERO)))
-        onView(withId(R.id.match_guest_points)).check(matches(withText(ZERO)))
-    }
-
-    companion object {
-        const val YOU = "Você"
-        const val GUEST = "Convidado"
-        const val HOST_NAME = "Vitor"
-        const val GUEST_NAME = "Isadora"
-        const val ZERO = "0"
+    private fun getString(@IdRes id: Int): String {
+        return InstrumentationRegistry.getInstrumentation().targetContext.resources.getString(id)
     }
 }

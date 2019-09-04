@@ -50,7 +50,7 @@ class MatchActivity : AppCompatActivity() {
                 it?.let {
                     val hostName = if (it.hostName != "") it.hostName else getString(R.string.you)
                     val guestName =
-                        if (it.guestName != "") it.guestName else getString(R.string.guest_name)
+                        if (it.guestName != "") it.guestName else getString(R.string.guest)
 
                     tv_match_started.text = getFormattedDate(resources, it.started)
 

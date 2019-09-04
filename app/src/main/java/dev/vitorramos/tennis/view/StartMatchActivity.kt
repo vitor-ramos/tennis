@@ -32,7 +32,7 @@ class StartMatchActivity : AppCompatActivity() {
 
         val guestNameInput = et_start_match_guest_name.text?.toString() ?: ""
         val guestName =
-            if (guestNameInput != "") guestNameInput else getString(R.string.guest_name)
+            if (guestNameInput != "") guestNameInput else getString(R.string.guest)
 
         startMatch(games, sets, hostName, guestName)
     }

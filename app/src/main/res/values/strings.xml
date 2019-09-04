@@ -2,7 +2,7 @@
     <string name="app_name">Tennis</string>
 
     <string name="games">Games</string>
-    <string name="guest_name">Convidado</string>
+    <string name="guest">Convidado</string>
     <string name="match">Partida</string>
     <string name="match_over">Fim de Jogo</string>
     <string name="ok">OK</string>

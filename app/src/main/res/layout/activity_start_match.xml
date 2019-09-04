@@ -19,7 +19,7 @@
         android:id="@+id/et_start_match_guest_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/guest_name"
+        android:hint="@string/guest"
         android:inputType="textPersonName" />
 
     <androidx.appcompat.widget.AppCompatEditText
