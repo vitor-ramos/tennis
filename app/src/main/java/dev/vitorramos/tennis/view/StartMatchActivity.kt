@@ -10,7 +10,7 @@ import dev.vitorramos.tennis.viewModel.StartMatchViewModel
 import kotlinx.android.synthetic.main.activity_start_match.*
 
 class StartMatchActivity : AppCompatActivity() {
-    private lateinit var viewModel: StartMatchViewModel
+    private var viewModel: StartMatchViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,10 +22,10 @@ class StartMatchActivity : AppCompatActivity() {
 
     private val onConfirmListener: (View) -> Unit = {
         val gamesInput = et_start_match_games_count.text?.toString() ?: ""
-        val games = if (gamesInput != "") gamesInput.toInt() else 3
+        val games = if (gamesInput != "") gamesInput.toInt() else resources.getInteger(R.integer.default_games)
 
         val setsInput = et_start_match_sets_count.text?.toString() ?: ""
-        val sets = if (setsInput != "") setsInput.toInt() else 2
+        val sets = if (setsInput != "") setsInput.toInt() else resources.getInteger(R.integer.default_sets)
 
         val hostNameInput = et_start_match_host_name.text?.toString() ?: ""
         val hostName = if (hostNameInput != "") hostNameInput else getString(R.string.you)
@@ -38,14 +38,9 @@ class StartMatchActivity : AppCompatActivity() {
     }
 
     private fun startMatch(games: Int, sets: Int, hostName: String, guestName: String) {
-        viewModel.startMatch(
-            gamesToSet = games,
-            setsToMatch = sets,
-            hostName = hostName,
-            guestName = guestName
-        ) { matchId ->
+        viewModel?.startMatch(games, sets, hostName, guestName) { matchId ->
             finish()
-            startActivity(Intent(this@StartMatchActivity, MatchActivity::class.java).apply {
+            startActivity(Intent(this, MatchActivity::class.java).apply {
                 putExtra(MatchActivity.EXTRA_MATCH_ID, matchId)
             })
         }
