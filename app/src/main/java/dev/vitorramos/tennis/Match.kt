@@ -59,7 +59,8 @@ class Match {
         }
 
         private fun addSet(whichPlayer: WhichPlayer, matchEntity: MatchEntity): MatchEntity {
-            val updatedEntity = matchEntity.copy(hostGames = 0, guestGames = 0)
+            val updatedEntity = matchEntity.copy(hostPoints = 0, guestPoints = 0, hostGames = 0,
+                guestGames = 0)
 
             if (whichPlayer == WhichPlayer.HOST) updatedEntity.hostSets++
             else updatedEntity.guestSets++
