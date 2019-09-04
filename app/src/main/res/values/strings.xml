@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">Tennis</string>
 
-    <string name="add_point_label">Clique Para Pontuar</string>
     <string name="games">Games</string>
     <string name="guest_name">Convidado</string>
     <string name="match">Partida</string>
@@ -19,6 +18,7 @@
     <string name="placeholder_guest">Isadora</string>
     <string name="placeholder_host">Vitor</string>
     <string name="placeholder_score">0</string>
+    <string name="add_point">Pontuar</string>
 
     <string-array name="months">
         <item>Jan</item>
