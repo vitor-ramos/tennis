@@ -15,6 +15,10 @@
     <string name="your_name">Seu Nome</string>
     <string name="zero">0</string>
     <string name="delete">Excluir</string>
+    <string name="placeholder_date">17 Dez</string>
+    <string name="placeholder_guest">Isadora</string>
+    <string name="placeholder_host">Vitor</string>
+    <string name="placeholder_score">0</string>
 
     <string-array name="months">
         <item>Jan</item>

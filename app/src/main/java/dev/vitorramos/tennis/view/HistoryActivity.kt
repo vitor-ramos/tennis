@@ -18,19 +18,17 @@ class HistoryActivity : AppCompatActivity() {
         val viewModel = ViewModelProviders.of(this)[HistoryViewModel::class.java]
 
         rv_history_content.layoutManager = LinearLayoutManager(this)
-
-        val adapter = HistoryAdapter(layoutInflater) { itemPosition ->
+        rv_history_content.adapter = HistoryAdapter(layoutInflater) { itemPosition ->
             startActivity(Intent(this, MatchActivity::class.java).apply {
                 viewModel.matches.value?.get(itemPosition)?.let {
                     putExtra(MatchActivity.EXTRA_MATCH_ID, it.id)
                 }
             })
         }
-        rv_history_content.adapter = adapter
 
         viewModel.matches.observe(this, Observer {
             it?.let {
-                adapter.content = it
+                (rv_history_content.adapter as HistoryAdapter).content = it
             }
         })
 

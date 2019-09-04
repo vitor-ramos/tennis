@@ -30,32 +30,24 @@ class HistoryAdapter(private val inflater: LayoutInflater, private val onItemCli
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
         content[position]?.let {
             with(holder) {
-                item_history_card.setOnClickListener {
+                cdLayout.setOnClickListener {
                     onItemClick(holder.adapterPosition)
                 }
-
-                item_history_started.text = getFormattedDate(holder.itemView.resources, it.started)
-
-                item_history_host_name.text = it.hostName
-                item_history_host_sets.text = it.hostSets.toString()
-                item_history_guest_name.text = it.guestName
-                item_history_guest_sets.text = it.guestSets.toString()
+                tvStarted.text = getFormattedDate(holder.itemView.resources, it.started)
+                tvHostName.text = it.hostName
+                tvHostSets.text = it.hostSets.toString()
+                tvGuestName.text = it.guestName
+                tvGuestSets.text = it.guestSets.toString()
             }
         }
     }
 
     class HistoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val item_history_card: MaterialCardView =
-            itemView.findViewById(R.id.item_history_card)
-        val item_history_started: AppCompatTextView =
-            itemView.findViewById(R.id.item_history_started)
-        val item_history_host_name: AppCompatTextView =
-            itemView.findViewById(R.id.item_history_host_name)
-        val item_history_host_sets: AppCompatTextView =
-            itemView.findViewById(R.id.item_history_host_sets)
-        val item_history_guest_name: AppCompatTextView =
-            itemView.findViewById(R.id.item_history_guest_name)
-        val item_history_guest_sets: AppCompatTextView =
-            itemView.findViewById(R.id.item_history_guest_sets)
+        val cdLayout: MaterialCardView = itemView.findViewById(R.id.cd_item_history_layout)
+        val tvStarted: AppCompatTextView = itemView.findViewById(R.id.tv_item_history_started)
+        val tvHostName: AppCompatTextView = itemView.findViewById(R.id.tv_item_history_host_name)
+        val tvHostSets: AppCompatTextView = itemView.findViewById(R.id.tv_item_history_host_sets)
+        val tvGuestName: AppCompatTextView = itemView.findViewById(R.id.tv_item_history_guest_name)
+        val tvGuestSets: AppCompatTextView = itemView.findViewById(R.id.tv_item_history_guest_sets)
     }
 }

@@ -2,7 +2,7 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/item_history_card"
+        android:id="@+id/cd_item_history_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/default_margin"
@@ -21,7 +21,7 @@
             >
 
         <View
-                android:id="@+id/item_history_anchor"
+                android:id="@+id/vi_item_history_anchor"
                 android:layout_width="1dp"
                 android:layout_height="1dp"
                 android:visibility="invisible"
@@ -31,54 +31,54 @@
                 />
 
         <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/item_history_started"
+                android:id="@+id/tv_item_history_started"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="17 Dez"
+                tools:text="@string/placeholder_date"
                 />
 
         <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/item_history_host_sets"
+                android:id="@+id/tv_item_history_host_sets"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
+                android:text="@string/zero"
                 android:textSize="@dimen/score_text_size"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/item_history_started"
-                tools:text="0"
+                app:layout_constraintTop_toBottomOf="@id/tv_item_history_started"
                 />
 
         <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/item_history_guest_sets"
+                android:id="@+id/tv_item_history_guest_sets"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
+                android:text="@string/zero"
                 android:textSize="@dimen/score_text_size"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/item_history_started"
-                tools:text="0"
+                app:layout_constraintTop_toBottomOf="@id/tv_item_history_started"
                 />
 
         <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/item_history_host_name"
+                android:id="@+id/tv_item_history_host_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textSize="@dimen/label_text_size"
-                app:layout_constraintEnd_toStartOf="@id/item_history_anchor"
+                app:layout_constraintEnd_toStartOf="@id/vi_item_history_anchor"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/item_history_host_sets"
-                tools:text="Vitor"
+                app:layout_constraintTop_toBottomOf="@id/tv_item_history_host_sets"
+                tools:text="@string/placeholder_host"
                 />
 
         <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/item_history_guest_name"
+                android:id="@+id/tv_item_history_guest_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -87,9 +87,9 @@
                 android:textSize="@dimen/label_text_size"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.062"
-                app:layout_constraintStart_toEndOf="@id/item_history_host_name"
-                app:layout_constraintTop_toBottomOf="@id/item_history_guest_sets"
-                tools:text="Isadora"
+                app:layout_constraintStart_toEndOf="@id/tv_item_history_host_name"
+                app:layout_constraintTop_toBottomOf="@id/tv_item_history_guest_sets"
+                tools:text="@string/placeholder_guest"
                 />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
