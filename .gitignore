@@ -156,4 +156,5 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-# End of https://www.gitignore.io/api/macos,androidstudio
+# App keys/secrets, API keys
+appkey.properties
