@@ -18,22 +18,22 @@ class HistoryActivity : AppCompatActivity() {
         val viewModel = ViewModelProviders.of(this)[HistoryViewModel::class.java]
 
         rv_history_content.layoutManager = LinearLayoutManager(this)
-        rv_history_content.adapter = HistoryAdapter(layoutInflater) { itemPosition ->
-            startActivity(Intent(this, MatchActivity::class.java).apply {
-                viewModel.matches.value?.get(itemPosition)?.let {
-                    putExtra(MatchActivity.EXTRA_MATCH_ID, it.id)
-                }
+        rv_history_content.adapter = HistoryAdapter(layoutInflater,
+            {
+                startActivity(Intent(this, StartMatchActivity::class.java))
+            },
+            { itemPosition ->
+                startActivity(Intent(this, MatchActivity::class.java).apply {
+                    viewModel.matches.value?.get(itemPosition)?.let {
+                        putExtra(MatchActivity.EXTRA_MATCH_ID, it.id)
+                    }
+                })
             })
-        }
 
         viewModel.matches.observe(this, Observer {
             it?.let {
                 (rv_history_content.adapter as HistoryAdapter).content = it
             }
         })
-
-        fab_history_start_match.setOnClickListener {
-            startActivity(Intent(this, StartMatchActivity::class.java))
-        }
     }
 }

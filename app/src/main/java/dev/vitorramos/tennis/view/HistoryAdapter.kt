@@ -3,6 +3,7 @@ package dev.vitorramos.tennis.view
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
@@ -10,8 +11,12 @@ import dev.vitorramos.tennis.R
 import dev.vitorramos.tennis.entity.MatchEntity
 import dev.vitorramos.tennis.getFormattedDate
 
-class HistoryAdapter(private val inflater: LayoutInflater, private val onItemClick: (Int) -> Unit) :
-    RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
+class HistoryAdapter(
+    private val inflater: LayoutInflater,
+    private val onFirstItemClick: () -> Unit,
+    private val onItemClick: (Int) -> Unit
+) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var content = arrayOf<MatchEntity?>()
         set(value) {
@@ -19,27 +24,56 @@ class HistoryAdapter(private val inflater: LayoutInflater, private val onItemCli
             notifyDataSetChanged()
         }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
-        return HistoryViewHolder(inflater.inflate(R.layout.item_history, parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return if (viewType == 0) HistoryAddViewHolder(
+            inflater.inflate(
+                R.layout.item_history_add,
+                parent,
+                false
+            )
+        )
+        else HistoryViewHolder(
+            inflater.inflate(
+                R.layout.item_history,
+                parent,
+                false
+            )
+        )
     }
 
     override fun getItemCount(): Int {
-        return content.size
+        return content.size + 1
     }
 
-    override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
-        content[position]?.let {
-            with(holder) {
-                cdLayout.setOnClickListener {
-                    onItemClick(holder.adapterPosition)
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        if (position == 0 && holder::class == HistoryAddViewHolder::class) {
+            with(holder as HistoryAddViewHolder) {
+                llItemHistoryAdd.setOnClickListener {
+                    onFirstItemClick()
                 }
-                tvStarted.text = getFormattedDate(holder.itemView.resources, it.started)
-                tvHostName.text = it.hostName
-                tvHostSets.text = it.hostSets.toString()
-                tvGuestName.text = it.guestName
-                tvGuestSets.text = it.guestSets.toString()
+            }
+        } else if (holder::class == HistoryViewHolder::class) {
+            content[position - 1]?.let {
+                with(holder as HistoryViewHolder) {
+                    cdLayout.setOnClickListener {
+                        onItemClick(holder.adapterPosition)
+                    }
+                    tvStarted.text = getFormattedDate(holder.itemView.resources, it.started)
+                    tvHostName.text = it.hostName
+                    tvHostSets.text = it.hostSets.toString()
+                    tvGuestName.text = it.guestName
+                    tvGuestSets.text = it.guestSets.toString()
+                }
             }
         }
+    }
+
+    class HistoryAddViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val llItemHistoryAdd: LinearLayout = itemView.findViewById(R.id.ll_item_history_add)
     }
 
     class HistoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
