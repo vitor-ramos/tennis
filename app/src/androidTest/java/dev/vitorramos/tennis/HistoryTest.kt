@@ -17,8 +17,7 @@ class HistoryTest {
 
     @Test
     fun startMatch() {
-        onView(withContentDescription(getString(R.string.start_match)))
-            .perform(click())
+        onView(withText(getString(R.string.start_match))).perform(click())
 
         onView(withHint(getString(R.string.your_name)))
             .check(matches(isDisplayed()))
