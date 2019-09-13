@@ -1,7 +1,10 @@
 package dev.vitorramos.tennis.dao
 
 import androidx.lifecycle.LiveData
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
+import androidx.room.Update
 import dev.vitorramos.tennis.entity.MatchEntity
 
 @Dao
@@ -12,7 +15,7 @@ interface MatchDao {
     @Query("DELETE FROM matches WHERE id == :matchId")
     fun deleteMatch(matchId: Long)
 
-    @Query("SELECT * FROM matches")
+    @Query("SELECT * FROM matches ORDER BY started DESC")
     fun getMatches(): LiveData<Array<MatchEntity?>?>?
 
     @Query("SELECT * FROM matches WHERE id == :matchId")

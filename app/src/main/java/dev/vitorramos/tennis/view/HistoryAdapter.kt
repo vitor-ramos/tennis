@@ -3,6 +3,7 @@ package dev.vitorramos.tennis.view
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewGroup.MarginLayoutParams
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
@@ -67,6 +68,20 @@ class HistoryAdapter(
                     tvHostSets.text = it.hostSets.toString()
                     tvGuestName.text = it.guestName
                     tvGuestSets.text = it.guestSets.toString()
+
+                    if(position == itemCount - 1) {
+                        cdLayout.layoutParams =
+                            (cdLayout.layoutParams as MarginLayoutParams).apply {
+                                val defaultMargin = holder.itemView.context.resources
+                                    .getDimension(R.dimen.default_margin)
+                                setMargins(
+                                    leftMargin,
+                                    topMargin,
+                                    rightMargin,
+                                    defaultMargin.toInt()
+                                )
+                            }
+                    }
                 }
             }
         }
