@@ -61,7 +61,7 @@ class HistoryAdapter(
             content[position - 1]?.let {
                 with(holder as HistoryViewHolder) {
                     cdLayout.setOnClickListener {
-                        onItemClick(holder.adapterPosition)
+                        onItemClick(holder.adapterPosition - 1)
                     }
                     tvStarted.text = getFormattedDate(holder.itemView.resources, it.started)
                     tvHostName.text = it.hostName
