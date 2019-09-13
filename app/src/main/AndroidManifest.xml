@@ -21,7 +21,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.StartMatchActivity">
+        <activity
+                android:name=".view.StartMatchActivity"
+                android:parentActivityName=".view.HistoryActivity"
+                >
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value=".view.HistoryActivity"
@@ -30,6 +33,7 @@
         <activity
                 android:name=".view.MatchActivity"
                 android:label="@string/match"
+                android:parentActivityName=".view.HistoryActivity"
                 >
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"

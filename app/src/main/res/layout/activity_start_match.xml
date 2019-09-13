@@ -36,10 +36,4 @@
         android:hint="@string/sets"
         android:inputType="textPersonName" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/et_start_match_confirm"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/start_match" />
-
 </LinearLayout>

@@ -2,7 +2,8 @@ package dev.vitorramos.tennis.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import dev.vitorramos.tennis.R
@@ -15,17 +16,31 @@ class StartMatchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start_match)
+        supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_close)
 
         viewModel = ViewModelProviders.of(this)[StartMatchViewModel::class.java]
-        et_start_match_confirm.setOnClickListener(onConfirmListener)
     }
 
-    private val onConfirmListener: (View) -> Unit = {
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_start_match, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return if (item.itemId == R.id.menu_start_match_check) {
+            onConfirm()
+            true
+        } else false
+    }
+
+    private fun onConfirm() {
         val gamesInput = et_start_match_games_count.text?.toString() ?: ""
-        val games = if (gamesInput != "") gamesInput.toInt() else resources.getInteger(R.integer.default_games)
+        val games =
+            if (gamesInput != "") gamesInput.toInt() else resources.getInteger(R.integer.default_games)
 
         val setsInput = et_start_match_sets_count.text?.toString() ?: ""
-        val sets = if (setsInput != "") setsInput.toInt() else resources.getInteger(R.integer.default_sets)
+        val sets =
+            if (setsInput != "") setsInput.toInt() else resources.getInteger(R.integer.default_sets)
 
         val hostNameInput = et_start_match_host_name.text?.toString() ?: ""
         val hostName = if (hostNameInput != "") hostNameInput else getString(R.string.you)
