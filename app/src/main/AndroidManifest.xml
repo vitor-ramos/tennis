@@ -23,6 +23,7 @@
         </activity>
         <activity
                 android:name=".view.StartMatchActivity"
+                android:label="@string/start_match"
                 android:parentActivityName=".view.HistoryActivity"
                 >
             <meta-data
