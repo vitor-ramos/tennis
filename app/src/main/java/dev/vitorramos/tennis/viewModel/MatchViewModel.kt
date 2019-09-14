@@ -49,8 +49,8 @@ class MatchViewModel(application: Application) : AndroidViewModel(application) {
 
     fun onClick(@IdRes id: Int) {
         when (id) {
-            R.id.bt_match_host_button -> addPoint(WhichPlayer.HOST)
-            R.id.bt_match_guest_button -> addPoint(WhichPlayer.GUEST)
+            R.id.cl_match_host -> addPoint(WhichPlayer.HOST)
+            R.id.cl_match_guest -> addPoint(WhichPlayer.GUEST)
         }
     }
 }

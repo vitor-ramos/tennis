@@ -3,8 +3,7 @@
 
     <string name="games">Games</string>
     <string name="guest">Convidado</string>
-    <string name="match">Partida</string>
-    <string name="match_over">Fim de Jogo</string>
+    <string name="match_label">Partida de</string>
     <string name="ok">OK</string>
     <string name="points">Pontos</string>
     <string name="sets">Sets</string>
@@ -19,6 +18,7 @@
     <string name="placeholder_host">Vitor</string>
     <string name="placeholder_score">0</string>
     <string name="add_point">Pontuar</string>
+    <string name="click_to_add_point">Clique para pontuar</string>
 
     <string-array name="months">
         <item>Jan</item>

@@ -44,7 +44,7 @@ class MatchActivity : AppCompatActivity() {
                     val guestName =
                         if (it.guestName != "") it.guestName else getString(R.string.guest)
 
-                    tv_match_started.text = getFormattedDate(resources, it.started)
+                    title = "${getString(R.string.match_label)} ${getFormattedDate(resources, it.started)}"
 
                     tv_match_host_name.text = hostName
                     tv_match_host_points.text = getFormattedPoints(it.hostPoints)
