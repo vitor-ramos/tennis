@@ -1,14 +1,17 @@
 package dev.vitorramos.tennis.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import dev.vitorramos.tennis.R
 import dev.vitorramos.tennis.getFormattedDate
 import dev.vitorramos.tennis.getFormattedPoints
+import dev.vitorramos.tennis.view.HistoryActivity.Companion.MATCH_DELETED
 import dev.vitorramos.tennis.viewModel.MatchViewModel
 import kotlinx.android.synthetic.main.activity_match.*
 
@@ -21,13 +24,6 @@ class MatchActivity : AppCompatActivity() {
 
         viewModel = ViewModelProviders.of(this).get(MatchViewModel::class.java)
         prepareObservers()
-
-        bt_match_host_button.setOnClickListener {
-            viewModel?.addHostPoint()
-        }
-        bt_match_guest_button.setOnClickListener {
-            viewModel?.addGuestPoint()
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -36,11 +32,7 @@ class MatchActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return if (item.itemId == R.id.menu_match_delete) {
-            viewModel?.deleteMatch()
-            finish()
-            true
-        } else false
+        return viewModel?.onOptionItemSelected(item.itemId) ?: false
     }
 
     private fun prepareObservers() {
@@ -66,6 +58,17 @@ class MatchActivity : AppCompatActivity() {
                 }
             })
         }
+
+        viewModel?.finishObservable()?.observe(this, Observer {
+            it?.let {
+                setResult(RESULT_OK, Intent().putExtra(MATCH_DELETED, it))
+                finish()
+            }
+        })
+    }
+
+    fun onClick(v: View) {
+        viewModel?.onClick(v.id)
     }
 
     companion object {

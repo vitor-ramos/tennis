@@ -2,6 +2,7 @@ package dev.vitorramos.tennis.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity(tableName = "matches")
 data class MatchEntity(
@@ -21,4 +22,4 @@ data class MatchEntity(
     var guestPoints: Int = 0,
     var guestGames: Int = 0,
     var guestSets: Int = 0
-)
+) : Serializable

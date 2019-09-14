@@ -2,7 +2,6 @@ package dev.vitorramos.tennis.model
 
 import dev.vitorramos.tennis.TennisDatabase
 import dev.vitorramos.tennis.entity.MatchEntity
-import java.util.*
 
 class MatchModel(private val tennisDatabase: TennisDatabase) {
     fun getMatch(matchId: Long) = tennisDatabase.matchDao().getMatch(matchId)
@@ -31,7 +30,11 @@ class MatchModel(private val tennisDatabase: TennisDatabase) {
         return tennisDatabase.matchDao().insertMatch(match)
     }
 
-    suspend fun deleteMatch(matchId: Long) {
+    fun deleteMatch(matchId: Long) {
         tennisDatabase.matchDao().deleteMatch(matchId)
+    }
+
+    suspend fun undoDeletion(matchEntity: MatchEntity) {
+        tennisDatabase.matchDao().insertMatch(matchEntity)
     }
 }
