@@ -13,7 +13,8 @@ import dev.vitorramos.tennis.getFormattedDate
 import dev.vitorramos.tennis.getFormattedPoints
 import dev.vitorramos.tennis.view.HistoryActivity.Companion.MATCH_DELETED
 import dev.vitorramos.tennis.viewModel.MatchViewModel
-import kotlinx.android.synthetic.main.activity_match.*
+import kotlinx.android.synthetic.main.item_match_guest.*
+import kotlinx.android.synthetic.main.item_match_host.*
 
 class MatchActivity : AppCompatActivity() {
     private var viewModel: MatchViewModel? = null
