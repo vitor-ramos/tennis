@@ -44,8 +44,8 @@ class HistoryActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == RC_MATCH_ACTIVITY) {
             if (resultCode == RESULT_OK && data?.getSerializableExtra(MATCH_DELETED) != null) {
-                Snackbar.make(cl_history, "Partida apagada", Snackbar.LENGTH_LONG)
-                    .setAction("Desfazer") {
+                Snackbar.make(cl_history, getString(R.string.match_deleted), Snackbar.LENGTH_LONG)
+                    .setAction(getString(R.string.undo)) {
                         viewModel?.undoDeletion(data.getSerializableExtra(MATCH_DELETED) as MatchEntity)
                     }.show()
             }
