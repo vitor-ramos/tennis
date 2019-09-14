@@ -2,9 +2,6 @@ package dev.vitorramos.tennis
 
 import android.app.Application
 import androidx.room.Room
-import com.microsoft.appcenter.AppCenter
-import com.microsoft.appcenter.analytics.Analytics
-import com.microsoft.appcenter.crashes.Crashes
 import dev.vitorramos.tennis.model.MatchModel
 import dev.vitorramos.tennis.repository.Repository
 import net.danlew.android.joda.JodaTimeAndroid
@@ -13,10 +10,6 @@ import net.danlew.android.joda.JodaTimeAndroid
 class TennisApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-
-        AppCenter.start(
-            this, BuildConfig.appsecret, Analytics::class.java, Crashes::class.java
-        )
 
         JodaTimeAndroid.init(this)
 

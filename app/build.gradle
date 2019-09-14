@@ -6,10 +6,6 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
-def appKeyFile = rootProject.file("appkey.properties")
-def appKeyProperties = new Properties()
-appKeyProperties.load(new FileInputStream(appKeyFile))
-
 android {
     compileSdkVersion 29
     defaultConfig {
@@ -19,7 +15,6 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField("String", "appsecret", appKeyProperties['appsecret'])
     }
     buildTypes {
         release {
