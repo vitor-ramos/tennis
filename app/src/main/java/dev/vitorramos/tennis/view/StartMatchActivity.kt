@@ -38,10 +38,6 @@ class StartMatchActivity : AppCompatActivity() {
         val games =
             if (gamesInput != "") gamesInput.toInt() else resources.getInteger(R.integer.default_games)
 
-        val setsInput = et_start_match_sets_count.text?.toString() ?: ""
-        val sets =
-            if (setsInput != "") setsInput.toInt() else resources.getInteger(R.integer.default_sets)
-
         val hostNameInput = et_start_match_host_name.text?.toString() ?: ""
         val hostName = if (hostNameInput != "") hostNameInput else getString(R.string.you)
 
@@ -49,11 +45,11 @@ class StartMatchActivity : AppCompatActivity() {
         val guestName =
             if (guestNameInput != "") guestNameInput else getString(R.string.guest)
 
-        startMatch(games, sets, hostName, guestName)
+        startMatch(games, hostName, guestName)
     }
 
-    private fun startMatch(games: Int, sets: Int, hostName: String, guestName: String) {
-        viewModel?.startMatch(games, sets, hostName, guestName) { matchId ->
+    private fun startMatch(games: Int, hostName: String, guestName: String) {
+        viewModel?.startMatch(games, hostName, guestName) { matchId ->
             finish()
             startActivity(Intent(this, MatchActivity::class.java).apply {
                 putExtra(MatchActivity.EXTRA_MATCH_ID, matchId)

@@ -11,7 +11,6 @@ data class MatchEntity(
     val started: Long,
 
     var gamesToSet: Int,
-    var setsToMatch: Int,
 
     var hostName: String = "",
     var hostPoints: Int = 0,

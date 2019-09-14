@@ -60,21 +60,4 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/default_margin"
-            app:boxBackgroundColor="@android:color/transparent"
-            >
-
-        <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/et_start_match_sets_count"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/sets"
-                android:inputType="textPersonName"
-                />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
 </LinearLayout>

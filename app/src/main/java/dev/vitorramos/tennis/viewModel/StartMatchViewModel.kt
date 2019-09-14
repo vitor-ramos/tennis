@@ -9,7 +9,6 @@ import java.util.*
 class StartMatchViewModel : ViewModel() {
     fun startMatch(
         gamesToSet: Int,
-        setsToMatch: Int,
         hostName: String,
         guestName: String,
         onMatchCreated: (Long) -> Unit
@@ -18,7 +17,6 @@ class StartMatchViewModel : ViewModel() {
             val matchId = Repository.it?.insertMatch(
                 started = Date().time,
                 gamesToSet = gamesToSet,
-                setsToMatch = setsToMatch,
                 hostName = hostName,
                 guestName = guestName
             )

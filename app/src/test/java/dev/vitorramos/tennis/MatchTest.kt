@@ -12,8 +12,7 @@ class MatchTest {
     fun ca01() {
         val input = MatchEntity(
             started = Date().time,
-            gamesToSet = 3,
-            setsToMatch = 2
+            gamesToSet = 3
         )
 
         val output = addPoint(Match.WhichPlayer.HOST, input)
@@ -29,7 +28,6 @@ class MatchTest {
         val input = MatchEntity(
             started = Date().time,
             gamesToSet = 3,
-            setsToMatch = 2,
             hostPoints = 3
         )
 
@@ -48,7 +46,6 @@ class MatchTest {
         val input = MatchEntity(
             started = Date().time,
             gamesToSet = 3,
-            setsToMatch = 2,
             hostPoints = 3,
             hostGames = 2
         )
@@ -70,10 +67,8 @@ class MatchTest {
         val input = MatchEntity(
             started = Date().time,
             gamesToSet = 3,
-            setsToMatch = 2,
             hostPoints = 3,
             guestPoints = 3
-
         )
 
         val output = addPoint(Match.WhichPlayer.HOST, input)
@@ -92,10 +87,8 @@ class MatchTest {
         val input = MatchEntity(
             started = Date().time,
             gamesToSet = 3,
-            setsToMatch = 2,
             hostPoints = 4,
             guestPoints = 3
-
         )
 
         val output = addPoint(Match.WhichPlayer.HOST, input)
@@ -118,10 +111,8 @@ class MatchTest {
         val input = MatchEntity(
             started = Date().time,
             gamesToSet = 3,
-            setsToMatch = 2,
             hostPoints = 4,
             guestPoints = 3
-
         )
 
         val output = addPoint(Match.WhichPlayer.GUEST, input)
