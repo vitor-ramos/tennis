@@ -1,17 +1,16 @@
 package dev.vitorramos.tennis.view
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import dev.vitorramos.tennis.R
 import dev.vitorramos.tennis.getFormattedDate
 import dev.vitorramos.tennis.getFormattedPoints
-import dev.vitorramos.tennis.view.HistoryActivity.Companion.MATCH_DELETED
 import dev.vitorramos.tennis.viewModel.MatchViewModel
 import kotlinx.android.synthetic.main.item_match_guest.*
 import kotlinx.android.synthetic.main.item_match_host.*
@@ -45,7 +44,10 @@ class MatchActivity : AppCompatActivity() {
                     val guestName =
                         if (it.guestName != "") it.guestName else getString(R.string.guest)
 
-                    title = "${getString(R.string.match_label)} ${getFormattedDate(resources, it.started)}"
+                    title = "${getString(R.string.match_label)} ${getFormattedDate(
+                        resources,
+                        it.started
+                    )}"
 
                     tv_match_host_name.text = hostName
                     tv_match_host_points.text = getFormattedPoints(it.hostPoints)
@@ -60,12 +62,26 @@ class MatchActivity : AppCompatActivity() {
             })
         }
 
-        viewModel?.finishObservable()?.observe(this, Observer {
-            it?.let {
-                setResult(RESULT_OK, Intent().putExtra(MATCH_DELETED, it))
-                finish()
-            }
+        viewModel?.dialogObservable()?.observe(this, Observer {
+            if (it != null && it) showDialog()
         })
+
+        viewModel?.finishObservable()?.observe(this, Observer {
+            if (it != null && it) finish()
+        })
+    }
+
+    private fun showDialog() {
+        if (viewModel == null) return
+
+        AlertDialog.Builder(this).apply {
+            setTitle(getString(R.string.delete_confirmation_title))
+            setMessage(getString(R.string.delete_confirmation_message))
+            viewModel?.let { viewModel ->
+                setPositiveButton(getString(R.string.delete), viewModel.onDialogClickListener)
+                setNegativeButton(getString(R.string.cancel), viewModel.onDialogClickListener)
+            }
+        }.show()
     }
 
     fun onClick(v: View) {

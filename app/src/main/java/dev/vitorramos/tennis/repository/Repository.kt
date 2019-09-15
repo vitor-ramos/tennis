@@ -26,8 +26,6 @@ class Repository private constructor(private val matchModel: MatchModel) {
 
     fun deleteMatch(matchId: Long) = matchModel.deleteMatch(matchId)
 
-    suspend fun undoDeletion(matchEntity: MatchEntity) = matchModel.undoDeletion(matchEntity)
-
     companion object {
         fun init(matchModel: MatchModel) {
             it = Repository(matchModel)

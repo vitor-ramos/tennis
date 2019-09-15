@@ -6,9 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.snackbar.Snackbar
 import dev.vitorramos.tennis.R
-import dev.vitorramos.tennis.entity.MatchEntity
 import dev.vitorramos.tennis.viewModel.HistoryViewModel
 import kotlinx.android.synthetic.main.activity_history.*
 
@@ -41,21 +39,7 @@ class HistoryActivity : AppCompatActivity() {
         })
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == RC_MATCH_ACTIVITY) {
-            if (resultCode == RESULT_OK && data?.getSerializableExtra(MATCH_DELETED) != null) {
-                Snackbar.make(cl_history, getString(R.string.match_deleted), Snackbar.LENGTH_LONG)
-                    .setAction(getString(R.string.undo)) {
-                        viewModel?.undoDeletion(data.getSerializableExtra(MATCH_DELETED) as MatchEntity)
-                    }.show()
-            }
-        } else {
-            super.onActivityResult(requestCode, resultCode, data)
-        }
-    }
-
     companion object {
-        const val MATCH_DELETED = "MATCH_DELETED"
         const val RC_MATCH_ACTIVITY = 1
     }
 }

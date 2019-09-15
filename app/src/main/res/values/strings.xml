@@ -10,13 +10,14 @@
     <string name="you">Você</string>
     <string name="your_name">Seu Nome</string>
     <string name="zero">0</string>
-    <string name="delete">Excluir</string>
+    <string name="delete">Remover</string>
     <string name="placeholder_date">17 Dez</string>
     <string name="placeholder_guest">Isadora</string>
     <string name="placeholder_host">Vitor</string>
     <string name="click_to_add_point">Clique para pontuar</string>
-    <string name="match_deleted">Partida apagada</string>
-    <string name="undo">Desfazer</string>
+    <string name="cancel">Cancelar</string>
+    <string name="delete_confirmation_title">Remover do histórico</string>
+    <string name="delete_confirmation_message">A partida será excluída para todo o sempre</string>
 
     <string-array name="months">
         <item>Jan</item>
