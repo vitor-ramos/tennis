@@ -23,6 +23,7 @@ class MatchActivity : AppCompatActivity() {
         setContentView(R.layout.activity_match)
 
         viewModel = ViewModelProviders.of(this).get(MatchViewModel::class.java)
+        intent.extras?.getLong(EXTRA_MATCH_ID)?.let { viewModel?.matchId = it }
         prepareObservers()
     }
 
@@ -36,31 +37,28 @@ class MatchActivity : AppCompatActivity() {
     }
 
     private fun prepareObservers() {
-        intent.extras?.getLong(EXTRA_MATCH_ID)?.let { matchId ->
-            viewModel?.matchId = matchId
-            viewModel?.currentMatch?.observe(this, Observer {
-                it?.let {
-                    val hostName = if (it.hostName != "") it.hostName else getString(R.string.you)
-                    val guestName =
-                        if (it.guestName != "") it.guestName else getString(R.string.guest)
+        viewModel?.currentMatch?.observe(this, Observer {
+            it?.let {
+                val hostName = if (it.hostName != "") it.hostName else getString(R.string.you)
+                val guestName =
+                    if (it.guestName != "") it.guestName else getString(R.string.guest)
 
-                    title = "${getString(R.string.match_label)} ${getFormattedDate(
-                        resources,
-                        it.started
-                    )}"
+                title = "${getString(R.string.match_label)} ${getFormattedDate(
+                    resources,
+                    it.started
+                )}"
 
-                    tv_match_host_name.text = hostName
-                    tv_match_host_points.text = getFormattedPoints(it.hostPoints)
-                    tv_match_host_games.text = it.hostGames.toString()
-                    tv_match_host_sets.text = it.hostSets.toString()
+                tv_match_host_name.text = hostName
+                tv_match_host_points.text = getFormattedPoints(it.hostPoints)
+                tv_match_host_games.text = it.hostGames.toString()
+                tv_match_host_sets.text = it.hostSets.toString()
 
-                    tv_match_guest_name.text = guestName
-                    tv_match_guest_points.text = getFormattedPoints(it.guestPoints)
-                    tv_match_guest_games.text = it.guestGames.toString()
-                    tv_match_guest_sets.text = it.guestSets.toString()
-                }
-            })
-        }
+                tv_match_guest_name.text = guestName
+                tv_match_guest_points.text = getFormattedPoints(it.guestPoints)
+                tv_match_guest_games.text = it.guestGames.toString()
+                tv_match_guest_sets.text = it.guestSets.toString()
+            }
+        })
 
         viewModel?.dialogObservable()?.observe(this, Observer {
             if (it != null && it) showDialog()

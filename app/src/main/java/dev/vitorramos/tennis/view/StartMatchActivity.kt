@@ -16,7 +16,7 @@ class StartMatchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start_match)
-        supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_close)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_close)
 
         viewModel = ViewModelProviders.of(this)[StartMatchViewModel::class.java]
     }

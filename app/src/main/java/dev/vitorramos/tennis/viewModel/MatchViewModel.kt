@@ -10,23 +10,33 @@ import androidx.lifecycle.MutableLiveData
 import dev.vitorramos.tennis.Match
 import dev.vitorramos.tennis.Match.WhichPlayer
 import dev.vitorramos.tennis.R
+import dev.vitorramos.tennis.entity.MatchEntity
 import dev.vitorramos.tennis.repository.Repository
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class MatchViewModel(application: Application) : AndroidViewModel(application) {
     var matchId: Long? = null
+        set(value) {
+            field = value
+            value?.let {
+                Repository.it?.getMatch(it)?.let { liveData ->
+                    currentMatch = liveData
+                }
+            }
+        }
 
-    // TODO: null safety
-    val currentMatch by lazy { Repository.it?.getMatch(matchId!!) ?: MutableLiveData() }
+    var currentMatch: LiveData<MatchEntity?> = MutableLiveData()
+
     private val finishLiveData = MutableLiveData<Boolean>()
     fun finishObservable(): LiveData<Boolean> = finishLiveData
+
     private val dialogLiveData = MutableLiveData<Boolean>()
     fun dialogObservable(): LiveData<Boolean> = dialogLiveData
 
     private fun addPoint(whichPlayer: WhichPlayer) {
-        if (currentMatch.value != null) {
-            val updatedMatch = Match.addPoint(whichPlayer, currentMatch.value!!)
+        currentMatch.value?.let {
+            val updatedMatch = Match.addPoint(whichPlayer, it)
             GlobalScope.launch {
                 Repository.it?.updateMatch(updatedMatch)
             }
@@ -34,9 +44,9 @@ class MatchViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     private fun deleteMatch() {
-        if (matchId != null) {
+        matchId?.let {
             GlobalScope.launch {
-                Repository.it?.deleteMatch(matchId!!)
+                Repository.it?.deleteMatch(it)
             }
         }
     }
