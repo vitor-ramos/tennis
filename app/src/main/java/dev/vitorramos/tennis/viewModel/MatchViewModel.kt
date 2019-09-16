@@ -14,9 +14,10 @@ import dev.vitorramos.tennis.entity.MatchEntity
 import dev.vitorramos.tennis.repository.Repository
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.util.*
 
 class MatchViewModel(application: Application) : AndroidViewModel(application) {
-    var matchId: Long? = null
+    private var matchId: Long? = null
         set(value) {
             field = value
             value?.let {
@@ -28,11 +29,14 @@ class MatchViewModel(application: Application) : AndroidViewModel(application) {
 
     var currentMatch: LiveData<MatchEntity?> = MutableLiveData()
 
+    private val deleteLiveData = MutableLiveData<Boolean>()
+    fun deleteObservable(): LiveData<Boolean> = deleteLiveData
+
     private val finishLiveData = MutableLiveData<Boolean>()
     fun finishObservable(): LiveData<Boolean> = finishLiveData
 
-    private val dialogLiveData = MutableLiveData<Boolean>()
-    fun dialogObservable(): LiveData<Boolean> = dialogLiveData
+    private val startMatchLiveData = MutableLiveData<Boolean>()
+    fun startMatchObservable(): LiveData<Boolean> = startMatchLiveData
 
     private fun addPoint(whichPlayer: WhichPlayer) {
         currentMatch.value?.let {
@@ -51,9 +55,20 @@ class MatchViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    private fun startMatch(gamesToSet: Int, hostName: String, guestName: String) {
+        GlobalScope.launch {
+            matchId = Repository.it?.insertMatch(
+                started = Date().time,
+                gamesToSet = gamesToSet,
+                hostName = hostName,
+                guestName = guestName
+            )
+        }
+    }
+
     fun onOptionItemSelected(@IdRes id: Int): Boolean {
         return if (id == R.id.menu_match_delete && currentMatch.value != null) {
-            dialogLiveData.postValue(true)
+            deleteLiveData.postValue(true)
             true
         } else false
     }
@@ -65,11 +80,46 @@ class MatchViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    val onDialogClickListener = { dialog: DialogInterface, which: Int ->
+    val onDelete = { dialog: DialogInterface, which: Int ->
         if (which == BUTTON_POSITIVE) {
             finishLiveData.postValue(true)
             deleteMatch()
         }
         dialog.dismiss()
+    }
+
+    val onStart = { dialog: DialogInterface,
+                    hostNameInput: String,
+                    guestNameInput: String,
+                    gamesInput: String ->
+        dialog.dismiss()
+
+        val games = if (gamesInput != "") {
+            gamesInput.toInt()
+        } else {
+            application.resources.getInteger(R.integer.default_games)
+        }
+
+        val hostName = if (hostNameInput != "") {
+            hostNameInput
+        } else {
+            application.getString(R.string.you)
+        }
+
+        val guestName = if (guestNameInput != "") {
+            guestNameInput
+        } else {
+            application.getString(R.string.guest)
+        }
+
+        startMatch(games, hostName, guestName)
+    }
+
+    fun onMatchIdLoaded(matchId: Long?) {
+        if (matchId != null) {
+            this.matchId = matchId
+        } else {
+            startMatchLiveData.postValue(true)
+        }
     }
 }

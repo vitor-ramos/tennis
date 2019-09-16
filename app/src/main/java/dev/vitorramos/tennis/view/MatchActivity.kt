@@ -1,9 +1,11 @@
 package dev.vitorramos.tennis.view
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -12,6 +14,8 @@ import dev.vitorramos.tennis.R
 import dev.vitorramos.tennis.getFormattedDate
 import dev.vitorramos.tennis.getFormattedPoints
 import dev.vitorramos.tennis.viewModel.MatchViewModel
+import kotlinx.android.synthetic.main.activity_match.*
+import kotlinx.android.synthetic.main.dialog_start_match.*
 import kotlinx.android.synthetic.main.item_match_guest.*
 import kotlinx.android.synthetic.main.item_match_host.*
 
@@ -23,7 +27,7 @@ class MatchActivity : AppCompatActivity() {
         setContentView(R.layout.activity_match)
 
         viewModel = ViewModelProviders.of(this).get(MatchViewModel::class.java)
-        intent.extras?.getLong(EXTRA_MATCH_ID)?.let { viewModel?.matchId = it }
+        viewModel?.onMatchIdLoaded(intent.extras?.getLong(EXTRA_MATCH_ID))
         prepareObservers()
     }
 
@@ -60,24 +64,51 @@ class MatchActivity : AppCompatActivity() {
             }
         })
 
-        viewModel?.dialogObservable()?.observe(this, Observer {
-            if (it != null && it) showDialog()
+        viewModel?.deleteObservable()?.observe(this, Observer {
+            if (it != null && it) showDelete()
         })
 
         viewModel?.finishObservable()?.observe(this, Observer {
             if (it != null && it) finish()
         })
+
+        viewModel?.startMatchObservable()?.observe(this, Observer {
+            if (it != null && it) showStart()
+        })
     }
 
-    private fun showDialog() {
+    private fun showDelete() {
         if (viewModel == null) return
 
         AlertDialog.Builder(this).apply {
             setTitle(getString(R.string.delete_confirmation_title))
             setMessage(getString(R.string.delete_confirmation_message))
             viewModel?.let { viewModel ->
-                setPositiveButton(getString(R.string.delete), viewModel.onDialogClickListener)
-                setNegativeButton(getString(R.string.cancel), viewModel.onDialogClickListener)
+                setPositiveButton(getString(R.string.delete), viewModel.onDelete)
+                setNegativeButton(getString(R.string.cancel), viewModel.onDelete)
+            }
+        }.show()
+    }
+
+    private fun showStart() {
+        android.app.AlertDialog.Builder(this).apply {
+            setView(
+                LayoutInflater.from(this@MatchActivity).inflate(
+                    R.layout.dialog_start_match,
+                    ll_match_root as LinearLayout,
+                    false
+                )
+            )
+            setTitle(getString(R.string.start_match))
+            setPositiveButton(getString(R.string.start)) { dialog, _ ->
+                viewModel?.onStart?.let {
+                    it(
+                        dialog,
+                        et_start_match_host_name.text.toString(),
+                        et_start_match_guest_name.text.toString(),
+                        et_start_match_games_count.text.toString()
+                    )
+                }
             }
         }.show()
     }

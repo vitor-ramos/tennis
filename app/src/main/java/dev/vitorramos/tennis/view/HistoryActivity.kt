@@ -20,26 +20,28 @@ class HistoryActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this)[HistoryViewModel::class.java]
 
         rv_history_content.layoutManager = LinearLayoutManager(this)
-        rv_history_content.adapter = HistoryAdapter(layoutInflater,
-            {
-                startActivity(Intent(this, StartMatchActivity::class.java))
-            },
-            { itemPosition ->
-                startActivityForResult(Intent(this, MatchActivity::class.java).apply {
+        rv_history_content.adapter = adapter
+
+        prepareObservables()
+    }
+
+    private val adapter by lazy {
+        HistoryAdapter(layoutInflater) { itemPosition ->
+            startActivity(Intent(this, MatchActivity::class.java).apply {
+                itemPosition?.let { itemPosition ->
                     viewModel?.matches?.value?.get(itemPosition)?.let {
                         putExtra(MatchActivity.EXTRA_MATCH_ID, it.id)
                     }
-                }, RC_MATCH_ACTIVITY)
+                }
             })
+        }
+    }
 
+    private fun prepareObservables() {
         viewModel?.matches?.observe(this, Observer {
             it?.let {
                 (rv_history_content.adapter as HistoryAdapter).content = it
             }
         })
-    }
-
-    companion object {
-        const val RC_MATCH_ACTIVITY = 1
     }
 }

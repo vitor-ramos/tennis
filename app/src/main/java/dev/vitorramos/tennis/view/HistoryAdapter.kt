@@ -14,8 +14,7 @@ import dev.vitorramos.tennis.getFormattedDate
 
 class HistoryAdapter(
     private val inflater: LayoutInflater,
-    private val onFirstItemClick: () -> Unit,
-    private val onItemClick: (Int) -> Unit
+    private val onItemClick: (Int?) -> Unit
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -54,7 +53,7 @@ class HistoryAdapter(
         if (position == 0 && holder::class == HistoryAddViewHolder::class) {
             with(holder as HistoryAddViewHolder) {
                 llItemHistoryAdd.setOnClickListener {
-                    onFirstItemClick()
+                    onItemClick(null)
                 }
             }
         } else if (holder::class == HistoryViewHolder::class) {
