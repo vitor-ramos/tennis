@@ -8,7 +8,7 @@ import dev.vitorramos.tennis.R
 import dev.vitorramos.tennis.entity.MatchEntity
 import dev.vitorramos.tennis.getFormattedDate
 
-class HistoryAdapter(
+class MainAdapter(
     private val state: HistoryState,
     private val inflater: LayoutInflater,
     private val onItemClick: (Int?) -> Unit
@@ -24,9 +24,9 @@ class HistoryAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return when(ItemViewType.values()[viewType]) {
-            ItemViewType.TITLE_START -> HistoryDividerViewHolder(
+            ItemViewType.TITLE_START -> DividerViewHolder(
                 inflater.inflate(
-                    R.layout.item_history_divider,
+                    R.layout.item_divider,
                     parent,
                     true
                 ),
@@ -36,12 +36,12 @@ class HistoryAdapter(
             }
             ItemViewType.START_MATCH -> {
             }
-            ItemViewType.STARTING -> HistoryStartingViewHolder(
-                inflater.inflate(R.layout.item_history_starting, parent, true)
+            ItemViewType.STARTING -> StartingViewHolder(
+                inflater.inflate(R.layout.item_starting, parent, true)
             )
-            ItemViewType.TITLE_HISTORY -> HistoryDividerViewHolder(
+            ItemViewType.TITLE_HISTORY -> DividerViewHolder(
                 inflater.inflate(
-                    R.layout.item_history_divider,
+                    R.layout.item_divider,
                     parent,
                     true
                 ),
@@ -53,16 +53,16 @@ class HistoryAdapter(
     }
 
     fun _onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return if (viewType == 0) HistoryStartMatchViewHolder(
+        return if (viewType == 0) StartMatchViewHolder(
             inflater.inflate(
-                R.layout.item_history_start,
+                R.layout.item_start,
                 parent,
                 false
             )
         )
-        else HistoryViewHolder(
+        else ViewHolder(
             inflater.inflate(
-                R.layout.item_history,
+                R.layout.item_match,
                 parent,
                 false
             )
@@ -125,15 +125,15 @@ class HistoryAdapter(
     }
 
     fun _onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (position == 0 && holder::class == HistoryStartMatchViewHolder::class) {
-            with(holder as HistoryStartMatchViewHolder) {
+        if (position == 0 && holder::class == StartMatchViewHolder::class) {
+            with(holder as StartMatchViewHolder) {
                 llItemHistoryAdd.setOnClickListener {
                     onItemClick(null)
                 }
             }
-        } else if (holder::class == HistoryViewHolder::class) {
+        } else if (holder::class == ViewHolder::class) {
             content[position - 1]?.let {
-                with(holder as HistoryViewHolder) {
+                with(holder as ViewHolder) {
                     cdLayout.setOnClickListener {
                         onItemClick(holder.adapterPosition - 1)
                     }

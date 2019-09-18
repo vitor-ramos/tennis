@@ -4,14 +4,14 @@
         android:id="@+id/cl_history"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.HistoryActivity"
+        tools:context=".view.MainActivity"
         >
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_history_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/item_history"
+            tools:listitem="@layout/item_match"
             />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

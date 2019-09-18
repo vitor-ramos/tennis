@@ -7,13 +7,13 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
-import dev.vitorramos.tennis.view.HistoryActivity
+import dev.vitorramos.tennis.view.MainActivity
 import org.junit.Rule
 import org.junit.Test
 
 class HistoryTest {
     @get:Rule
-    val startMatchActivity = ActivityTestRule(HistoryActivity::class.java)
+    val startMatchActivity = ActivityTestRule(MainActivity::class.java)
 
     @Test
     fun startMatch() {

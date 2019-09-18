@@ -10,7 +10,7 @@ import dev.vitorramos.tennis.R
 import dev.vitorramos.tennis.viewModel.HistoryViewModel
 import kotlinx.android.synthetic.main.activity_history.*
 
-class HistoryActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
     private var viewModel: HistoryViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +26,7 @@ class HistoryActivity : AppCompatActivity() {
     }
 
     private val adapter by lazy {
-        HistoryAdapter(layoutInflater) { itemPosition ->
+        MainAdapter(layoutInflater) { itemPosition ->
             startActivity(Intent(this, MatchActivity::class.java).apply {
                 itemPosition?.let { itemPosition ->
                     viewModel?.matches?.value?.get(itemPosition)?.let {
@@ -40,7 +40,7 @@ class HistoryActivity : AppCompatActivity() {
     private fun prepareObservables() {
         viewModel?.matches?.observe(this, Observer {
             it?.let {
-                (rv_history_content.adapter as HistoryAdapter).content = it
+                (rv_history_content.adapter as MainAdapter).content = it
             }
         })
     }

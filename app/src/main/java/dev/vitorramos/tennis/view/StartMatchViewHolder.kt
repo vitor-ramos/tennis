@@ -5,6 +5,6 @@ import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
 import dev.vitorramos.tennis.R
 
-class HistoryStartMatchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class StartMatchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val llItemHistoryAdd: LinearLayout = itemView.findViewById(R.id.ll_item_history_add)
 }
