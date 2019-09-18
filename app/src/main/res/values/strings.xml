@@ -19,6 +19,9 @@
     <string name="delete_confirmation_title">Remover do histórico</string>
     <string name="delete_confirmation_message">A partida será excluída para todo o sempre</string>
     <string name="start">Iniciar</string>
+    <string name="match_history">Histórico de partidas</string>
+    <string name="on_going_match">Partida em andamento</string>
+    <string name="games_to_set">Games para ganhar o set</string>
 
     <string-array name="months">
         <item>Jan</item>

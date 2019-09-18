@@ -1,18 +1,15 @@
 package dev.vitorramos.tennis.view
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.MarginLayoutParams
-import android.widget.LinearLayout
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.card.MaterialCardView
 import dev.vitorramos.tennis.R
 import dev.vitorramos.tennis.entity.MatchEntity
 import dev.vitorramos.tennis.getFormattedDate
 
 class HistoryAdapter(
+    private val state: HistoryState,
     private val inflater: LayoutInflater,
     private val onItemClick: (Int?) -> Unit
 ) :
@@ -25,9 +22,40 @@ class HistoryAdapter(
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return if (viewType == 0) HistoryAddViewHolder(
+        val inflater = LayoutInflater.from(parent.context)
+        return when(ItemViewType.values()[viewType]) {
+            ItemViewType.TITLE_START -> HistoryDividerViewHolder(
+                inflater.inflate(
+                    R.layout.item_history_divider,
+                    parent,
+                    true
+                ),
+                parent.context.getString(R.string.on_going_match)
+            )
+            ItemViewType.ON_GOING -> {
+            }
+            ItemViewType.START_MATCH -> {
+            }
+            ItemViewType.STARTING -> HistoryStartingViewHolder(
+                inflater.inflate(R.layout.item_history_starting, parent, true)
+            )
+            ItemViewType.TITLE_HISTORY -> HistoryDividerViewHolder(
+                inflater.inflate(
+                    R.layout.item_history_divider,
+                    parent,
+                    true
+                ),
+                parent.context.getString(R.string.match_history)
+            )
+            ItemViewType.MATCH -> {
+            }
+        }
+    }
+
+    fun _onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return if (viewType == 0) HistoryStartMatchViewHolder(
             inflater.inflate(
-                R.layout.item_history_add,
+                R.layout.item_history_start,
                 parent,
                 false
             )
@@ -46,12 +74,59 @@ class HistoryAdapter(
     }
 
     override fun getItemViewType(position: Int): Int {
-        return position
+        return when (state) {
+            HistoryState.NO_MATCH -> {
+                when (position) {
+                    0 -> ItemViewType.START_MATCH
+                    1 -> ItemViewType.TITLE_HISTORY
+                    else -> ItemViewType.MATCH
+                }.ordinal
+            }
+            HistoryState.STARTING -> {
+                when (position) {
+                    0 -> ItemViewType.STARTING
+                    1 -> ItemViewType.TITLE_HISTORY
+                    else -> ItemViewType.MATCH
+                }.ordinal
+            }
+            HistoryState.ON_GOING -> {
+                when (position) {
+                    0 -> ItemViewType.TITLE_START
+                    1 -> ItemViewType.ON_GOING
+                    2 -> ItemViewType.TITLE_HISTORY
+                    else -> ItemViewType.MATCH
+                }.ordinal
+            }
+        }
+    }
+
+    private fun getIndex(position: Int): Int {
+        return when (state) {
+            HistoryState.NO_MATCH, HistoryState.STARTING -> position - 2
+            HistoryState.ON_GOING -> position - 3
+        }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (position == 0 && holder::class == HistoryAddViewHolder::class) {
-            with(holder as HistoryAddViewHolder) {
+        when(ItemViewType.values()[getItemViewType(position)]) {
+            ItemViewType.TITLE_START -> {
+            }
+            ItemViewType.ON_GOING -> {
+            }
+            ItemViewType.START_MATCH -> {
+            }
+            ItemViewType.STARTING -> {
+            }
+            ItemViewType.TITLE_HISTORY -> {
+            }
+            ItemViewType.MATCH -> {
+            }
+        }
+    }
+
+    fun _onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        if (position == 0 && holder::class == HistoryStartMatchViewHolder::class) {
+            with(holder as HistoryStartMatchViewHolder) {
                 llItemHistoryAdd.setOnClickListener {
                     onItemClick(null)
                 }
@@ -62,13 +137,16 @@ class HistoryAdapter(
                     cdLayout.setOnClickListener {
                         onItemClick(holder.adapterPosition - 1)
                     }
-                    tvStarted.text = getFormattedDate(holder.itemView.resources, it.started)
+                    tvStarted.text = getFormattedDate(
+                        holder.itemView.resources,
+                        it.started
+                    )
                     tvHostName.text = it.hostName
                     tvHostSets.text = it.hostSets.toString()
                     tvGuestName.text = it.guestName
                     tvGuestSets.text = it.guestSets.toString()
 
-                    if(position == itemCount - 1) {
+                    if (position == itemCount - 1) {
                         cdLayout.layoutParams =
                             (cdLayout.layoutParams as MarginLayoutParams).apply {
                                 val defaultMargin = holder.itemView.context.resources
@@ -86,16 +164,18 @@ class HistoryAdapter(
         }
     }
 
-    class HistoryAddViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val llItemHistoryAdd: LinearLayout = itemView.findViewById(R.id.ll_item_history_add)
+    enum class HistoryState {
+        NO_MATCH,
+        STARTING,
+        ON_GOING
     }
 
-    class HistoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val cdLayout: MaterialCardView = itemView.findViewById(R.id.cd_item_history_layout)
-        val tvStarted: AppCompatTextView = itemView.findViewById(R.id.tv_item_history_started)
-        val tvHostName: AppCompatTextView = itemView.findViewById(R.id.tv_item_history_host_name)
-        val tvHostSets: AppCompatTextView = itemView.findViewById(R.id.tv_item_history_host_sets)
-        val tvGuestName: AppCompatTextView = itemView.findViewById(R.id.tv_item_history_guest_name)
-        val tvGuestSets: AppCompatTextView = itemView.findViewById(R.id.tv_item_history_guest_sets)
+    private enum class ItemViewType {
+        TITLE_START,
+        ON_GOING,
+        START_MATCH,
+        STARTING,
+        TITLE_HISTORY,
+        MATCH,
     }
 }
