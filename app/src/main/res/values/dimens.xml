@@ -4,4 +4,5 @@
   <dimen name="half_default_margin">8dp</dimen>
   <dimen name="label_text_size">24sp</dimen>
   <dimen name="score_text_size">32sp</dimen>
+  <dimen name="text_size_large">22sp</dimen>
 </resources>

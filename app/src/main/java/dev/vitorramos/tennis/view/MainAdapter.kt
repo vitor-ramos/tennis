@@ -23,19 +23,29 @@ class MainAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return when(ItemViewType.values()[viewType]) {
+        return when (ItemViewType.values()[viewType]) {
             ItemViewType.TITLE_START -> DividerViewHolder(
                 inflater.inflate(
                     R.layout.item_divider,
                     parent,
                     true
                 ),
-                parent.context.getString(R.string.on_going_match)
+                parent.context.getString(R.string.current_match)
             )
-            ItemViewType.ON_GOING -> {
-            }
-            ItemViewType.START_MATCH -> {
-            }
+            ItemViewType.CURRENT -> CurrentViewHolder(
+                inflater.inflate(
+                    R.layout.item_current,
+                    parent,
+                    true
+                )
+            )
+            ItemViewType.START -> StartViewHolder(
+                inflater.inflate(
+                    R.layout.item_start,
+                    parent,
+                    true
+                )
+            )
             ItemViewType.STARTING -> StartingViewHolder(
                 inflater.inflate(R.layout.item_starting, parent, true)
             )
@@ -47,20 +57,25 @@ class MainAdapter(
                 ),
                 parent.context.getString(R.string.match_history)
             )
-            ItemViewType.MATCH -> {
-            }
+            ItemViewType.MATCH -> MatchViewHolder(
+                inflater.inflate(
+                    R.layout.item_match,
+                    parent,
+                    false
+                )
+            )
         }
     }
 
     fun _onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return if (viewType == 0) StartMatchViewHolder(
+        return if (viewType == 0) StartViewHolder(
             inflater.inflate(
                 R.layout.item_start,
                 parent,
                 false
             )
         )
-        else ViewHolder(
+        else MatchViewHolder(
             inflater.inflate(
                 R.layout.item_match,
                 parent,
@@ -77,7 +92,7 @@ class MainAdapter(
         return when (state) {
             HistoryState.NO_MATCH -> {
                 when (position) {
-                    0 -> ItemViewType.START_MATCH
+                    0 -> ItemViewType.START
                     1 -> ItemViewType.TITLE_HISTORY
                     else -> ItemViewType.MATCH
                 }.ordinal
@@ -89,10 +104,10 @@ class MainAdapter(
                     else -> ItemViewType.MATCH
                 }.ordinal
             }
-            HistoryState.ON_GOING -> {
+            HistoryState.CURRENT -> {
                 when (position) {
                     0 -> ItemViewType.TITLE_START
-                    1 -> ItemViewType.ON_GOING
+                    1 -> ItemViewType.CURRENT
                     2 -> ItemViewType.TITLE_HISTORY
                     else -> ItemViewType.MATCH
                 }.ordinal
@@ -103,17 +118,17 @@ class MainAdapter(
     private fun getIndex(position: Int): Int {
         return when (state) {
             HistoryState.NO_MATCH, HistoryState.STARTING -> position - 2
-            HistoryState.ON_GOING -> position - 3
+            HistoryState.CURRENT -> position - 3
         }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when(ItemViewType.values()[getItemViewType(position)]) {
+        when (ItemViewType.values()[getItemViewType(position)]) {
             ItemViewType.TITLE_START -> {
             }
-            ItemViewType.ON_GOING -> {
+            ItemViewType.CURRENT -> {
             }
-            ItemViewType.START_MATCH -> {
+            ItemViewType.START -> {
             }
             ItemViewType.STARTING -> {
             }
@@ -125,15 +140,15 @@ class MainAdapter(
     }
 
     fun _onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (position == 0 && holder::class == StartMatchViewHolder::class) {
-            with(holder as StartMatchViewHolder) {
-                llItemHistoryAdd.setOnClickListener {
-                    onItemClick(null)
-                }
-            }
-        } else if (holder::class == ViewHolder::class) {
+        if (position == 0 && holder::class == StartViewHolder::class) {
+//            with(holder as StartViewHolder) {
+//                llItemHistoryAdd.setOnClickListener {
+//                    onItemClick(null)
+//                }
+//            }
+        } else if (holder::class == MatchViewHolder::class) {
             content[position - 1]?.let {
-                with(holder as ViewHolder) {
+                with(holder as MatchViewHolder) {
                     cdLayout.setOnClickListener {
                         onItemClick(holder.adapterPosition - 1)
                     }
@@ -167,13 +182,13 @@ class MainAdapter(
     enum class HistoryState {
         NO_MATCH,
         STARTING,
-        ON_GOING
+        CURRENT
     }
 
     private enum class ItemViewType {
         TITLE_START,
-        ON_GOING,
-        START_MATCH,
+        CURRENT,
+        START,
         STARTING,
         TITLE_HISTORY,
         MATCH,
