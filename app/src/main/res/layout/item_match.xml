@@ -21,40 +21,6 @@
             >
 
         <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_item_history_started"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="@string/placeholder_date"
-                />
-
-        <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_item_history_host_sets"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="@string/zero"
-                android:textSize="@dimen/score_text_size"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_item_history_started"
-                />
-
-        <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_item_history_guest_sets"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="@string/zero"
-                android:textSize="@dimen/score_text_size"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_item_history_started"
-                />
-
-        <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_item_history_host_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -63,7 +29,7 @@
                 android:textSize="@dimen/label_text_size"
                 app:layout_constraintEnd_toStartOf="@+id/tv_item_history_guest_name"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_item_history_host_sets"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:text="@string/placeholder_host"
                 />
 
@@ -77,8 +43,125 @@
                 android:textSize="@dimen/label_text_size"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tv_item_history_host_name"
-                app:layout_constraintTop_toBottomOf="@id/tv_item_history_guest_sets"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:text="@string/placeholder_guest"
+                />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_item_history_host_points"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin"
+                android:textSize="@dimen/text_size_large"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_item_history_host_name"
+                tools:text="@string/zero"
+                />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_item_history_points_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/points"
+                android:textSize="@dimen/text_size_medium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_item_history_host_points"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_item_history_guest_points"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_large"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_item_history_host_points"
+                tools:text="@string/zero"
+                />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_item_history_host_games"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_large"
+                android:layout_marginTop="@dimen/default_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_item_history_host_points"
+                tools:text="@string/zero"
+                />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_item_history_games_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_medium"
+                android:layout_marginTop="@dimen/default_margin"
+                android:text="@string/games"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_item_history_host_points"
+                />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_item_history_guest_games"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_large"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_item_history_host_games"
+                tools:text="@string/zero"
+                />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_item_history_host_sets"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_large"
+                android:layout_marginTop="@dimen/default_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_item_history_host_games"
+                tools:text="@string/zero"
+                />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_item_history_sets_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_medium"
+                android:layout_marginTop="@dimen/default_margin"
+                android:text="@string/sets"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_item_history_host_games"
+                />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_item_history_guest_sets"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="@string/zero"
+                android:textSize="@dimen/text_size_large"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_item_history_host_sets"
+                />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_item_history_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_item_history_host_sets"
+                tools:text="Tempo de jogo: 1:29"
+                />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_item_history_started"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_item_history_duration"
+                tools:text="@string/placeholder_date"
                 />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
