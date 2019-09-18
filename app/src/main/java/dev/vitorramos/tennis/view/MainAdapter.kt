@@ -8,12 +8,8 @@ import dev.vitorramos.tennis.R
 import dev.vitorramos.tennis.entity.MatchEntity
 import dev.vitorramos.tennis.getFormattedDate
 
-class MainAdapter(
-    private val state: HistoryState,
-    private val inflater: LayoutInflater,
-    private val onItemClick: (Int?) -> Unit
-) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MainAdapter(initialState: HistoryState) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    var state: HistoryState = initialState
 
     var content = arrayOf<MatchEntity?>()
         set(value) {
@@ -24,38 +20,40 @@ class MainAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return when (ItemViewType.values()[viewType]) {
-            ItemViewType.TITLE_START -> DividerViewHolder(
+            ItemViewType.TITLE_CURRENT -> DividerViewHolder(
                 inflater.inflate(
                     R.layout.item_divider,
                     parent,
-                    true
-                ),
-                parent.context.getString(R.string.current_match)
+                    false
+                )
             )
             ItemViewType.CURRENT -> CurrentViewHolder(
                 inflater.inflate(
                     R.layout.item_current,
                     parent,
-                    true
+                    false
                 )
             )
             ItemViewType.START -> StartViewHolder(
                 inflater.inflate(
                     R.layout.item_start,
                     parent,
-                    true
+                    false
                 )
             )
             ItemViewType.STARTING -> StartingViewHolder(
-                inflater.inflate(R.layout.item_starting, parent, true)
+                inflater.inflate(
+                    R.layout.item_starting,
+                    parent,
+                    false
+                )
             )
             ItemViewType.TITLE_HISTORY -> DividerViewHolder(
                 inflater.inflate(
                     R.layout.item_divider,
                     parent,
-                    true
-                ),
-                parent.context.getString(R.string.match_history)
+                    false
+                )
             )
             ItemViewType.MATCH -> MatchViewHolder(
                 inflater.inflate(
@@ -65,23 +63,6 @@ class MainAdapter(
                 )
             )
         }
-    }
-
-    fun _onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return if (viewType == 0) StartViewHolder(
-            inflater.inflate(
-                R.layout.item_start,
-                parent,
-                false
-            )
-        )
-        else MatchViewHolder(
-            inflater.inflate(
-                R.layout.item_match,
-                parent,
-                false
-            )
-        )
     }
 
     override fun getItemCount(): Int {
@@ -106,7 +87,7 @@ class MainAdapter(
             }
             HistoryState.CURRENT -> {
                 when (position) {
-                    0 -> ItemViewType.TITLE_START
+                    0 -> ItemViewType.TITLE_CURRENT
                     1 -> ItemViewType.CURRENT
                     2 -> ItemViewType.TITLE_HISTORY
                     else -> ItemViewType.MATCH
@@ -124,55 +105,57 @@ class MainAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (ItemViewType.values()[getItemViewType(position)]) {
-            ItemViewType.TITLE_START -> {
+            ItemViewType.TITLE_CURRENT -> {
+                with(holder as DividerViewHolder) {
+                    tvDividerTitle.text = holder.itemView.context.getString(R.string.current_match)
+                }
             }
             ItemViewType.CURRENT -> {
+                // TODO: prepare current match
             }
             ItemViewType.START -> {
+                with(holder as StartViewHolder) {
+                    llItemStartAdd.setOnClickListener {
+                        // TODO: show form
+                    }
+                }
             }
             ItemViewType.STARTING -> {
+                // TODO: prepare form
             }
             ItemViewType.TITLE_HISTORY -> {
+                with(holder as DividerViewHolder) {
+                    tvDividerTitle.text = holder.itemView.context.getString(R.string.match_history)
+                }
             }
             ItemViewType.MATCH -> {
-            }
-        }
-    }
+                content[getIndex(position)]?.let {
+                    with(holder as MatchViewHolder) {
+                        cdLayout.setOnClickListener {
+                            // TODO: show details (maybe)
+                        }
+                        tvStarted.text = getFormattedDate(
+                            holder.itemView.resources,
+                            it.started
+                        )
+                        tvHostName.text = it.hostName
+                        tvHostSets.text = it.hostSets.toString()
+                        tvGuestName.text = it.guestName
+                        tvGuestSets.text = it.guestSets.toString()
 
-    fun _onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (position == 0 && holder::class == StartViewHolder::class) {
-//            with(holder as StartViewHolder) {
-//                llItemHistoryAdd.setOnClickListener {
-//                    onItemClick(null)
-//                }
-//            }
-        } else if (holder::class == MatchViewHolder::class) {
-            content[position - 1]?.let {
-                with(holder as MatchViewHolder) {
-                    cdLayout.setOnClickListener {
-                        onItemClick(holder.adapterPosition - 1)
-                    }
-                    tvStarted.text = getFormattedDate(
-                        holder.itemView.resources,
-                        it.started
-                    )
-                    tvHostName.text = it.hostName
-                    tvHostSets.text = it.hostSets.toString()
-                    tvGuestName.text = it.guestName
-                    tvGuestSets.text = it.guestSets.toString()
-
-                    if (position == itemCount - 1) {
-                        cdLayout.layoutParams =
-                            (cdLayout.layoutParams as MarginLayoutParams).apply {
-                                val defaultMargin = holder.itemView.context.resources
-                                    .getDimension(R.dimen.default_margin)
-                                setMargins(
-                                    leftMargin,
-                                    topMargin,
-                                    rightMargin,
-                                    defaultMargin.toInt()
-                                )
-                            }
+                        if (position == itemCount - 1) {
+                            cdLayout.layoutParams =
+                                (cdLayout.layoutParams as MarginLayoutParams).apply {
+                                    val defaultMargin = holder.itemView.context.resources
+                                        .getDimension(R.dimen.default_margin)
+                                    setMargins(
+                                        leftMargin,
+                                        topMargin,
+                                        rightMargin,
+                                        defaultMargin.toInt()
+                                    )
+                                }
+                        }
                     }
                 }
             }
@@ -186,7 +169,7 @@ class MainAdapter(
     }
 
     private enum class ItemViewType {
-        TITLE_START,
+        TITLE_CURRENT,
         CURRENT,
         START,
         STARTING,

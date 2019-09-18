@@ -1,6 +1,5 @@
 package dev.vitorramos.tennis.view
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -26,15 +25,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val adapter by lazy {
-        MainAdapter(layoutInflater) { itemPosition ->
-            startActivity(Intent(this, MatchActivity::class.java).apply {
-                itemPosition?.let { itemPosition ->
-                    viewModel?.matches?.value?.get(itemPosition)?.let {
-                        putExtra(MatchActivity.EXTRA_MATCH_ID, it.id)
-                    }
-                }
-            })
-        }
+        // TODO: send state
+        MainAdapter(MainAdapter.HistoryState.NO_MATCH)
     }
 
     private fun prepareObservables() {

@@ -5,8 +5,6 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import dev.vitorramos.tennis.R
 
-class DividerViewHolder(itemView: View, text: String) : RecyclerView.ViewHolder(itemView) {
-    init {
-        itemView.findViewById<AppCompatTextView>(R.id.tv_start_title).text = text
-    }
+class DividerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    val tvDividerTitle: AppCompatTextView = itemView.findViewById(R.id.tv_divider_title)
 }
