@@ -66,8 +66,10 @@ class MainAdapter(initialState: HistoryState) : RecyclerView.Adapter<RecyclerVie
     }
 
     override fun getItemCount(): Int {
-        // TODO: fix bug
-        return content.size + 1
+        return when (state) {
+            HistoryState.NO_MATCH, HistoryState.STARTING -> content.size + 2
+            HistoryState.CURRENT -> content.size + 3
+        }
     }
 
     override fun getItemViewType(position: Int): Int {
