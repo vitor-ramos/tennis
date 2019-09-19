@@ -66,6 +66,7 @@ class MainAdapter(initialState: HistoryState) : RecyclerView.Adapter<RecyclerVie
     }
 
     override fun getItemCount(): Int {
+        // TODO: fix bug
         return content.size + 1
     }
 
@@ -131,21 +132,29 @@ class MainAdapter(initialState: HistoryState) : RecyclerView.Adapter<RecyclerVie
             ItemViewType.MATCH -> {
                 content[getIndex(position)]?.let {
                     with(holder as MatchViewHolder) {
-                        cdLayout.setOnClickListener {
-                            // TODO: show details (maybe)
-                        }
+                        tvHostName.text = it.hostName
+                        tvGuestName.text = it.guestName
+
+                        tvHostPoints.text = it.hostPoints.toString()
+                        tvGuestPoints.text = it.guestPoints.toString()
+
+                        tvHostGames.text = it.hostGames.toString()
+                        tvGuestGames.text = it.guestGames.toString()
+
+                        tvHostSets.text = it.hostSets.toString()
+                        tvGuestSets.text = it.guestSets.toString()
+
+                        // TODO: proper duration time
+                        duration = -1
+
                         tvStarted.text = getFormattedDate(
                             holder.itemView.resources,
                             it.started
                         )
-                        tvHostName.text = it.hostName
-                        tvHostSets.text = it.hostSets.toString()
-                        tvGuestName.text = it.guestName
-                        tvGuestSets.text = it.guestSets.toString()
 
                         if (position == itemCount - 1) {
-                            cdLayout.layoutParams =
-                                (cdLayout.layoutParams as MarginLayoutParams).apply {
+                            cvItemMatch.layoutParams =
+                                (cvItemMatch.layoutParams as MarginLayoutParams).apply {
                                     val defaultMargin = holder.itemView.context.resources
                                         .getDimension(R.dimen.default_margin)
                                     setMargins(

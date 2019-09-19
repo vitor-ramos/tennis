@@ -23,6 +23,7 @@
     <string name="current_match">Partida em andamento</string>
     <string name="games_to_set">Games para ganhar o set</string>
     <string name="finish">Encerrar</string>
+    <string name="match_duration">Tempo de jogo: -</string>
 
     <string-array name="months">
         <item>Jan</item>
