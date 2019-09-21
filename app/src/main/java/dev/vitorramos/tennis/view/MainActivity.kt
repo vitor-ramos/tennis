@@ -6,17 +6,17 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import dev.vitorramos.tennis.R
-import dev.vitorramos.tennis.viewModel.HistoryViewModel
+import dev.vitorramos.tennis.viewModel.MainViewModel
 import kotlinx.android.synthetic.main.activity_history.*
 
 class MainActivity : AppCompatActivity() {
-    private var viewModel: HistoryViewModel? = null
+    private var viewModel: MainViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_history)
 
-        viewModel = ViewModelProviders.of(this)[HistoryViewModel::class.java]
+        viewModel = ViewModelProviders.of(this)[MainViewModel::class.java]
 
         rv_history_content.layoutManager = LinearLayoutManager(this)
         rv_history_content.adapter = adapter
@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     private val adapter by lazy {
         // TODO: send state
-        MainAdapter(MainAdapter.HistoryState.NO_MATCH)
+        MainAdapter(this, MainAdapter.HistoryState.NO_MATCH)
     }
 
     private fun prepareObservables() {

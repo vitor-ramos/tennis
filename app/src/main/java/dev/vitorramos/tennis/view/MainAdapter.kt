@@ -2,14 +2,29 @@ package dev.vitorramos.tennis.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.view.ViewGroup.MarginLayoutParams
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
 import dev.vitorramos.tennis.R
 import dev.vitorramos.tennis.entity.MatchEntity
-import dev.vitorramos.tennis.getFormattedDate
+import dev.vitorramos.tennis.viewModel.MainViewModel
 
-class MainAdapter(initialState: HistoryState) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    var state: HistoryState = initialState
+class MainAdapter(activity: AppCompatActivity, initialState: HistoryState) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    private val viewModel = ViewModelProviders.of(activity)[MainViewModel::class.java]
+
+    init {
+        viewModel.state().observe(activity, Observer {
+            state = it
+        })
+    }
+
+    private var state: HistoryState = initialState
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     var content = arrayOf<MatchEntity?>()
         set(value) {
@@ -108,67 +123,26 @@ class MainAdapter(initialState: HistoryState) : RecyclerView.Adapter<RecyclerVie
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (ItemViewType.values()[getItemViewType(position)]) {
-            ItemViewType.TITLE_CURRENT -> {
-                with(holder as DividerViewHolder) {
-                    tvDividerTitle.text = holder.itemView.context.getString(R.string.current_match)
-                }
+            ItemViewType.TITLE_CURRENT -> with(holder as DividerViewHolder) {
+                tvDividerTitle.text = holder.itemView.context.getString(R.string.current_match)
             }
             ItemViewType.CURRENT -> {
                 // TODO: prepare current match
             }
-            ItemViewType.START -> {
-                with(holder as StartViewHolder) {
-                    llItemStartAdd.setOnClickListener {
-                        // TODO: show form
-                    }
+            ItemViewType.START -> with(holder as StartViewHolder) {
+                llItemStartAdd.setOnClickListener {
+                    viewModel.onClickStart()
                 }
             }
             ItemViewType.STARTING -> {
                 // TODO: prepare form
             }
-            ItemViewType.TITLE_HISTORY -> {
-                with(holder as DividerViewHolder) {
-                    tvDividerTitle.text = holder.itemView.context.getString(R.string.match_history)
-                }
+            ItemViewType.TITLE_HISTORY -> with(holder as DividerViewHolder) {
+                tvDividerTitle.text = holder.itemView.context.getString(R.string.match_history)
+
             }
-            ItemViewType.MATCH -> {
-                content[getIndex(position)]?.let {
-                    with(holder as MatchViewHolder) {
-                        tvHostName.text = it.hostName
-                        tvGuestName.text = it.guestName
-
-                        tvHostPoints.text = it.hostPoints.toString()
-                        tvGuestPoints.text = it.guestPoints.toString()
-
-                        tvHostGames.text = it.hostGames.toString()
-                        tvGuestGames.text = it.guestGames.toString()
-
-                        tvHostSets.text = it.hostSets.toString()
-                        tvGuestSets.text = it.guestSets.toString()
-
-                        // TODO: proper duration time
-                        duration = -1
-
-                        tvStarted.text = getFormattedDate(
-                            holder.itemView.resources,
-                            it.started
-                        )
-
-                        if (position == itemCount - 1) {
-                            cvItemMatch.layoutParams =
-                                (cvItemMatch.layoutParams as MarginLayoutParams).apply {
-                                    val defaultMargin = holder.itemView.context.resources
-                                        .getDimension(R.dimen.default_margin)
-                                    setMargins(
-                                        leftMargin,
-                                        topMargin,
-                                        rightMargin,
-                                        defaultMargin.toInt()
-                                    )
-                                }
-                        }
-                    }
-                }
+            ItemViewType.MATCH -> content[getIndex(position)]?.let {
+                (holder as MatchViewHolder).bind(it, position == itemCount - 1)
             }
         }
     }
