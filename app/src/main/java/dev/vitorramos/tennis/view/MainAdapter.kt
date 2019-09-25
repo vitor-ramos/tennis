@@ -134,8 +134,10 @@ class MainAdapter(activity: AppCompatActivity, initialState: HistoryState) :
                     viewModel.onClickStart()
                 }
             }
-            ItemViewType.STARTING -> {
-                // TODO: prepare form
+            ItemViewType.STARTING -> with(holder as StartingViewHolder) {
+                ibHistoryStartingClose.setOnClickListener {
+                    viewModel.onClickCancelStart()
+                }
             }
             ItemViewType.TITLE_HISTORY -> with(holder as DividerViewHolder) {
                 tvDividerTitle.text = holder.itemView.context.getString(R.string.match_history)

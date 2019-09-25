@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import dev.vitorramos.tennis.repository.Repository
 import dev.vitorramos.tennis.view.MainAdapter.HistoryState
+import dev.vitorramos.tennis.view.MainAdapter.HistoryState.NO_MATCH
 import dev.vitorramos.tennis.view.MainAdapter.HistoryState.STARTING
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
@@ -16,5 +17,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     val onClickStart = {
         state.postValue(STARTING)
+    }
+
+    val onClickCancelStart = {
+        state.postValue(NO_MATCH)
     }
 }
