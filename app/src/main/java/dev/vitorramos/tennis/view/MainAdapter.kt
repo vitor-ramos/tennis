@@ -35,7 +35,7 @@ class MainAdapter(activity: AppCompatActivity, initialState: HistoryState) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return when (ItemViewType.values()[viewType]) {
-            ItemViewType.TITLE_CURRENT -> DividerViewHolder(
+            ItemViewType.TITLE -> DividerViewHolder(
                 inflater.inflate(
                     R.layout.item_divider,
                     parent,
@@ -45,27 +45,6 @@ class MainAdapter(activity: AppCompatActivity, initialState: HistoryState) :
             ItemViewType.CURRENT -> CurrentViewHolder(
                 inflater.inflate(
                     R.layout.item_current,
-                    parent,
-                    false
-                )
-            )
-            ItemViewType.START -> StartViewHolder(
-                inflater.inflate(
-                    R.layout.item_start,
-                    parent,
-                    false
-                )
-            )
-            ItemViewType.STARTING -> StartingViewHolder(
-                inflater.inflate(
-                    R.layout.item_starting,
-                    parent,
-                    false
-                )
-            )
-            ItemViewType.TITLE_HISTORY -> DividerViewHolder(
-                inflater.inflate(
-                    R.layout.item_divider,
                     parent,
                     false
                 )
@@ -82,7 +61,7 @@ class MainAdapter(activity: AppCompatActivity, initialState: HistoryState) :
 
     override fun getItemCount(): Int {
         return when (state) {
-            HistoryState.NO_MATCH, HistoryState.STARTING -> content.size + 2
+            HistoryState.NO_MATCH -> content.size + 1
             HistoryState.CURRENT -> content.size + 3
         }
     }
@@ -91,23 +70,14 @@ class MainAdapter(activity: AppCompatActivity, initialState: HistoryState) :
         return when (state) {
             HistoryState.NO_MATCH -> {
                 when (position) {
-                    0 -> ItemViewType.START
-                    1 -> ItemViewType.TITLE_HISTORY
-                    else -> ItemViewType.MATCH
-                }.ordinal
-            }
-            HistoryState.STARTING -> {
-                when (position) {
-                    0 -> ItemViewType.STARTING
-                    1 -> ItemViewType.TITLE_HISTORY
+                    0 -> ItemViewType.TITLE
                     else -> ItemViewType.MATCH
                 }.ordinal
             }
             HistoryState.CURRENT -> {
                 when (position) {
-                    0 -> ItemViewType.TITLE_CURRENT
+                    0, 2 -> ItemViewType.TITLE
                     1 -> ItemViewType.CURRENT
-                    2 -> ItemViewType.TITLE_HISTORY
                     else -> ItemViewType.MATCH
                 }.ordinal
             }
@@ -116,32 +86,24 @@ class MainAdapter(activity: AppCompatActivity, initialState: HistoryState) :
 
     private fun getIndex(position: Int): Int {
         return when (state) {
-            HistoryState.NO_MATCH, HistoryState.STARTING -> position - 2
+            HistoryState.NO_MATCH -> position - 1
             HistoryState.CURRENT -> position - 3
         }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (ItemViewType.values()[getItemViewType(position)]) {
-            ItemViewType.TITLE_CURRENT -> with(holder as DividerViewHolder) {
-                tvDividerTitle.text = holder.itemView.context.getString(R.string.current_match)
+            ItemViewType.TITLE -> with(holder as DividerViewHolder) {
+                tvDividerTitle.text = holder.itemView.context.getString(
+                    when {
+                        state == HistoryState.NO_MATCH -> R.string.match_history
+                        position == 0 -> R.string.current_match
+                        else -> R.string.match_history
+                    }
+                )
             }
             ItemViewType.CURRENT -> {
                 // TODO: prepare current match
-            }
-            ItemViewType.START -> with(holder as StartViewHolder) {
-                llItemStartAdd.setOnClickListener {
-                    viewModel.onClickStart()
-                }
-            }
-            ItemViewType.STARTING -> with(holder as StartingViewHolder) {
-                ibHistoryStartingClose.setOnClickListener {
-                    viewModel.onClickCancelStart()
-                }
-            }
-            ItemViewType.TITLE_HISTORY -> with(holder as DividerViewHolder) {
-                tvDividerTitle.text = holder.itemView.context.getString(R.string.match_history)
-
             }
             ItemViewType.MATCH -> content[getIndex(position)]?.let {
                 (holder as MatchViewHolder).bind(it, position == itemCount - 1)
@@ -151,16 +113,12 @@ class MainAdapter(activity: AppCompatActivity, initialState: HistoryState) :
 
     enum class HistoryState {
         NO_MATCH,
-        STARTING,
         CURRENT
     }
 
     private enum class ItemViewType {
-        TITLE_CURRENT,
+        TITLE,
         CURRENT,
-        START,
-        STARTING,
-        TITLE_HISTORY,
-        MATCH,
+        MATCH
     }
 }

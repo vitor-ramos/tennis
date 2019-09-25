@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData
 import dev.vitorramos.tennis.repository.Repository
 import dev.vitorramos.tennis.view.MainAdapter.HistoryState
 import dev.vitorramos.tennis.view.MainAdapter.HistoryState.NO_MATCH
-import dev.vitorramos.tennis.view.MainAdapter.HistoryState.STARTING
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
     val matches by lazy { Repository.it?.getMatches() ?: MutableLiveData() }
@@ -16,7 +15,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     fun state(): LiveData<HistoryState> = state
 
     val onClickStart = {
-        state.postValue(STARTING)
+        // TODO: show dialog
     }
 
     val onClickCancelStart = {
