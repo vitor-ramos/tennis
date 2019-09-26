@@ -21,6 +21,10 @@ class MainActivity : AppCompatActivity() {
         rv_history_content.layoutManager = LinearLayoutManager(this)
         rv_history_content.adapter = adapter
 
+        fab_history_start_match.setOnClickListener {
+            viewModel?.onClickStart(this)
+        }
+
         prepareObservables()
     }
 
