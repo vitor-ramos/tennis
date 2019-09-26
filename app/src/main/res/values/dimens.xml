@@ -6,4 +6,5 @@
   <dimen name="score_text_size">32sp</dimen>
   <dimen name="text_size_large">22sp</dimen>
   <dimen name="text_size_medium">18sp</dimen>
+  <dimen name="margin_bottom_list_fab">80dp</dimen>
 </resources>

@@ -59,7 +59,7 @@ class MatchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             cvItemMatch.layoutParams =
                 (cvItemMatch.layoutParams as ViewGroup.MarginLayoutParams).apply {
                     val defaultMargin = itemView.context.resources
-                        .getDimension(R.dimen.default_margin)
+                        .getDimension(R.dimen.margin_bottom_list_fab)
                     setMargins(
                         leftMargin,
                         topMargin,
