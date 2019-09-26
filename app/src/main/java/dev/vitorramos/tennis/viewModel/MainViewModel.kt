@@ -8,6 +8,7 @@ import androidx.appcompat.widget.AppCompatEditText
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import dev.vitorramos.tennis.Match
 import dev.vitorramos.tennis.R
 import dev.vitorramos.tennis.entity.MatchEntity
 import dev.vitorramos.tennis.repository.Repository
@@ -16,12 +17,30 @@ import kotlinx.coroutines.launch
 import java.util.*
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
-    val matches: LiveData<Array<MatchEntity?>?>? by lazy {
+    val matches: LiveData<Array<MatchEntity?>?> by lazy {
         Repository.it?.getMatches() ?: MutableLiveData()
+    }
+
+    fun addPoint(index: Int, whichPlayer: Match.WhichPlayer) {
+        matches.value?.get(index)?.let {
+            val updatedMatch = Match.addPoint(whichPlayer, it)
+            GlobalScope.launch {
+                Repository.it?.updateMatch(updatedMatch)
+            }
+        }
+    }
+
+    fun deleteMatch(index: Int) {
+        matches.value?.get(index)?.id?.let {
+            GlobalScope.launch {
+                Repository.it?.deleteMatch(it)
+            }
+        }
     }
 
     @SuppressLint("InflateParams")
     fun onClickStart(context: Activity) {
+        // TODO: move to activity
         val v = context.layoutInflater.inflate(R.layout.dialog_start_match, null, false)
         AlertDialog.Builder(context).apply {
             setTitle(R.string.start_match)

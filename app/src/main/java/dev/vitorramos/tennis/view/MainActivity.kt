@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this)[MainViewModel::class.java]
 
         rv_history_content.layoutManager = LinearLayoutManager(this)
-        rv_history_content.adapter = MainAdapter()
+        rv_history_content.adapter = MainAdapter(viewModel)
 
         fab_history_start_match.setOnClickListener {
             viewModel?.onClickStart(this)

@@ -3,10 +3,13 @@ package dev.vitorramos.tennis.view
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import dev.vitorramos.tennis.Match
 import dev.vitorramos.tennis.R
 import dev.vitorramos.tennis.entity.MatchEntity
+import dev.vitorramos.tennis.viewModel.MainViewModel
 
-class MainAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MainAdapter(private val viewModel: MainViewModel?) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var content: Array<MatchEntity?> = arrayOf()
         set(value) {
             field = value
@@ -28,8 +31,14 @@ class MainAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        content[position]?.let {
-            (holder as MatchViewHolder).bind(it, position == itemCount - 1)
+        content[holder.adapterPosition]?.let {
+            (holder as MatchViewHolder).bind(it, holder.adapterPosition == itemCount - 1, {
+                viewModel?.addPoint(holder.adapterPosition, Match.WhichPlayer.HOST)
+            }, {
+                viewModel?.addPoint(holder.adapterPosition, Match.WhichPlayer.GUEST)
+            }, {
+                viewModel?.deleteMatch(holder.adapterPosition)
+            })
         }
     }
 }
