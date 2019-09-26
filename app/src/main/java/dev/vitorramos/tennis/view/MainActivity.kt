@@ -19,18 +19,13 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this)[MainViewModel::class.java]
 
         rv_history_content.layoutManager = LinearLayoutManager(this)
-        rv_history_content.adapter = adapter
+        rv_history_content.adapter = MainAdapter()
 
         fab_history_start_match.setOnClickListener {
             viewModel?.onClickStart(this)
         }
 
         prepareObservables()
-    }
-
-    private val adapter by lazy {
-        // TODO: send state
-        MainAdapter(this, MainAdapter.HistoryState.NO_MATCH)
     }
 
     private fun prepareObservables() {

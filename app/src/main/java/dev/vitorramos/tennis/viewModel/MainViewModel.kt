@@ -9,17 +9,16 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import dev.vitorramos.tennis.R
+import dev.vitorramos.tennis.entity.MatchEntity
 import dev.vitorramos.tennis.repository.Repository
-import dev.vitorramos.tennis.view.MainAdapter.HistoryState
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.util.*
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
-    val matches by lazy { Repository.it?.getMatches() ?: MutableLiveData() }
-
-    private val state = MutableLiveData<HistoryState>()
-    fun state(): LiveData<HistoryState> = state
+    val matches: LiveData<Array<MatchEntity?>?>? by lazy {
+        Repository.it?.getMatches() ?: MutableLiveData()
+    }
 
     @SuppressLint("InflateParams")
     fun onClickStart(context: Activity) {

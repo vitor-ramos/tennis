@@ -4,8 +4,6 @@ import dev.vitorramos.tennis.entity.MatchEntity
 import dev.vitorramos.tennis.model.MatchModel
 
 class Repository private constructor(private val matchModel: MatchModel) {
-    fun getMatch(matchId: Long) = matchModel.getMatch(matchId)
-
     fun getMatches() = matchModel.getMatches()
 
     suspend fun updateMatch(matchEntity: MatchEntity) = matchModel.updateMatch(matchEntity)
