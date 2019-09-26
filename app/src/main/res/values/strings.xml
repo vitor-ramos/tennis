@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Tennis</string>
+    <string name="app_name">Placar de Tênis</string>
 
     <string name="games">Games</string>
     <string name="guest">Convidado</string>
