@@ -51,7 +51,7 @@ class MainAdapter(activity: AppCompatActivity, initialState: HistoryState) :
             )
             ItemViewType.MATCH -> MatchViewHolder(
                 inflater.inflate(
-                    R.layout.item_match,
+                    R.layout.item_current,
                     parent,
                     false
                 )

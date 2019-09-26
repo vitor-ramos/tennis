@@ -3,36 +3,29 @@ package dev.vitorramos.tennis.view
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.card.MaterialCardView
 import dev.vitorramos.tennis.R
 import dev.vitorramos.tennis.entity.MatchEntity
 import dev.vitorramos.tennis.getFormattedDate
 
 class MatchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    private val cvItemMatch: MaterialCardView = itemView.findViewById(R.id.cv_item_match)
+    private val cvItemMatch: CardView = itemView.findViewById(R.id.cv_current_layout)
 
-    private val tvHostName: AppCompatTextView = itemView.findViewById(R.id.tv_item_history_host_name)
-    private val tvGuestName: AppCompatTextView = itemView.findViewById(R.id.tv_item_history_guest_name)
+    private val tvHostName: AppCompatTextView = itemView.findViewById(R.id.tv_current_host_name)
+    private val tvGuestName: AppCompatTextView = itemView.findViewById(R.id.tv_current_guest_name)
 
-    private val tvHostPoints: AppCompatTextView = itemView.findViewById(R.id.tv_item_history_host_points)
-    private val tvGuestPoints: AppCompatTextView = itemView.findViewById(R.id.tv_item_history_guest_points)
+    private val tvHostPoints: AppCompatTextView = itemView.findViewById(R.id.tv_current_host_points)
+    private val tvGuestPoints: AppCompatTextView =
+        itemView.findViewById(R.id.tv_current_guest_points)
 
-    private val tvHostGames: AppCompatTextView = itemView.findViewById(R.id.tv_item_history_host_games)
-    private val tvGuestGames: AppCompatTextView = itemView.findViewById(R.id.tv_item_history_guest_games)
+    private val tvHostGames: AppCompatTextView = itemView.findViewById(R.id.tv_current_host_games)
+    private val tvGuestGames: AppCompatTextView = itemView.findViewById(R.id.tv_current_guest_games)
 
-    private val tvHostSets: AppCompatTextView = itemView.findViewById(R.id.tv_item_history_host_sets)
-    private val tvGuestSets: AppCompatTextView = itemView.findViewById(R.id.tv_item_history_guest_sets)
+    private val tvHostSets: AppCompatTextView = itemView.findViewById(R.id.tv_current_host_sets)
+    private val tvGuestSets: AppCompatTextView = itemView.findViewById(R.id.tv_current_guest_sets)
 
-    private val tvDuration: AppCompatTextView = itemView.findViewById(R.id.tv_item_history_duration)
-    var duration = -1
-        set(value) {
-            field = value
-            val s = if (duration >= 0) "Tempo de jogo: $value" else "Tempo de jogo: -"
-            tvDuration.text = s
-        }
-
-    private val tvStarted: AppCompatTextView = itemView.findViewById(R.id.tv_item_history_started)
+    private val tvStarted: AppCompatTextView = itemView.findViewById(R.id.tv_current_started)
 
     fun bind(matchEntity: MatchEntity, isLast: Boolean) {
         tvHostName.text = matchEntity.hostName
@@ -46,9 +39,6 @@ class MatchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         tvHostSets.text = matchEntity.hostSets.toString()
         tvGuestSets.text = matchEntity.guestSets.toString()
-
-        // TODO: proper duration time
-        duration = -1
 
         tvStarted.text = getFormattedDate(
             itemView.resources,
