@@ -3,28 +3,14 @@
 
     <string name="games">Games</string>
     <string name="guest">Convidado</string>
-    <string name="match_label">Partida de</string>
     <string name="points">Pontos</string>
     <string name="sets">Sets</string>
     <string name="start_match">Começar partida</string>
     <string name="you">Você</string>
     <string name="your_name">Seu Nome</string>
-    <string name="zero">0</string>
-    <string name="delete">Remover</string>
-    <string name="placeholder_date">17 Dez</string>
-    <string name="placeholder_guest">Isadora</string>
-    <string name="placeholder_host">Vitor</string>
     <string name="click_to_add_point">Pontuar</string>
     <string name="cancel">Cancelar</string>
-    <string name="delete_confirmation_title">Remover do histórico</string>
-    <string name="delete_confirmation_message">A partida será excluída para todo o sempre</string>
     <string name="start">Iniciar</string>
-    <string name="match_history">Histórico de partidas</string>
-    <string name="current_match">Partida em andamento</string>
-    <string name="games_to_set">Games para ganhar o set</string>
-    <string name="finish">Encerrar</string>
-    <string name="match_duration">Tempo de jogo: -</string>
-    <string name="play">Jogar</string>
 
     <string-array name="months">
         <item>Jan</item>

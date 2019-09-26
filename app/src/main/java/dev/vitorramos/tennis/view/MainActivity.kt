@@ -7,14 +7,14 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import dev.vitorramos.tennis.R
 import dev.vitorramos.tennis.viewModel.MainViewModel
-import kotlinx.android.synthetic.main.activity_history.*
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     private var viewModel: MainViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_history)
+        setContentView(R.layout.activity_main)
 
         viewModel = ViewModelProviders.of(this)[MainViewModel::class.java]
 

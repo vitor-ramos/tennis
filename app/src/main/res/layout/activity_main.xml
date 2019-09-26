@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cl_history"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
@@ -13,7 +12,7 @@
         android:id="@+id/rv_history_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item_current"
+        tools:listitem="@layout/item_match"
         />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -24,7 +23,7 @@
         android:layout_marginEnd="@dimen/default_margin"
         android:layout_marginRight="@dimen/default_margin"
         android:layout_marginBottom="@dimen/default_margin"
-        android:text="@string/play"
+        android:text="@string/start_match"
         app:icon="@drawable/ic_sports_tennis"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

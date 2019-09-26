@@ -12,29 +12,26 @@ import dev.vitorramos.tennis.entity.MatchEntity
 import dev.vitorramos.tennis.getFormattedDate
 import dev.vitorramos.tennis.getFormattedPoints
 
-class MatchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    private val cvItemMatch: CardView = itemView.findViewById(R.id.cv_current_layout)
+class MatchViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+    private val cvItemMatch: CardView = v.findViewById(R.id.cv_match_layout)
 
-    private val tvStarted: AppCompatTextView = itemView.findViewById(R.id.tv_current_started)
-    private val ibDelete: AppCompatImageButton = itemView.findViewById(R.id.ib_current_delete)
+    private val tvStarted: AppCompatTextView = v.findViewById(R.id.tv_match_started)
+    private val ibDelete: AppCompatImageButton = v.findViewById(R.id.ib_match_delete)
 
-    private val tvHostName: AppCompatTextView = itemView.findViewById(R.id.tv_current_host_name)
-    private val tvGuestName: AppCompatTextView = itemView.findViewById(R.id.tv_current_guest_name)
+    private val tvHostName: AppCompatTextView = v.findViewById(R.id.tv_match_host_name)
+    private val tvGuestName: AppCompatTextView = v.findViewById(R.id.tv_match_guest_name)
 
-    private val tvHostPoints: AppCompatTextView = itemView.findViewById(R.id.tv_current_host_points)
-    private val tvGuestPoints: AppCompatTextView =
-        itemView.findViewById(R.id.tv_current_guest_points)
+    private val tvHostPoints: AppCompatTextView = v.findViewById(R.id.tv_match_host_points)
+    private val tvGuestPoints: AppCompatTextView = v.findViewById(R.id.tv_match_guest_points)
 
-    private val tvHostGames: AppCompatTextView = itemView.findViewById(R.id.tv_current_host_games)
-    private val tvGuestGames: AppCompatTextView = itemView.findViewById(R.id.tv_current_guest_games)
+    private val tvHostGames: AppCompatTextView = v.findViewById(R.id.tv_match_host_games)
+    private val tvGuestGames: AppCompatTextView = v.findViewById(R.id.tv_match_guest_games)
 
-    private val tvHostSets: AppCompatTextView = itemView.findViewById(R.id.tv_current_host_sets)
-    private val tvGuestSets: AppCompatTextView = itemView.findViewById(R.id.tv_current_guest_sets)
+    private val tvHostSets: AppCompatTextView = v.findViewById(R.id.tv_match_host_sets)
+    private val tvGuestSets: AppCompatTextView = v.findViewById(R.id.tv_match_guest_sets)
 
-    private val btHostAddPoint: AppCompatButton =
-        itemView.findViewById(R.id.bt_current_host_add_point)
-    private val btGuestAddPoint: AppCompatButton =
-        itemView.findViewById(R.id.bt_current_guest_add_point)
+    private val btHostAddPoint: AppCompatButton = v.findViewById(R.id.bt_match_host_add_point)
+    private val btGuestAddPoint: AppCompatButton = v.findViewById(R.id.bt_match_guest_add_point)
 
     fun bind(
         matchEntity: MatchEntity,

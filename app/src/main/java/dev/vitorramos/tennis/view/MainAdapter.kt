@@ -19,7 +19,7 @@ class MainAdapter(private val viewModel: MainViewModel?) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return MatchViewHolder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.item_current,
+                R.layout.item_match,
                 parent,
                 false
             )

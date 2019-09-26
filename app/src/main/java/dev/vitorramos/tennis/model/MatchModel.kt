@@ -4,9 +4,6 @@ import dev.vitorramos.tennis.TennisDatabase
 import dev.vitorramos.tennis.entity.MatchEntity
 
 class MatchModel(private val tennisDatabase: TennisDatabase) {
-    fun getMatch(matchId: Long) = tennisDatabase.matchDao().getMatch(matchId)
-
-
     fun getMatches() = tennisDatabase.matchDao().getMatches()
 
     suspend fun updateMatch(matchEntity: MatchEntity) {

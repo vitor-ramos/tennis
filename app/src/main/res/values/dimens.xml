@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <resources>
   <dimen name="default_margin">16dp</dimen>
-  <dimen name="half_default_margin">8dp</dimen>
-  <dimen name="label_text_size">24sp</dimen>
-  <dimen name="score_text_size">32sp</dimen>
   <dimen name="text_size_large">22sp</dimen>
-  <dimen name="text_size_medium">18sp</dimen>
   <dimen name="margin_bottom_list_fab">80dp</dimen>
   <dimen name="default_card_elevation">8dp</dimen>
 </resources>
