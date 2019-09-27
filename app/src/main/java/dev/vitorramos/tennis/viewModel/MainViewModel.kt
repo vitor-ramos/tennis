@@ -1,10 +1,6 @@
 package dev.vitorramos.tennis.viewModel
 
-import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.Application
-import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.widget.AppCompatEditText
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -20,6 +16,11 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val matches: LiveData<Array<MatchEntity?>?> by lazy {
         Repository.it?.getMatches() ?: MutableLiveData()
     }
+
+    private val dialogLiveData by lazy {
+        MutableLiveData<(String, String, String) -> Unit>()
+    }
+    val dialogObservable: LiveData<(String, String, String) -> Unit> = dialogLiveData
 
     fun addPoint(index: Int, whichPlayer: Match.WhichPlayer) {
         matches.value?.get(index)?.let {
@@ -38,35 +39,11 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    @SuppressLint("InflateParams")
-    fun onClickStart(context: Activity) {
-        // TODO: move to activity
-        val v = context.layoutInflater.inflate(R.layout.dialog_start_match, null, false)
-        AlertDialog.Builder(context).apply {
-            setTitle(R.string.start_match)
-            setView(v)
-            setNegativeButton(R.string.cancel) { dialog, _ ->
-                dialog.dismiss()
-            }
-            setPositiveButton(R.string.start) { dialog, _ ->
-                dialog.dismiss()
-                val etHostName = v.findViewById<AppCompatEditText>(R.id.et_start_match_host_name)
-                val etGuestName = v.findViewById<AppCompatEditText>(R.id.et_start_match_guest_name)
-                val etGamesCount =
-                    v.findViewById<AppCompatEditText>(R.id.et_start_match_games_count)
-
-                onStart(
-                    etHostName.text?.toString() ?: "",
-                    etGuestName.text?.toString() ?: "",
-                    etGamesCount.text?.toString() ?: ""
-                )
-            }
-        }.create().show()
+    fun onClickStart() {
+        dialogLiveData.postValue(onStartGame)
     }
 
-    private fun onStart(
-        hostNameInput: String, guestNameInput: String, gamesInput: String
-    ) {
+    private val onStartGame = { hostNameInput: String, guestNameInput: String, gamesInput: String ->
         val games = if (gamesInput != "") {
             gamesInput.toInt()
         } else {
