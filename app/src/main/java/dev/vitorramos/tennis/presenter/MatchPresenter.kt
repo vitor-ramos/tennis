@@ -1,8 +1,6 @@
 package dev.vitorramos.tennis.presenter
 
-import android.view.View
-
-data class MatchPresenter(
+class MatchPresenter(
     val started: String = "",
     val hostName: String = "",
     val hostPoints: String = "",
@@ -16,7 +14,11 @@ data class MatchPresenter(
 
     val isLast: Boolean = false,
 
-    val onHostClick: (View) -> Unit = {},
-    val onGuestClick: (View) -> Unit = {},
-    val onDelete: (View) -> Unit = {}
-)
+    private val onHostClick: () -> Unit = {},
+    private val onGuestClick: () -> Unit = {},
+    private val onDeleteClick: () -> Unit = {}
+) {
+    fun onClickHost() = onHostClick()
+    fun onClickGuest() = onGuestClick()
+    fun onClickDelete() = onDeleteClick()
+}

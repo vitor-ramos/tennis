@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import dev.vitorramos.tennis.databinding.ItemMatchBinding
 import dev.vitorramos.tennis.entity.MatchEntity
 import dev.vitorramos.tennis.getFormattedDate
+import dev.vitorramos.tennis.getFormattedPoints
 import dev.vitorramos.tennis.presenter.MatchPresenter
 
 class MatchViewHolder(private val binding: ItemMatchBinding) :
@@ -21,17 +22,17 @@ class MatchViewHolder(private val binding: ItemMatchBinding) :
             MatchPresenter(
                 getFormattedDate(resources, started),
                 hostName,
-                hostPoints.toString(),
+                getFormattedPoints(hostPoints),
                 hostGames.toString(),
                 hostSets.toString(),
                 guestName,
-                guestPoints.toString(),
+                getFormattedPoints(guestPoints),
                 guestSets.toString(),
                 guestSets.toString(),
                 isLast,
-                { onHostClick() },
-                { onGuestClick() },
-                { onDelete() }
+                onHostClick,
+                onGuestClick,
+                onDelete
             )
         }
         binding.executePendingBindings()
