@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
     <data>
+
         <variable
             name="match"
             type="dev.vitorramos.tennis.presenter.MatchPresenter"
             />
     </data>
+
     <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -15,6 +18,7 @@
         android:layout_marginStart="@dimen/default_margin"
         android:layout_marginTop="@dimen/default_margin"
         android:layout_marginEnd="@dimen/default_margin"
+        android:layout_marginBottom="@{match.isLast ? @dimen/margin_bottom_list_fab : @dimen/default_margin}"
         app:cardElevation="@dimen/default_card_elevation"
         >
 
