@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import dev.vitorramos.tennis.Match
-import dev.vitorramos.tennis.R
+import dev.vitorramos.tennis.databinding.ItemMatchBinding
 import dev.vitorramos.tennis.entity.MatchEntity
 import dev.vitorramos.tennis.viewModel.MainViewModel
 
@@ -17,13 +17,9 @@ class MainAdapter(private val viewModel: MainViewModel?) :
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return MatchViewHolder(
-            LayoutInflater.from(parent.context).inflate(
-                R.layout.item_match,
-                parent,
-                false
-            )
-        )
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val itemBinding = ItemMatchBinding.inflate(layoutInflater, parent, false)
+        return MatchViewHolder(itemBinding)
     }
 
     override fun getItemCount(): Int {

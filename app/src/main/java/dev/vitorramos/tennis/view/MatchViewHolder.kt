@@ -1,6 +1,5 @@
 package dev.vitorramos.tennis.view
 
-import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageButton
@@ -8,11 +7,16 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import dev.vitorramos.tennis.R
+import dev.vitorramos.tennis.databinding.ItemMatchBinding
 import dev.vitorramos.tennis.entity.MatchEntity
 import dev.vitorramos.tennis.getFormattedDate
 import dev.vitorramos.tennis.getFormattedPoints
 
-class MatchViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+class MatchViewHolder(private val binding: ItemMatchBinding) :
+    RecyclerView.ViewHolder(binding.root) {
+
+    private val v = binding.root
+
     private val cvItemMatch: CardView = v.findViewById(R.id.cv_match_layout)
 
     private val tvStarted: AppCompatTextView = v.findViewById(R.id.tv_match_started)
@@ -40,6 +44,9 @@ class MatchViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         onGuestClick: () -> Unit,
         onDelete: () -> Unit
     ) {
+        binding.match = matchEntity
+        binding.executePendingBindings()
+
         tvHostName.text = matchEntity.hostName
         tvGuestName.text = matchEntity.guestName
 
