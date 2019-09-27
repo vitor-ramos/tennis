@@ -27,7 +27,7 @@ class MatchViewHolder(private val binding: ItemMatchBinding) :
                 hostSets.toString(),
                 guestName,
                 getFormattedPoints(guestPoints),
-                guestSets.toString(),
+                guestGames.toString(),
                 guestSets.toString(),
                 isLast,
                 onHostClick,
