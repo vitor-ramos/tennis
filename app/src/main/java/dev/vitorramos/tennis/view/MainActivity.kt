@@ -5,10 +5,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import dev.vitorramos.tennis.R
+import dev.vitorramos.tennis.databinding.ActivityMainBinding
 import dev.vitorramos.tennis.viewModel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -20,13 +22,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         viewModel = ViewModelProviders.of(this)[MainViewModel::class.java]
+        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(
+            this,
+            R.layout.activity_main
+        )
+        binding.viewmodel = viewModel
 
         rv_history_content.layoutManager = LinearLayoutManager(this)
         rv_history_content.adapter = MainAdapter(viewModel)
-
-        fab_history_start_match.setOnClickListener {
-            viewModel?.onClickStart()
-        }
 
         prepareObservables()
     }
