@@ -28,13 +28,14 @@ class MainAdapter(private val viewModel: MainViewModel?) :
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         content[holder.adapterPosition]?.let {
-            (holder as MatchViewHolder).bind(it, holder.adapterPosition == itemCount - 1, {
-                viewModel?.addPoint(holder.adapterPosition, Match.WhichPlayer.HOST)
-            }, {
-                viewModel?.addPoint(holder.adapterPosition, Match.WhichPlayer.GUEST)
-            }, {
-                viewModel?.deleteMatch(holder.adapterPosition)
-            })
+            (holder as MatchViewHolder).bind(
+                holder.itemView.resources,
+                it,
+                holder.adapterPosition == itemCount - 1,
+                { viewModel?.addPoint(holder.adapterPosition, Match.WhichPlayer.HOST) },
+                { viewModel?.addPoint(holder.adapterPosition, Match.WhichPlayer.GUEST) },
+                { viewModel?.deleteMatch(holder.adapterPosition) }
+            )
         }
     }
 }
