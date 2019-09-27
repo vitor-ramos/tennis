@@ -8,15 +8,14 @@ import dev.vitorramos.tennis.databinding.ItemMatchBinding
 import dev.vitorramos.tennis.entity.MatchEntity
 import dev.vitorramos.tennis.viewModel.MainViewModel
 
-class MainAdapter(private val viewModel: MainViewModel?) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MainAdapter(private val viewModel: MainViewModel?) : RecyclerView.Adapter<MatchViewHolder>() {
     var content: Array<MatchEntity?> = arrayOf()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MatchViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val itemBinding = ItemMatchBinding.inflate(layoutInflater, parent, false)
         return MatchViewHolder(itemBinding)
@@ -26,9 +25,9 @@ class MainAdapter(private val viewModel: MainViewModel?) :
         return content.size
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MatchViewHolder, position: Int) {
         content[holder.adapterPosition]?.let {
-            (holder as MatchViewHolder).bind(
+            holder.bind(
                 holder.itemView.resources,
                 it,
                 holder.adapterPosition == itemCount - 1,
