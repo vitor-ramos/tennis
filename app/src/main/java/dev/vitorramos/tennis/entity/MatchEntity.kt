@@ -12,12 +12,12 @@ data class MatchEntity(
 
     var gamesToSet: Int,
 
-    var hostName: String = "",
+    val hostName: String = "",
     var hostPoints: Int = 0,
     var hostGames: Int = 0,
     var hostSets: Int = 0,
 
-    var guestName: String = "",
+    val guestName: String = "",
     var guestPoints: Int = 0,
     var guestGames: Int = 0,
     var guestSets: Int = 0
