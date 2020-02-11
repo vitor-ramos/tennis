@@ -2,13 +2,26 @@ package dev.vitorramos.tennis.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import dev.vitorramos.tennis.Match
 import dev.vitorramos.tennis.databinding.ItemMatchBinding
 import dev.vitorramos.tennis.entity.MatchEntity
 import dev.vitorramos.tennis.viewModel.MainViewModel
 
-class MainAdapter(private val viewModel: MainViewModel?) : RecyclerView.Adapter<MatchViewHolder>() {
+class MainAdapter :
+    ListAdapter<MatchEntity, MatchViewHolder>(object : DiffUtil.ItemCallback<MatchEntity>() {
+        override fun areItemsTheSame(oldItem: MatchEntity, newItem: MatchEntity): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: MatchEntity, newItem: MatchEntity): Boolean {
+            return oldItem.hashCode() == newItem.hashCode() && oldItem == newItem
+        }
+    }) {
+
+    var vm: MainViewModel? = null
+
     var content: Array<MatchEntity?> = arrayOf()
         set(value) {
             field = value
@@ -21,19 +34,15 @@ class MainAdapter(private val viewModel: MainViewModel?) : RecyclerView.Adapter<
         return MatchViewHolder(itemBinding)
     }
 
-    override fun getItemCount(): Int {
-        return content.size
-    }
-
     override fun onBindViewHolder(holder: MatchViewHolder, position: Int) {
-        content[holder.adapterPosition]?.let {
+        getItem(holder.adapterPosition)?.let {
             holder.bind(
                 holder.itemView.resources,
                 it,
                 holder.adapterPosition == itemCount - 1,
-                { viewModel?.addPoint(holder.adapterPosition, Match.WhichPlayer.HOST) },
-                { viewModel?.addPoint(holder.adapterPosition, Match.WhichPlayer.GUEST) },
-                { viewModel?.deleteMatch(holder.adapterPosition) }
+                { vm?.addPoint(holder.adapterPosition, Match.WhichPlayer.HOST) },
+                { vm?.addPoint(holder.adapterPosition, Match.WhichPlayer.GUEST) },
+                { vm?.deleteMatch(holder.adapterPosition) }
             )
         }
     }

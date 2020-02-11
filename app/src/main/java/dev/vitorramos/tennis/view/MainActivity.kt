@@ -2,12 +2,12 @@ package dev.vitorramos.tennis.view
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import dev.vitorramos.tennis.R
 import dev.vitorramos.tennis.databinding.ActivityMainBinding
@@ -15,13 +15,13 @@ import dev.vitorramos.tennis.viewModel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    private var viewModel: MainViewModel? = null
+    private val viewModel: MainViewModel by viewModels()
+    private val mainAdapter by lazy { MainAdapter().apply { vm = viewModel } }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        viewModel = ViewModelProviders.of(this)[MainViewModel::class.java]
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(
             this,
             R.layout.activity_main
@@ -29,19 +29,19 @@ class MainActivity : AppCompatActivity() {
         binding.viewmodel = viewModel
 
         rv_history_content.layoutManager = LinearLayoutManager(this)
-        rv_history_content.adapter = MainAdapter(viewModel)
+        rv_history_content.adapter = mainAdapter
 
         prepareObservables()
     }
 
     private fun prepareObservables() {
-        viewModel?.matches?.observe(this, Observer {
+        viewModel.matches.observe(this, Observer {
             it?.let {
-                (rv_history_content.adapter as MainAdapter).content = it
+                mainAdapter.submitList(it)
             }
         })
 
-        viewModel?.dialogObservable?.observe(this, Observer { onStartGame ->
+        viewModel.dialogObservable.observe(this, Observer { onStartGame ->
             @SuppressLint("InflateParams")
             val v = layoutInflater.inflate(R.layout.dialog_start_match, null, false)
             AlertDialog.Builder(this).apply {

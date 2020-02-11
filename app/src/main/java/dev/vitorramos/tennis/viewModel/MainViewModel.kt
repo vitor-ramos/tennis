@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import java.util.*
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
-    val matches: LiveData<Array<MatchEntity?>?> by lazy {
+    val matches: LiveData<List<MatchEntity?>?> by lazy {
         Repository.it?.getMatches() ?: MutableLiveData()
     }
 

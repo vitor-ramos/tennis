@@ -16,7 +16,7 @@ interface MatchDao {
     fun deleteMatch(matchId: Long)
 
     @Query("SELECT * FROM matches ORDER BY started DESC")
-    fun getMatches(): LiveData<Array<MatchEntity?>?>?
+    fun getMatches(): LiveData<List<MatchEntity?>?>?
 
     @Query("SELECT * FROM matches WHERE id == :matchId")
     fun getMatch(matchId: Long): LiveData<MatchEntity?>?
