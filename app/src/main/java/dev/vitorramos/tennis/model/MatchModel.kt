@@ -15,15 +15,14 @@ class MatchModel(private val tennisDatabase: TennisDatabase) {
         gamesToSet: Int,
         hostName: String = "",
         guestName: String = ""
-    ): Long? {
-        val match = MatchEntity(
+    ) = tennisDatabase.matchDao().insertMatch(
+        MatchEntity(
             started = started,
             gamesToSet = gamesToSet,
             hostName = hostName,
             guestName = guestName
         )
-        return tennisDatabase.matchDao().insertMatch(match)
-    }
+    )
 
     fun deleteMatch(matchId: Long) {
         tennisDatabase.matchDao().deleteMatch(matchId)

@@ -10,7 +10,7 @@ import dev.vitorramos.tennis.entity.MatchEntity
 @Dao
 interface MatchDao {
     @Insert
-    suspend fun insertMatch(match: MatchEntity): Long
+    suspend fun insertMatch(match: MatchEntity)
 
     @Query("DELETE FROM matches WHERE id == :matchId")
     fun deleteMatch(matchId: Long)

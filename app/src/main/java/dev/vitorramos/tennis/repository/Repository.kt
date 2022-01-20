@@ -13,14 +13,12 @@ class Repository private constructor(private val matchModel: MatchModel) {
         gamesToSet: Int,
         hostName: String = "",
         guestName: String = ""
-    ): Long? {
-        return matchModel.insertMatch(
-            started = started,
-            gamesToSet = gamesToSet,
-            hostName = hostName,
-            guestName = guestName
-        )
-    }
+    ) = matchModel.insertMatch(
+        started = started,
+        gamesToSet = gamesToSet,
+        hostName = hostName,
+        guestName = guestName
+    )
 
     fun deleteMatch(matchId: Long) = matchModel.deleteMatch(matchId)
 
